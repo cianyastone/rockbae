@@ -1,8 +1,8 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 import './App.css';
 import Home from './pages/Home'
 
-import { StoreProvider } from ".";
+import { StoreProvider } from "./store";
 
 function App() {
   return (

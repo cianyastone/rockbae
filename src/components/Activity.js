@@ -1,8 +1,7 @@
 import { Row, Col } from "antd";
 import ActivityItem from "./ActivityItem";
 
-
-export default function Activity({activitys}){
+export default function Activity({activitys}) {
     return(
         <Row gutter={[32, 32]}>
         {activitys.map(activity => (
@@ -13,11 +12,9 @@ export default function Activity({activitys}){
                 xl={{ span: 6 }}
                 xxl={{ span: 4 }}
             >
-            <ActivityItem activity={activity}/>
+                <ActivityItem activity={activity}/>
             </Col>
         ))}
-    </Row>
-
-            
-    )
+        </Row>       
+    );
 }

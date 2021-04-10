@@ -17,17 +17,17 @@ export default function ActivityItem({ activity }) {
                 <h2 className="activity-name">
                     {activity.name}
                 </h2>
-                <p className="activity-description">
+                {/* <p className="activity-description">
                     {activity.description}
-                </p>
+                </p> */}
                 <div className="activity-more">
                     <Link to={`/activity/${activity.id}`} className="activity-link">
                         See More ...
                     </Link>
-                    <span
+                    {/* <span
                         className="text-gray">
                         USD {activity.price}.00
-                    </span>
+                    </span> */}
                 </div>
             </div>
         </Card>
