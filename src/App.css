@@ -58,11 +58,11 @@ body {
 }
 
 .layout-header,
-.layout-footer {
+.layout-footer{
   padding: 0;
   height: auto;
   line-height: 1.6;
-  background-color: #FFFFFF;
+  background-color: white;
 }
 
 .layout-content {
@@ -156,33 +156,6 @@ body {
     display: none;
   }
 } 
-
-
-.nav-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-}
-
-.nav-item {
-  font-size: 1rem;
-  text-align: center;
-  cursor: pointer;
-  color: white;
-  opacity: 0.6;
-  transition: opacity .25s linear;
-}
-
-.nav-item:hover {
-  color: white;
-  opacity: 1;
-}
-
-.nav-item--active {
-  opacity: 1;
-}
 
 .hr-header-line {
   margin: 25px auto 30px;
@@ -294,4 +267,98 @@ body {
   .activity-image {
     height: 24rem;
   }
+}
+
+/* Header */
+.header {
+  margin-top:2rem;
+  margin-bottom:1rem;
+  text-align: center;
+}
+
+.header-slogan {
+  opacity:0.6;
+  width: 100%;
+}
+
+/*Nav-bar*/
+.nav-bar {
+  margin-left:40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+
+.nav-item {
+  font-size: 1.1rem;
+  font-style: italic;
+  text-align: center;
+  color: rgb(66, 66, 66);
+  opacity: 0.6;
+  transition: opacity .25s linear;
+}
+
+.nav-item:hover {
+  color: #c583ff;
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+.nav-item:active {
+  color: #ae52ff;
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.footer-area{
+  display: flex;
+  flex-direction: column;
+  align-self:flex-start;
+  align-items: flex-start;
+}
+
+.footer-title{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(66, 66, 66);
+  opacity: 0.8;
+}
+
+.footer-item {
+  font-size: 1rem;
+  line-height: 2.5rem;
+  color: rgb(66, 66, 66);
+  opacity: 0.6;
+}
+
+.footer-icon{
+  width:1rem;
+  margin-right: 1rem;
+}
+
+.footer-item:hover {
+  color: #c583ff;
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.footer-item:active {
+  color: #ae52ff;
+  transform: scale(1);
+}
+
+.statement{
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color:rgb(66, 66, 66);
+  opacity: 0.4;
 }
