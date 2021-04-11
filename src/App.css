@@ -277,7 +277,6 @@ body {
 }
 
 .header-slogan {
-  opacity:0.6;
   width: 100%;
 }
 
@@ -294,20 +293,22 @@ body {
   font-size: 1.1rem;
   font-style: italic;
   text-align: center;
-  color: rgb(66, 66, 66);
-  opacity: 0.6;
+  background-color: #2bff47;
+  color: #9014FF;
+  opacity: 0.8;
   transition: opacity .25s linear;
 }
 
 .nav-item:hover {
-  color: #c583ff;
-  opacity: 0.8;
-  transform: scale(1.2);
+  color: #2bff47;
+  background-color: #9014FF;
+  font-weight: bold;
+  opacity: 1;
+  transform: scale(1.2)!important;
 }
 
 .nav-item:active {
-  color: #ae52ff;
-  transform: scale(1.1);
+  transform: scale(1.1)!important;
 }
 
 /* Footer */
@@ -362,3 +363,4 @@ body {
   color:rgb(66, 66, 66);
   opacity: 0.4;
 }
+
