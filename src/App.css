@@ -72,7 +72,7 @@ body {
 
 .main-layout {
   min-height: 100vh;
-  
+  background-color: #FFFFFF;
 }
 
 .bg-gray {
@@ -171,6 +171,12 @@ body {
 }
 
 /* Slide */
+.Slide{
+  width: 100%;
+  height: 435px;
+  display: 'flex';
+}
+
 .content-slide{
   margin-top: 20px;
 }
