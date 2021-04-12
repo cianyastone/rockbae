@@ -16,7 +16,7 @@ function Home() {
         <AppHeader title="NORDIC NEST Shopping Cart"/>
       </Header>
       <Content className="layout-content content-slide">
-        <Slide activitys={activitys}/>
+        <Slide activities={activities}/>
       </Content>
       <Content className="layout-content">
         <ActivityList activities={activities}/>

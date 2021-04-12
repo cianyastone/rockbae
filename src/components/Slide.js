@@ -1,7 +1,7 @@
 import { Carousel } from "antd";
 import { Link } from 'react-router-dom';
 import cook from '../json/cookware';
-import activitys from '../json/activity';
+import activity from '../json/activity.json';
 
 export default function Slide({match}) {
     const contentStyle = {
@@ -10,31 +10,30 @@ export default function Slide({match}) {
         lineHeight: '350px',
         textAlign: 'center',
     };
-    // const activity = activitys.find(
-    //     x => x.id === match.params.productId
+    // const activities
+    // const activities = activity.find(
+    //     x => x.id === match.params.activityId
     //  );
     return(
+        <Carousel autoplay>
         <div>
-        {/* {activitys.map(activity => ( */}
-            <Carousel autoplay>
-            <div>
-            <img
-                style={{ width: '100%' }}
-                src={cook.image}
-                alt={cook.name} />
-            </div>
-            {/* <div>
-            <h3 style={contentStyle}>2</h3>
-            </div>
-            <div>
-            <h3 style={contentStyle}>3</h3>
-            </div>
-            <div>
-            <h3 style={contentStyle}>4</h3>
-            </div> */}
-            </Carousel>
-        {/* ))} */}
+        <img
+            style={{ width: '100%', contentStyle}}
+            src={activity[0].image2}
+            alt={activity[0].name} />
         </div>
-        
+        <div>
+        <img
+            style={{ width: '100%', contentStyle}}
+            src={activity[1].image2}
+            alt={activity[1].name} />
+        </div>
+        {/* <div>
+        <h3 style={contentStyle}>3</h3>
+        </div>
+        <div>
+        <h3 style={contentStyle}>4</h3>
+        </div> */}
+        </Carousel> 
     );
 }

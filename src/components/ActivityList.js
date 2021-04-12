@@ -1,7 +1,7 @@
 import { Row, Col, Breadcrumb } from "antd";
 import ActivityItem from "./ActivityItem";
 
-export default function Activity({activitys}) {
+export default function Activity({activities}) {
     return(
         <>
         <Breadcrumb>
@@ -13,7 +13,7 @@ export default function Activity({activitys}) {
             </Breadcrumb.Item>
         </Breadcrumb>
         <Row gutter={[24,24]}>
-        {activitys.map(activity => (
+        {activities.map(activity => (
             <Col 
                 key={activity.id} 
                 sm={{ span: 24 }} 
