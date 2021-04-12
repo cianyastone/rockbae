@@ -6,6 +6,7 @@ export default function ActivityItem({ activity }) {
         <Card className="bg-gray activity">
             <Link to={`/activity/${activity.id}`}>
                 <img
+                    className="activityItem-img"
                     style={{ width: '100%' }}
                     src={activity.image}
                     alt={activity.name} />

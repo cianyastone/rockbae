@@ -48,7 +48,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   background-color: #FFFFFF;
-  color: white;
+  color: #000;
 }
 
 .container-fluid {
@@ -175,6 +175,10 @@ body {
   border: solid gray 1px;
 }
 
+.activityItem-img{
+  border-radius: 1%;
+}
+
 .ant-card-body{
   padding: 0;
 }
@@ -222,24 +226,35 @@ body {
 .activity-image {
   width: 100%;
   height: 16rem;
-  object-fit: cover;
+  object-fit:contain;
   object-position: center;
   border-radius: 2%;
-  margin-bottom: 0;
-  padding-bottom: 0;
 }
 
 .activity-name--large {
+  display: flex;
   font-size: 1.5rem;
 }
 
 .activity-price--large {
   font-size: 1.5rem;
+  font-weight: bold;
+  color: #dd0000;
+  background-color: #f5f5f5;
+  padding:1rem;
 }
 
 .activity-price-wrap {
   display: flex;
   flex-direction: column;
+}
+
+.activity-item{
+  display: flex;
+}
+
+.activity-item--name{
+  margin-right: 1rem;
 }
 
 .activity-status,
@@ -249,7 +264,7 @@ body {
 }
 
 .qty-number {
-  color: white;
+  color: #000;
   background-color: #FFFFFF;
 }
 
@@ -271,8 +286,8 @@ body {
 
 /* Header */
 .header {
-  margin-top:2rem;
-  margin-bottom:1rem;
+  margin-top:1rem;
+  margin-bottom:2rem;
   text-align: center;
 }
 
@@ -286,14 +301,13 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 3rem;
+  margin-top: 1.7rem;
 }
 
 .nav-item {
   font-size: 1.1rem;
   font-style: italic;
   text-align: center;
-  background-color: #2bff47;
   color: #9014FF;
   opacity: 0.8;
   transition: opacity .25s linear;
@@ -301,7 +315,6 @@ body {
 
 .nav-item:hover {
   color: #2bff47;
-  background-color: #9014FF;
   font-weight: bold;
   opacity: 1;
   transform: scale(1.2)!important;
