@@ -48,7 +48,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   background-color: #FFFFFF;
-  color: #000;
+  color: white;
 }
 
 .container-fluid {
@@ -67,6 +67,7 @@ body {
 
 .layout-content {
   background-color: #FFFFFF;
+  margin-top: 20px;
 }
 
 .main-layout {
@@ -168,11 +169,17 @@ body {
   opacity: 1;
 }
 
+/* Slide */
+.content-slide{
+  margin-top: 20px;
+}
 
 /* activity Item */
 .activity {
   border-radius: 1%;
   border: solid gray 1px;
+  width: 90%;
+  margin-top: 20px;
 }
 
 .activityItem-img{
@@ -213,13 +220,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .activity-link {
   text-decoration: none;
   align-self: center;
-  color: #000000;
+  color: #9014FF;
+}
+
+/* Breadcrumb */
+.breadcrumb{
+  margin-left: 30px;
 }
 
 /* Detail Page */

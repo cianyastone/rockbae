@@ -4,6 +4,7 @@ import ActivityList from "../components/ActivityList";
 import { StoreContext } from "../store"
 import AppHeader from "../components/Header"
 import AppFooter from "../components/Footer"
+import Slide from '../components/Slide';
 
 const { Header, Content, Footer } = Layout;
 
@@ -14,6 +15,9 @@ function Home() {
       <Header className="layout-header">
         <AppHeader title="NORDIC NEST Shopping Cart"/>
       </Header>
+      <Content className="layout-content content-slide">
+        <Slide activitys={activitys}/>
+      </Content>
       <Content className="layout-content">
         <ActivityList activities={activities}/>
       </Content>   
