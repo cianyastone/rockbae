@@ -1,5 +1,5 @@
-import { Row, Col, Tabs, Radio } from "antd";
-
+import { Row, Col, Tabs, Radio, Breadcrumb } from "antd";
+import { Link } from 'react-router-dom';
 
 function ActivityDetail({ activity }) {
    const { TabPane } = Tabs;
@@ -18,6 +18,17 @@ function ActivityDetail({ activity }) {
     );
 
    return (
+      <>
+      <Breadcrumb className="breadcrumb--1">
+            <Breadcrumb.Item className="breadcrumb">
+                <a href="/Home">首頁</a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+               <Link to={`/activity/${activity.id}`}>
+                  {activity.name}
+               </Link>
+            </Breadcrumb.Item>
+      </Breadcrumb>
       <Row gutter={[4, 32]}>
          <Col lg={{ span: 8 }}>
          <img
@@ -53,6 +64,7 @@ function ActivityDetail({ activity }) {
             <Demo />
          </Col>
       </Row>
+      </>
    );
 }
 
