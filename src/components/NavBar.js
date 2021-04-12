@@ -1,7 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import { Menu, Dropdown } from 'antd';
-import { DownOutlined, AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import ActivityItem from "./ActivityItem";
 
 export default function NavBar() {
     const menu = (
@@ -11,7 +9,7 @@ export default function NavBar() {
               1st menu item
             </a>
           </Menu.Item>
-          <Menu.Item icon={<DownOutlined />} >
+          <Menu.Item>
             <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
               2nd menu item
             </a>
@@ -23,7 +21,6 @@ export default function NavBar() {
           </Menu.Item>
         </Menu>
     );
-    const { SubMenu } = Menu;
     return (
         <div className="nav-bar">
             <Dropdown overlay={menu}>

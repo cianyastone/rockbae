@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import activitys from "../json/activity.json"
+import activities from "../json/activity.json"
 import { 
    PAGE_TITLE_SET,
    PAGE_CONTENT_SET,
@@ -13,7 +13,7 @@ export const StoreContext = createContext();
 const initialState = {
    page: {
       title: "NORDIC NEST Shopping Cart",
-      activitys,
+      activities,
    },
    navBar: {
       activeItem: "",
@@ -38,7 +38,7 @@ function reducer(state, action) {
             ...state,
             page: {
                ...state.page,
-               activitys: action.payload,
+               activities: action.payload,
             },
          };
       case NAVBAR_ITEM_SET:

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Row, Col, Divider } from 'antd';
+import { Row, Col } from 'antd';
 export default function Footer() {
     return (
         <footer className="footer">
@@ -25,11 +25,11 @@ export default function Footer() {
                 <Col className="footer-area" span={8}>
                     <p className="footer-title">關注我們</p>
                     <Link to="/" className="footer-item">
-                        <img className="footer-icon" src="facebook.png"/>
+                        <img className="footer-icon" src="facebook.png" alt="facebook icon"/>
                         FACEBOOK
                     </Link>
                     <Link to="/" className="footer-item">
-                        <img className="footer-icon" src="instagram.png"/>
+                        <img className="footer-icon" src="instagram.png" alt="instagram icon"/>
                         INSTAGRAM
                     </Link>
                 </Col>

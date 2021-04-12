@@ -1,10 +1,10 @@
 import { Row, Col } from "antd";
 import ActivityItem from "./ActivityItem";
 
-export default function Activity({activitys}) {
+export default function ActivityList({activities}) {
     return(
         <Row gutter={[32, 32]}>
-        {activitys.map(activity => (
+        {activities.map(activity => (
             <Col 
                 key={activity.id} 
                 sm={{ span: 12 }} 
