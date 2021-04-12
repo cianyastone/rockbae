@@ -21,7 +21,9 @@ function ActivityDetail({ activity }) {
       <>
       <Breadcrumb className="breadcrumb--1">
             <Breadcrumb.Item className="breadcrumb">
-                <a href="/Home">首頁</a>
+               <Link to={`/Home`}>
+               首頁
+               </Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
                <Link to={`/activity/${activity.id}`}>

@@ -1,4 +1,5 @@
 import { Row, Col, Breadcrumb } from "antd";
+import { Link } from 'react-router-dom';
 import ActivityItem from "./ActivityItem";
 
 export default function Activity({activities}) {
@@ -6,7 +7,9 @@ export default function Activity({activities}) {
         <>
         <Breadcrumb>
             <Breadcrumb.Item className="breadcrumb">
-                <a href="/Home">首頁</a>
+                <Link to={`/Home`}>
+                首頁
+                </Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
                 <a></a>
