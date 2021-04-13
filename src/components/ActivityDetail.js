@@ -1,21 +1,47 @@
 import { Row, Col, Tabs, Radio, Breadcrumb } from "antd";
 import { Link } from 'react-router-dom';
+import { StickyContainer, Sticky } from 'react-sticky';
+import React from 'react';
+import activity from "../json/activity.json"
+
+const { TabPane } = Tabs;
+const renderTabBar = (props, DefaultTabBar) => (
+   <Sticky bottomOffset={80}>
+      {({ style }) => (
+         <DefaultTabBar {...props} className="site-custom-tab-bar" style={{ ...style }} />
+      )}
+   </Sticky>
+);
+const options = [
+   {label:`${activity.ticketClass[0]}` }
+];
+
+class App extends React.Component {
+   state = {
+     value3: 'Apple',
+   };
+   onChange3 = e => {
+     console.log('radio3 checked', e.target.value);
+     this.setState({
+       value3: e.target.value,
+     });
+   };
+   render() {
+     const { value3 } = this.state;
+     return (
+       <>
+         <Radio.Group
+           options={options}
+           onChange={this.onChange3}
+           value={value3}
+           optionType="button"
+         />
+       </>
+     );
+   }
+ }
 
 function ActivityDetail({ activity }) {
-   const { TabPane } = Tabs;
-   const Demo = () => (
-      <Tabs defaultActiveKey="1" centered>
-        <TabPane tab="Tab 1" key="1">
-          Content of Tab Pane 1
-        </TabPane>
-        <TabPane tab="Tab 2" key="2" tabPosition="center">
-          Content of Tab Pane 2
-        </TabPane>
-        <TabPane tab="Tab 3" key="3">
-          Content of Tab Pane 3
-        </TabPane>
-      </Tabs>
-    );
 
    return (
       <>
@@ -31,6 +57,7 @@ function ActivityDetail({ activity }) {
                </Link>
             </Breadcrumb.Item>
       </Breadcrumb>
+
       <Row gutter={[4, 32]}>
          <Col lg={{ span: 8 }}>
          <img
@@ -39,7 +66,7 @@ function ActivityDetail({ activity }) {
             src={activity.image}
          />           
          </Col>
-         <Col lg={{ span: 12 }} >
+         <Col lg={{ span: 16 }} >
          <div className="activity-info--detail">
             <h1 className="activity-name activity-name--large">
                {activity.name}
@@ -50,20 +77,25 @@ function ActivityDetail({ activity }) {
                </p>
             </div>
             <div className="activity-item">
-               <p className="activity-item--name">
-                  票種
-               </p>
-               <Radio.Group defaultValue="a">
-                  <Radio.Button value="a">Hangzhou</Radio.Button>
-                  <Radio.Button value="b">Shanghai</Radio.Button>
-                  <Radio.Button value="c">Beijing</Radio.Button>
-                  <Radio.Button value="d">Chengdu</Radio.Button>
-               </Radio.Group>
+               <p>票種</p>
+               <App />
             </div>
          </div>           
          </Col>
          <Col span={24}>
-            <Demo />
+            <StickyContainer>
+               <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
+                  <TabPane tab="Tab 1" key="1" style={{ height: 200 }}>
+                  Content of Tab Pane 1
+                  </TabPane>
+                  <TabPane tab="Tab 2" key="2">
+                  Content of Tab Pane 2
+                  </TabPane>
+                  <TabPane tab="Tab 3" key="3">
+                  Content of Tab Pane 3
+                  </TabPane>
+               </Tabs>
+            </StickyContainer>
          </Col>
       </Row>
       </>

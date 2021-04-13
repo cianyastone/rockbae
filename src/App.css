@@ -274,10 +274,13 @@ body {
 
 .activity-item{
   display: flex;
+  display: flex;
+  align-items: center;
 }
 
-.activity-item--name{
+.activity-item p{
   margin-right: 1rem;
+  color:rgb(66, 66, 66);
 }
 
 .activity-status,
@@ -293,6 +296,11 @@ body {
 
 .select-style {
   font-size: 0.8rem;
+}
+
+.site-custom-tab-bar {
+  z-index: 1;
+  background: #fff;
 }
 
 .btn-tocar {

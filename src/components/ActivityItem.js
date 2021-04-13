@@ -10,7 +10,8 @@ export default function ActivityItem({ activity }) {
                 <img
                     style={{ width: '100%' }}
                     src={activity.image}
-                    alt={activity.name} />
+                    alt={activity.name}
+                    className="activityItem-img" />
             </Link>
             <div className="activity-info">
                 <h6 className="activity-category">
