@@ -2,7 +2,7 @@ import { Row, Col, Tabs, Radio, Breadcrumb } from "antd";
 import { Link } from 'react-router-dom';
 import { StickyContainer, Sticky } from 'react-sticky';
 import React from 'react';
-import activity from "../json/activity.json"
+import { useState } from "react";
 
 const { TabPane } = Tabs;
 const renderTabBar = (props, DefaultTabBar) => (
@@ -12,37 +12,8 @@ const renderTabBar = (props, DefaultTabBar) => (
       )}
    </Sticky>
 );
-const options = [
-   {label:`${activity.ticketClass[0]}` }
-];
-
-class App extends React.Component {
-   state = {
-     value3: 'Apple',
-   };
-   onChange3 = e => {
-     console.log('radio3 checked', e.target.value);
-     this.setState({
-       value3: e.target.value,
-     });
-   };
-   render() {
-     const { value3 } = this.state;
-     return (
-       <>
-         <Radio.Group
-           options={options}
-           onChange={this.onChange3}
-           value={value3}
-           optionType="button"
-         />
-       </>
-     );
-   }
- }
 
 function ActivityDetail({ activity }) {
-
    return (
       <>
       <Breadcrumb className="breadcrumb--1">
@@ -73,12 +44,18 @@ function ActivityDetail({ activity }) {
             </h1>
             <div className="activity-price-wrap">
                <p className="activity-price activity-price--large">
-                  ${activity.price}.00
+                  ${activity.price}
                </p>
             </div>
             <div className="activity-item">
                <p>票種</p>
-               <App />
+               <Radio.Group defaultValue="c">
+                  {[...Array(activity.ticketClass.length).keys()].map((x) => (
+                     <Radio.Button value={activity.ticketClass[x]}>
+                        {activity.ticketClass[x]}
+                     </Radio.Button>
+                  ))}
+               </Radio.Group>
             </div>
          </div>           
          </Col>
