@@ -1,8 +1,9 @@
-import { Row, Col, Tabs, Radio, Breadcrumb } from "antd";
+import { Row, Col, Tabs, Radio, Breadcrumb, InputNumber } from "antd";
 import { Link } from 'react-router-dom';
 import { StickyContainer, Sticky } from 'react-sticky';
 import React from 'react';
 import { useState } from "react";
+import AddToCart from "./AddToCart"
 
 const { TabPane } = Tabs;
 const renderTabBar = (props, DefaultTabBar) => (
@@ -12,8 +13,21 @@ const renderTabBar = (props, DefaultTabBar) => (
       )}
    </Sticky>
 );
-
 function ActivityDetail({ activity }) {
+   const [qty, setQty] = useState(activity.countInStock > 0 ? 1 : 0);
+   const [ticket, setTicket] = useState(0);
+   function onChange(e){
+      setTicket(e.target.value);
+   };
+   const App = () => (
+      <Radio.Group value={ticket} onChange={onChange}>
+         {[...Array(activity.ticketClass.length).keys()].map((x) => (
+            <Radio.Button value={x}>
+               {activity.ticketClass[x]}
+            </Radio.Button>
+         ))}
+      </Radio.Group>
+   );
    return (
       <>
       <Breadcrumb className="breadcrumb--1">
@@ -44,32 +58,48 @@ function ActivityDetail({ activity }) {
             </h1>
             <div className="activity-price-wrap">
                <p className="activity-price activity-price--large">
-                  ${activity.price}
+                  ${activity.price > "0" ? activity.price[ticket] : "FREE"}
                </p>
             </div>
             <div className="activity-item">
                <p>票種</p>
-               <Radio.Group defaultValue="c">
-                  {[...Array(activity.ticketClass.length).keys()].map((x) => (
-                     <Radio.Button value={activity.ticketClass[x]}>
-                        {activity.ticketClass[x]}
-                     </Radio.Button>
-                  ))}
-               </Radio.Group>
+               <App/>
             </div>
+            <br/>
+            <div className="activity-item">
+               <p>數量</p>
+               <InputNumber
+                  min={1} 
+                  max={4} 
+                  defaultValue={1} 
+                  onChange={value=>setQty(value)}
+                  disabled={activity.countInStock[ticket] > 0 ? false : true} />
+               <p className="notice">一人限購4張</p>
+               <onChange/>
+            </div>
+            <br/><br/>
+            <AddToCart />
          </div>           
          </Col>
          <Col span={24}>
             <StickyContainer>
                <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
-                  <TabPane tab="Tab 1" key="1" style={{ height: 200 }}>
-                  Content of Tab Pane 1
+                  <TabPane tab="簡介" key="1">
+                  <p>
+                     {activity.description_long}
+                     <br/><br/>
+                     活動名稱：{activity.name}<br/>
+                     演出日期：{activity.date}<br/>
+                     演出地點：{activity.place}<br/>
+                  </p>
                   </TabPane>
-                  <TabPane tab="Tab 2" key="2">
+                  <TabPane tab="演出陣容" key="2">
                   Content of Tab Pane 2
                   </TabPane>
-                  <TabPane tab="Tab 3" key="3">
-                  Content of Tab Pane 3
+                  <TabPane tab="主辦單位" key="3">
+                  <p>
+                     {activity.organizer}
+                  </p>
                   </TabPane>
                </Tabs>
             </StickyContainer>
