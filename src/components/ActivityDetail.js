@@ -22,7 +22,7 @@ function ActivityDetail({ activity }) {
    const App = () => (
       <Radio.Group value={ticket} onChange={onChange}>
          {[...Array(activity.ticketClass.length).keys()].map((x) => (
-            <Radio.Button value={x}>
+            <Radio.Button value={x} className="radio-style ">
                {activity.ticketClass[x]}
             </Radio.Button>
          ))}
@@ -61,20 +61,32 @@ function ActivityDetail({ activity }) {
                   ${activity.price > "0" ? activity.price[ticket] : "FREE"}
                </p>
             </div>
+            <Row gutter={[8, 16]} className="activity-item">
+               <Col span={2}>
+                  <p>票種</p>
+               </Col>
+               <Col span={22}>
+                  <App/>
+               </Col>
+               <Col span={2}>
+                  <p>數量</p>
+               </Col>
+               <Col span={2}>
+                  <InputNumber
+                     min={1} 
+                     max={4} 
+                     defaultValue={1} 
+                     className="input-number"
+                     onChange={value=>setQty(value)}
+                     disabled={activity.countInStock[ticket] > 0 ? false : true} />
+               </Col>
+               <Col className="ticket-qty">
+                  <p className="notice">一人限購4張</p>
+               </Col>
+            </Row>
             <div className="activity-item">
-               <p>票種</p>
-               <App/>
-            </div>
-            <br/>
-            <div className="activity-item">
-               <p>數量</p>
-               <InputNumber
-                  min={1} 
-                  max={4} 
-                  defaultValue={1} 
-                  onChange={value=>setQty(value)}
-                  disabled={activity.countInStock[ticket] > 0 ? false : true} />
-               <p className="notice">一人限購4張</p>
+               
+               
                <onChange/>
             </div>
             <br/><br/>
