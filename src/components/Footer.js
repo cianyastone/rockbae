@@ -25,11 +25,11 @@ export default function Footer() {
                 <Col className="footer-area" span={8}>
                     <p className="footer-title">關注我們</p>
                     <Link to="/" className="footer-item">
-                        <img className="footer-icon" src="https://www.flaticon.com/svg/vstatic/svg/1051/1051258.svg?token=exp=1618205475~hmac=aa24e98315966c0fb6800d231a7a8f81" alt="facebook icon"/>
+                        <img className="footer-icon" src="https://i.pinimg.com/originals/4e/de/f9/4edef9108182a9ba8dde53eb3fd52675.png" alt="facebook icon"/>
                         FACEBOOK
                     </Link>
                     <Link to="/" className="footer-item">
-                        <img className="footer-icon" src="https://www.flaticon.com/svg/vstatic/svg/1051/1051262.svg?token=exp=1618205506~hmac=c15a1a5d64180f066b642956459c5783" alt="instagram icon"/>
+                        <img className="footer-icon" src="https://i.pinimg.com/originals/6a/9f/b2/6a9fb2ed267819dd5076b8865f849eeb.png" alt="instagram icon"/>
                         INSTAGRAM
                     </Link>
                 </Col>

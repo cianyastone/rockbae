@@ -181,7 +181,7 @@ body {
   margin-top: 20px;
 }
 
-/*andt*/
+/*antd*/
 .radio-style{
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
@@ -310,7 +310,7 @@ body {
 
 @media (min-width: 992px) {
   .activity-image {
-    height: 24rem;
+    width: 100%;
   }
 }
 
