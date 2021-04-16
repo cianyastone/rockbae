@@ -62,7 +62,7 @@ export default function NavBar() {
             煞氣ㄉ音樂祭 <DownOutlined/>
           </NavLink>
         </Dropdown>
-        <NavLink to="/Prefer" className="nav-item" activeClassName="nav-item--active">
+        <NavLink to="/Prefer" activeClassName="nav-item--active">
           <PreferSummary preference={'想去ㄉ活動'} />
         </NavLink>
         <CartModal/>

@@ -3,15 +3,6 @@ import { Link } from 'react-router-dom';
 import activity from '../json/activity.json';
 
 export default function Slide({match}) {
-    const contentStyle = {
-        height: '350px',
-        color: '#000',
-        display: 'flex',
-    };
-    // const activities
-    // const activities = activity.find(
-    //     x => x.id === match.params.activityId
-    //  );
     return(
         <Carousel autoplay 
             className="Slide">
