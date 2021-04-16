@@ -4,6 +4,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import React from 'react';
 import { useState } from "react";
 import AddToCart from "./AddToCart"
+import BreadcrumbItem from "./BreadcrumbItem";
 
 const { TabPane } = Tabs;
 const renderTabBar = (props, DefaultTabBar) => (
@@ -30,7 +31,8 @@ function ActivityDetail({ activity }) {
    );
    return (
       <>
-      <Breadcrumb className="breadcrumb--1">
+      <BreadcrumbItem link={`activity/${activity.id}`} name={activity.name} />
+      {/* <Breadcrumb className="breadcrumb--1">
             <Breadcrumb.Item className="breadcrumb">
                <Link to={`/Home`}>
                首頁
@@ -41,7 +43,7 @@ function ActivityDetail({ activity }) {
                   {activity.name}
                </Link>
             </Breadcrumb.Item>
-      </Breadcrumb>
+      </Breadcrumb> */}
 
       <Row gutter={[4, 32]}>
          <Col lg={{ span: 8 }}>

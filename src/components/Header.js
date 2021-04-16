@@ -2,7 +2,7 @@ import NavBar from "./NavBar";
 import { Link } from "react-router-dom"
 import { Row, Col } from 'antd';
 
-export default function Header({title}) {
+export default function Header() {
    return (
       <div className="header">
          <Row>

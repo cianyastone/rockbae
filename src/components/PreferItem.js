@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { PREFER_ADD_ITEM, PREFER_REMOVE_ITEM } from "../utils/constants";
 import { HeartTwoTone } from '@ant-design/icons';
 
-export default function PerferItem({ item }, { isModalVisible, toggleModal }) {
+export default function PerferItem({ item }) {
     const { state: { preferItems }, dispatch } = useContext(StoreContext);
     const removeFromPrefer = (productId) => {
         dispatch({ type: PREFER_REMOVE_ITEM, payload: productId });

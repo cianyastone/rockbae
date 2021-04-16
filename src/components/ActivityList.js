@@ -1,20 +1,12 @@
 import { Row, Col, Breadcrumb } from "antd";
 import { Link } from 'react-router-dom';
 import ActivityItem from "./ActivityItem";
+import BreadcrumbItem from "./BreadcrumbItem";
 
 export default function Activity({activities}) {
     return(
         <>
-        <Breadcrumb>
-            <Breadcrumb.Item className="breadcrumb">
-                <Link to={`/Home`}>
-                首頁
-                </Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-                <a></a>
-            </Breadcrumb.Item>
-        </Breadcrumb>
+        <BreadcrumbItem />
         <Row gutter={[24,24]}>
         {activities.map(activity => (
             <Col 

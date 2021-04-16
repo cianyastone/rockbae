@@ -1,13 +1,24 @@
 import { useContext } from "react";
 import { Button, notification } from "antd"
+import { Link } from 'react-router-dom';
 import { StoreContext } from "../store"
 import { PREFER_ADD_ITEM } from "../utils/constants"
-// import { PREFERIcon } from "./Icons";
 import { HeartTwoTone } from '@ant-design/icons';
 
 export default function AddToPrefer({activity}){
     const { dispatch } = useContext(StoreContext);
 
+    var count = 1; 
+    function setColor(color) {
+        if (count === 0) { 
+         color = "#FFFFFF" 
+         count = 1;   
+        } 
+        else { 
+         color = "#7FFF00" 
+         count = 0; 
+        } 
+    } 
     const openNotification = () => {
         notification.open({
         message: '嘿 朋朋！',
@@ -33,8 +44,13 @@ export default function AddToPrefer({activity}){
         });
     };
     return (
-        <Button type="link" className="btn-toprefer" onClick={addToPrefer}>
-            <HeartTwoTone twoToneColor="#eb2f96" />
-        </Button>
+        <>
+        <Link className="btn-toprefer" onClick={addToPrefer}>
+            <HeartTwoTone />
+        </Link>
+        {/* <Button type="link" className="btn-toprefer" onClick={addToPrefer}>
+            <HeartTwoTone style={{color:'#eb2f96'}} onClick={setColor('#eb2f96')} />
+        </Button> */}
+        </>
     );
 }

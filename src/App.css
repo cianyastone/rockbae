@@ -196,7 +196,6 @@ body {
   border-radius: 1%;
   border: solid gray 1px;
   width: 90%;
-  margin-top: 20px;
 }
 
 .activityItem-img{
@@ -253,6 +252,7 @@ body {
 
 .breadcrumb--1{
   margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .breadcrumb-item:hover{
@@ -307,6 +307,7 @@ body {
 }
 
 .btn-toprefer {
+  color: #9014FF;
   height: auto;
   font-size: 1.4rem;
   /* padding: 0.5rem 2rem; */
