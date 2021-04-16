@@ -4,6 +4,7 @@ import { DownOutlined } from '@ant-design/icons';
 import activity from '../json/activity.json';
 import { Link } from 'react-router-dom';
 import PreferSummary from "./PreferSummary";
+import CartModal from "./CartModal";
 
 const menu = (
   <Menu>
@@ -64,9 +65,7 @@ export default function NavBar() {
         <NavLink to="/Prefer" className="nav-item" activeClassName="nav-item--active">
           <PreferSummary preference={'想去ㄉ活動'} />
         </NavLink>
-        <NavLink to="/Cart" className="nav-item" activeClassName="nav-item--active">
-        <PreferSummary preference={'婐ㄉ購物車'} />
-        </NavLink>
+        <CartModal/>
       </div>
       </>
     );
