@@ -11,7 +11,7 @@ export default function PreferSummary({preference}) {
     
   return (
     <>
-          <Badge className="nav-item" count={count} size={"small"} style={{ color: 'white', backgroundColor: '#6366F2' }}>
+          <Badge className="nav-item nav-prefer" count={count} size={"small"} style={{ color: 'white', backgroundColor: '#6366F2' }}>
             <p> {preference} </p>
           </Badge>
     </>

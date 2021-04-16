@@ -19,7 +19,7 @@ function Cart() {
                 <Header className="layout-header">
                     <AppHeader title={title} />
                 </Header>
-                <Content className="layout-content">
+                <Content className="layout-content content-activity">
                     <PreferModal />
                 </Content>
                 <Footer className="layout-footer">

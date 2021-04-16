@@ -18,7 +18,7 @@ function Home() {
       <Content className="layout-content content-slide">
         <Slide activities={activities}/>
       </Content>
-      <Content className="layout-content">
+      <Content className="layout-content content-one">
         <ActivityList activities={activities}/>
       </Content>   
       <Footer className="layout-footer">
