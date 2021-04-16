@@ -2,7 +2,7 @@ import { Card } from "antd"
 import { useContext } from "react";
 import { StoreContext } from "../store"
 import { Link } from 'react-router-dom';
-import { PREFER_ADD_ITEM, PREFER_REMOVE_ITEM } from "../utils/constants";
+import { PREFER_REMOVE_ITEM } from "../utils/constants";
 import { HeartTwoTone } from '@ant-design/icons';
 
 export default function PerferItem({ item }) {

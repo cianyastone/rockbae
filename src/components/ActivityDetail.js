@@ -1,5 +1,4 @@
-import { Row, Col, Tabs, Radio, Breadcrumb, InputNumber } from "antd";
-import { Link } from 'react-router-dom';
+import { Row, Col, Tabs, Radio, InputNumber } from "antd";
 import { StickyContainer, Sticky } from 'react-sticky';
 import React from 'react';
 import { useState } from "react";
@@ -32,19 +31,6 @@ function ActivityDetail({ activity }) {
    return (
       <>
       <BreadcrumbItem link={`activity/${activity.id}`} name={activity.name} />
-      {/* <Breadcrumb className="breadcrumb--1">
-            <Breadcrumb.Item className="breadcrumb">
-               <Link to={`/Home`}>
-               首頁
-               </Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-               <Link to={`/activity/${activity.id}`}>
-                  {activity.name}
-               </Link>
-            </Breadcrumb.Item>
-      </Breadcrumb> */}
-
       <Row gutter={[4, 32]}>
          <Col lg={{ span: 8 }}>
          <img

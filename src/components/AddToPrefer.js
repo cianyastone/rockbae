@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { Button, notification } from "antd"
+import { notification } from "antd"
 import { Link } from 'react-router-dom';
 import { StoreContext } from "../store"
 import { PREFER_ADD_ITEM } from "../utils/constants"
-import { HeartTwoTone } from '@ant-design/icons';
+import { HeartTwoTone, HeartFilled } from '@ant-design/icons';
+
 
 export default function AddToPrefer({activity}){
     const { dispatch } = useContext(StoreContext);
@@ -42,11 +43,18 @@ export default function AddToPrefer({activity}){
             image: activity.image,
           },
         });
+        // if (count === 0) {  
+        //     count = 1;  
+        //    } 
+        //    else { 
+        //     color = "#7FFF00" 
+        //     count = 0; 
+        // };
     };
     return (
         <>
         <Link className="btn-toprefer" onClick={addToPrefer}>
-            <HeartTwoTone />
+            <HeartTwoTone twoToneColor="#eb2f96" />
         </Link>
         {/* <Button type="link" className="btn-toprefer" onClick={addToPrefer}>
             <HeartTwoTone style={{color:'#eb2f96'}} onClick={setColor('#eb2f96')} />

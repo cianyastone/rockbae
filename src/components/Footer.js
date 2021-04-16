@@ -9,7 +9,7 @@ export default function Footer() {
                     <Link to="/" className="footer-item">
                         煞氣ㄉ音樂祭
                     </Link>
-                    <Link to="/" className="footer-item">
+                    <Link to="/Prefer" className="footer-item">
                         想去ㄉ活動
                     </Link>    
                 </Col>
