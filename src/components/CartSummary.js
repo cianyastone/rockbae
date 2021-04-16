@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Badge } from "antd";
-import { StoreContext } from "../store/index_cart";
+import { StoreContext } from "../store";
 
 export default function CartSummary() {
     const { state: { cartItems } } = useContext(StoreContext);
 
     let count = (cartItems.length > 0) ?
-        cartItems.reduce((sum) => sum + 1, 0)
+        cartItems.reduce((sum,item) => sum+item.qty, 0)
         : 0;
         
     return (

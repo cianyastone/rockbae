@@ -14,7 +14,7 @@ const renderTabBar = (props, DefaultTabBar) => (
    </Sticky>
 );
 function ActivityDetail({ activity }) {
-   const [qty, setQty] = useState(activity.countInStock > 0 ? 1 : 0);
+   const [qty, setQty] = useState(activity.countInStock > 0 ? 1 : 1);
    const [ticket, setTicket] = useState(0);
    function onChange(e){
       setTicket(e.target.value);

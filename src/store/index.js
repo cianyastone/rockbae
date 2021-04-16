@@ -8,11 +8,15 @@ import {
    NAVBAR_ITEM_SET,
    PREFER_ADD_ITEM,
    PREFER_REMOVE_ITEM, 
+   CART_ADD_ITEM,
+   CART_REMOVE_ITEM, 
 } from "../utils/constants"
 
 export const StoreContext = createContext();
 let preferItems = Cookie.getJSON("preferItems");
 if(!preferItems) preferItems = []; 
+let cartItems = Cookie.getJSON("preferItems");
+if(!cartItems) preferItems = []; 
 
 const initialState = {
    page: {
@@ -23,6 +27,7 @@ const initialState = {
       activeItem: "",
    },
    preferItems,
+   cartItems,
 };
 
 function reducer(state, action) {
@@ -64,6 +69,20 @@ function reducer(state, action) {
       case PREFER_REMOVE_ITEM:
          preferItems = state.preferItems.filter((x) => x.id !== action.payload);
          return { ...state, preferItems };
+      case CART_ADD_ITEM:
+            const item1 = action.payload;
+            const activity1 = state.cartItems.find((x) => x.id === item1.id);
+            if (activity1) {
+               cartItems = state.cartItems.map((x) =>
+                  x.id === activity1.id ? item1 : x
+               );
+               return { ...state, cartItems };
+            }
+            cartItems = [...state.cartItems, item1];
+            return { ...state, cartItems };
+         case CART_REMOVE_ITEM:
+            cartItems = state.cartItems.filter((x) => x.id !== action.payload);
+            return { ...state, cartItems };   
       default:
          return state;
    }
