@@ -1,6 +1,5 @@
 import { Carousel } from "antd";
 import { Link } from 'react-router-dom';
-import cook from '../json/cookware';
 import activity from '../json/activity.json';
 
 export default function Slide({match}) {

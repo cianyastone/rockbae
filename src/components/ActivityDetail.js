@@ -73,12 +73,10 @@ function ActivityDetail({ activity }) {
                </Col>
             </Row>
             <div className="activity-item">
-               
-               
                <onChange/>
             </div>
             <br/><br/>
-            <AddToCart />
+            <AddToCart activity={activity} />
          </div>           
          </Col>
          <Col span={24}>

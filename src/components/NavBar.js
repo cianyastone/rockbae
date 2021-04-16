@@ -64,8 +64,8 @@ export default function NavBar() {
         <NavLink to="/Prefer" className="nav-item" activeClassName="nav-item--active">
           <PreferSummary preference={'想去ㄉ活動'} />
         </NavLink>
-        <NavLink to="/" className="nav-item" activeClassName="nav-item--active">
-          婐ㄉ購物車
+        <NavLink to="/Cart" className="nav-item" activeClassName="nav-item--active">
+        <PreferSummary preference={'婐ㄉ購物車'} />
         </NavLink>
       </div>
       </>
