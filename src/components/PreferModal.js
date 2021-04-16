@@ -1,12 +1,16 @@
 import { Row, Col } from "antd";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StoreContext } from "../store"
 import PreferItem from "./PreferItem";
 import BreadcrumbItem from "./BreadcrumbItem";
-
+import Cookie from "js-cookie";
 
 export default function PreferModal() {
    const { state: { preferItems }, dispatch } = useContext(StoreContext);
+
+   useEffect(()=>{
+      Cookie.set("preferItems", JSON.stringify(preferItems));
+   }, [preferItems])
 
    return (
       <div>

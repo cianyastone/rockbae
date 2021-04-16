@@ -1,5 +1,7 @@
 import { createContext, useReducer } from "react";
 import activities from "../json/activity.json"
+import Cookie from "js-cookie";
+
 import { 
    PAGE_TITLE_SET,
    PAGE_CONTENT_SET,
@@ -9,6 +11,8 @@ import {
 } from "../utils/constants"
 
 export const StoreContext = createContext();
+let preferItems = Cookie.getJSON("preferItems");
+if(!preferItems) preferItems = []; 
 
 const initialState = {
    page: {
@@ -18,10 +22,8 @@ const initialState = {
    navBar: {
       activeItem: "",
    },
-   preferItems: [],
+   preferItems,
 };
-
-let preferItems = {};
 
 function reducer(state, action) {
    switch (action.type) {

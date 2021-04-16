@@ -1,13 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { notification } from "antd"
 import { Link } from 'react-router-dom';
 import { StoreContext } from "../store"
 import { PREFER_ADD_ITEM } from "../utils/constants"
 import { HeartTwoTone, HeartFilled } from '@ant-design/icons';
-
+import Cookie from "js-cookie";
 
 export default function AddToPrefer({activity}){
-    const { dispatch } = useContext(StoreContext);
+    const { state: { preferItems }, dispatch } = useContext(StoreContext);
 
     var count = 1; 
     function setColor(color) {
@@ -51,6 +51,11 @@ export default function AddToPrefer({activity}){
         //     count = 0; 
         // };
     };
+
+    useEffect(()=>{
+        Cookie.set("preferItems", JSON.stringify(preferItems));
+     }, [preferItems])
+
     return (
         <>
         <Link className="btn-toprefer" onClick={addToPrefer}>
