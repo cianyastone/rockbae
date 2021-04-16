@@ -15,9 +15,6 @@ export default function Footer() {
                 </Col>
                 <Col className="footer-area" span={8}>
                     <p className="footer-title">顧客服務</p>
-                    <Link to="/Cart" className="footer-item">
-                        婐ㄉ購物車
-                    </Link>
                     <Link to="/" className="footer-item">
                         條款與細則
                     </Link>

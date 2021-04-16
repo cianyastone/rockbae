@@ -15,8 +15,8 @@ import {
 export const StoreContext = createContext();
 let preferItems = Cookie.getJSON("preferItems");
 if(!preferItems) preferItems = []; 
-let cartItems = Cookie.getJSON("preferItems");
-if(!cartItems) preferItems = []; 
+let cartItems = Cookie.getJSON("cartItems");
+if(!cartItems) cartItems = []; 
 
 const initialState = {
    page: {

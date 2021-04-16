@@ -76,7 +76,7 @@ function ActivityDetail({ activity }) {
                <onChange/>
             </div>
             <br/><br/>
-            <AddToCart activity={activity} qty={qty} />
+            <AddToCart activity={activity} qty={qty} ticket={ticket}/>
          </div>           
          </Col>
          <Col span={24}>

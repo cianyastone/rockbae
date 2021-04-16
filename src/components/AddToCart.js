@@ -4,13 +4,13 @@ import { StoreContext } from "../store"
 import { CART_ADD_ITEM } from "../utils/constants"
 
 
-export default function AddToCart({activity,qty}){
+export default function AddToCart({activity,qty,ticket}){
     const { dispatch } = useContext(StoreContext);
     const openNotification = () => {
         notification.open({
         message: '嘿 朋朋！',
         description:
-            ` ${activity.name}在${qty}等著你ㄌ`,
+            ` ${activity.name}在${activity.place_short}等著你ㄌ`,
         onClick: () => {
             console.log('Notification Clicked!');
         },
@@ -26,7 +26,7 @@ export default function AddToCart({activity,qty}){
               id: activity.id,
               name: activity.name,
               image: activity.image,
-              price: activity.price,
+              price: activity.price[ticket],
               countInStock: activity.countInStock,
               qty,
             },
