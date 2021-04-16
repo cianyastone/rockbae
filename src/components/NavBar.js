@@ -3,6 +3,7 @@ import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import activity from '../json/activity.json';
 import { Link } from 'react-router-dom';
+import PreferSummary from "./PreferSummary";
 
 export default function NavBar() {
     const menu = (
@@ -58,8 +59,8 @@ export default function NavBar() {
             煞氣ㄉ音樂祭 <DownOutlined/>
           </NavLink>
         </Dropdown>
-        <NavLink to="/" className="nav-item" activeClassName="nav-item--active">
-          想去ㄉ活動
+        <NavLink to="/Prefer" className="nav-item" activeClassName="nav-item--active">
+          <PreferSummary preference={'想去ㄉ活動'} />
         </NavLink>
         <NavLink to="/" className="nav-item" activeClassName="nav-item--active">
           婐ㄉ購物車

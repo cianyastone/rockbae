@@ -1,5 +1,6 @@
 import { Card } from "antd"
 import { Link } from 'react-router-dom';
+import AddToPrefer from "./AddToPrefer"
 
 export default function ActivityItem({ activity }) {
     return (
@@ -24,6 +25,15 @@ export default function ActivityItem({ activity }) {
                     <Link to={`/activity/${activity.id}`} className="activity-link">
                         抗抗更多⋯⋯
                     </Link>
+                    <AddToPrefer activity={activity} />
+                    {/* <Button 
+                        type="text" 
+                        style={{color:"#eb2f96"}}
+                        icon={<HeartTwoTone />} 
+                        size="large"
+                        className="activity-icon">
+                    </Button> */}
+                    {/* <HeartTwoTone twoToneColor="#eb2f96" className="activity-icon" /> */}
                 </div>
             </div>
         </Card>

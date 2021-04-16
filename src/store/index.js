@@ -4,24 +4,24 @@ import {
    PAGE_TITLE_SET,
    PAGE_CONTENT_SET,
    NAVBAR_ITEM_SET,
-   CART_ADD_ITEM,
-   CART_REMOVE_ITEM, 
+   PREFER_ADD_ITEM,
+   PREFER_REMOVE_ITEM, 
 } from "../utils/constants"
 
 export const StoreContext = createContext();
 
 const initialState = {
    page: {
-      title: "NORDIC NEST Shopping Cart",
+      title: "Rock Bae",
       activities,
    },
    navBar: {
       activeItem: "",
    },
-   cartItems: [],
+   preferItems: [],
 };
 
-let cartItems = {};
+let preferItems = {};
 
 function reducer(state, action) {
    switch (action.type) {
@@ -48,20 +48,20 @@ function reducer(state, action) {
                activeItem: action.payload
             }
          };
-      case CART_ADD_ITEM:
+      case PREFER_ADD_ITEM:
          const item = action.payload;
-         const activity = state.cartItems.find((x) => x.id === item.id);
+         const activity = state.preferItems.find((x) => x.id === item.id);
          if (activity) {
-            cartItems = state.cartItems.map((x) =>
+            preferItems = state.preferItems.map((x) =>
                x.id === activity.id ? item : x
             );
-            return { ...state, cartItems };
+            return { ...state, preferItems };
          }
-         cartItems = [...state.cartItems, item];
-         return { ...state, cartItems };
-      case CART_REMOVE_ITEM:
-         cartItems = state.cartItems.filter((x) => x.id !== action.payload);
-         return { ...state, cartItems };
+         preferItems = [...state.preferItems, item];
+         return { ...state, preferItems };
+      case PREFER_REMOVE_ITEM:
+         preferItems = state.preferItems.filter((x) => x.id !== action.payload);
+         return { ...state, preferItems };
       default:
          return state;
    }

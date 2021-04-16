@@ -13,7 +13,7 @@ function Home() {
   return (
     <Layout className="container main-layout">
       <Header className="layout-header">
-        <AppHeader title="NORDIC NEST Shopping Cart"/>
+        <AppHeader title="Rock Bae"/>
       </Header>
       <Content className="layout-content content-slide">
         <Slide activities={activities}/>

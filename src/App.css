@@ -255,6 +255,10 @@ body {
   margin-bottom: 30px;
 }
 
+.breadcrumb-item:hover{
+  color:rgb(199, 199, 199);
+}
+
 /* Detail Page */
 .activity-image {
   border-radius: 2%;
@@ -300,6 +304,16 @@ body {
 .site-custom-tab-bar {
   z-index: 1;
   background: #fff;
+}
+
+.btn-toprefer {
+  height: auto;
+  font-size: 1.4rem;
+  /* padding: 0.5rem 2rem; */
+}
+
+.btn-toprefer:hover{
+  font-size: 1.6rem;
 }
 
 .btn-tocar {
@@ -352,6 +366,43 @@ body {
 
 .nav-item:active {
   transform: scale(1.1)!important;
+}
+
+/* Preference */
+.nopreference{
+  color:rgb(66, 66, 66);
+  margin-top: 100px;
+  text-align: center;
+}
+
+.prefer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: .1rem #c0c0c0 solid;
+}
+
+.prefer-image img{
+  max-width: 4rem;
+  max-height: 4rem;
+  flex: 1 1;
+}
+
+.prefer-item-delete {
+  color:rgb(66, 66, 66);
+  font-size: 1.4rem;
+  opacity: 0.6;
+  text-align: right;
+  cursor: pointer;
+  margin-right: 35px;
+  margin-bottom: 20px;
+}
+
+.prefer-name{
+  color: rgb(66, 66, 66);
 }
 
 /* Footer */
