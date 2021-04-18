@@ -32,29 +32,6 @@ const initialState = {
 
 function reducer(state, action) {
    switch (action.type) {
-      case PAGE_TITLE_SET:
-         return {
-            ...state,
-            page: {
-               ...state.page,
-               title: action.payload,
-            },
-         };
-      case PAGE_CONTENT_SET:
-         return {
-            ...state,
-            page: {
-               ...state.page,
-               activities: action.payload,
-            },
-         };
-      case NAVBAR_ITEM_SET:
-         return {
-            ...state,
-            navBar: {
-               activeItem: action.payload
-            }
-         };
       case PREFER_ADD_ITEM:
          const item = action.payload;
          const activity = state.preferItems.find((x) => x.id === item.id);

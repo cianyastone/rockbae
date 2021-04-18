@@ -8,34 +8,32 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../utils/constants";
 
 const { Option } = Select;
 
-const App = () => {
+export default function CartModal() {
     const [visible, setVisible] = useState(false);
-  
     const showDrawer = () => {
       setVisible(true);
     };
-  
     const onClose = () => {
       setVisible(false);
     };
 
     const { state: { cartItems }, dispatch } = useContext(StoreContext);
-    const addToCart = (product, qty, ticket) => {
+    const addToCart = (activity, qty) => {
         dispatch({
             type: CART_ADD_ITEM,
             payload: {
-                id: product.id,
-                name: product.name,
-                image: product.image,
-                price: product.price[ticket],
-                countInStock: product.countInStock,
+                id: activity.id,
+                name: activity.name,
+                image: activity.image,
+                price: activity.price,
+                countInStock: activity.countInStock,
                 qty,
             },
         });
     };
 
-    const removeFromCart = (productId) => {
-        dispatch({ type: CART_REMOVE_ITEM, payload: productId });
+    const removeFromCart = (activityId) => {
+        dispatch({ type: CART_REMOVE_ITEM, payload: activityId });
     };
 
     const getTotalPrice = () => {
@@ -53,65 +51,64 @@ const App = () => {
           closable={false}
           onClose={onClose}
           visible={visible}
+          className="drawer_style"
+          width="350"
         >
           {cartItems.length === 0 ? (
-            <div>Cart is empty</div>
+            <div>婐ㄉ心空空如也。･ﾟ･(つд`ﾟ)･ﾟ･</div>
          ) : (
             cartItems.map(item => (
-               <li key={item.id} className="cart-item">
-                  <div className="cart-image">
-                     <img src={item.image} alt={item.name} />
-                  </div>
-                  <div className="cart-item-content">
-                     <div className="cart-name">{item.name}</div>
-                     <div className="product-qty">
-                        Qty: {"   "}
-                        <Select
-                           defaultValue={item.qty}
-                           className="select-style"
-                           onChange={(val) => addToCart(item, val)}
-                        >
-                           {[...Array(item.countInStock).keys()].map((x) => (
-                              <Option key={x + 1} value={x + 1}>
-                                 {x + 1}
-                              </Option>
-                           ))}
-                        </Select>
-                     </div>
-                  </div>
-                  <div className="cart-item-end">
-                     <div className="cart-price">
-                        ${item.price * item.qty}    
-                     </div>
-                     <div className="cart-item-delete" onClick={()=>removeFromCart(item.id)}>
-                        x
-                     </div>
-                  </div>
-
-               </li>
+                <div className="cart-item">
+                    <div className="cart-image">
+                        <img src={item.image} alt={item.name} />
+                    </div>
+                    <div className="cart-item-content">
+                        <div className="cart-qty">
+                            <div className="cart-name">{item.name}</div>
+                            <div className="cart-item-delete" onClick={()=>removeFromCart(item.id)}>
+                                x
+                            </div>
+                        </div>
+                        <div className="cart-qty">
+                            <div className="product-qty">
+                                數量: {"   "}
+                                <Select
+                                    defaultValue={item.qty}
+                                    className="select-style"
+                                    onChange={(val) => addToCart(item, val)}
+                                    >
+                                    <Option key={1} value={1}>
+                                        {1}
+                                    </Option>
+                                    <Option key={2} value={2}>
+                                        {2}
+                                    </Option>
+                                    <Option key={3} value={3}>
+                                        {3}
+                                    </Option>
+                                    <Option key={4} value={4}>
+                                        {4}
+                                    </Option>
+                                </Select>
+                            </div>
+                            <div className="cart-price">
+                                ${item.price * item.qty}    
+                            </div>
+                        </div>
+                    </div>
+                </div>
             ))
          )}
-         <div className="cart-total-price-wrap">
-           Total
+        <div className="cart-total-price-wrap">
+            Total
             <div className="cart-total-price">${getTotalPrice()}</div>
-         </div>
-         <Button
+        </div>
+        <Button
             className="cart-modal-btn"
             type="primary"
-         >
-            <span style={{ marginLeft: 12 }}>Start Checkout</span>
-         </Button>
-        </Drawer>
-      </>
-    );
-  };
-
-export default function CartModal({ isModalVisible, toggleModal }) {
-    
-    return (
-        <>
-        
-        <App />
-        </>
-    );
-}
+            >
+            <span>結帳去</span>
+            </Button>
+    </Drawer>
+    </>
+);}

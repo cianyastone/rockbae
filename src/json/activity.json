@@ -84,7 +84,7 @@
     "description": "Renew your home with the trendy Silvia lamp in white designed by the Danish brand Umage / Vita. Silvia is a lampshade made of polypropylene.",
     "description_long": "P!SCO成軍十一週年特別企劃：辦一場音樂祭！『般若電司音樂祭= More Than Dance Festival』生日嘛，總是想要熱熱鬧鬧，那就把老朋友跟新朋友通通揪在一起來到P!SCO的小世界，我們邀請了超過好多組樂團與偶像，要一起在三創瘋狂派對！！不只是跳舞這麼簡單，歡笑與感動的淚水才是P!SCO最喜歡的愛哭包組合。全都是女主唱的演出陣容（4/13完整解禁）：P!SCO➳➳夢中誕生的公主➳➳黑暗中尋找光的出口➳➳在宇宙行星軌道➳➳照射月亮魔法➳➳糖果超新星來襲➳➳水果少女起身戰鬥➳➳使用幻彩照耀爆彈➳➳光合作用盡情灑落➳➳蝴蝶花思慕著➳➳一切都是眷戀的迷宮➳➳and more『只知道兩天都有P!SCO』的盲鳥票將在4/9販售，更多更多香香（？）的資訊將陸續公佈。",
     "currency": "USD",
-    "countInStock": [999,999,999],
+    "countInStock": [999,999,0],
     "ticketClass": ["雙日盲鳥票","雙日預售票","單日票"],
     "organizer":"P!SCO、鯤島起義創意社"
   },
