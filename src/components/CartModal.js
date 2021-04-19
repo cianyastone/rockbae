@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { StoreContext } from "../store"
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../utils/constants";
 import Cookie from "js-cookie";
+import { Link } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -66,12 +67,14 @@ export default function CartModalformobile() {
          ) : (
             cartItems.map(item => (
                 <div className="cart-item">
-                    <div className="cart-image">
-                        <img src={item.image} alt={item.name} />
-                    </div>
+                    <Link to={`/activity/${item.id}`}>
+                        <div className="cart-image">
+                            <img src={item.image} alt={item.name} />
+                        </div>
+                    </Link>
                     <div className="cart-item-content">
                         <div className="cart-qty">
-                            <div className="cart-name">{item.name}</div>
+                            <Link to={`/activity/${item.id}`} className="cart-name link">{item.name}</Link>
                             <div className="cart-item-delete" onClick={()=>removeFromCart(item.id)}>
                                 x
                             </div>

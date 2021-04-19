@@ -22,7 +22,7 @@ export default function ActivityItem({ activity }) {
                     {activity.name}
                 </h2>
                 <div className="activity-more">
-                    <Link to={`/activity/${activity.id}`} className="activity-link">
+                    <Link to={`/activity/${activity.id}`} className="activity-link link">
                         抗抗更多⋯⋯
                     </Link>
                     <AddToPrefer activity={activity} />

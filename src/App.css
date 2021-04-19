@@ -73,6 +73,20 @@ body {
   border-bottom: .1rem #c0c0c0 solid;
 }
 
+.link{
+  color:black;
+}
+
+.link:hover{
+  color:black;
+  opacity: 40%;
+}
+
+.link:active{
+  color:black;
+  opacity: 80%;
+}
+
 .cart-qty{
   display: flex;
   justify-content: space-between;
@@ -288,6 +302,7 @@ body {
   text-align: center;
   color: #9014FF;
   transition: opacity .25s linear;
+  cursor: pointer; 
 }
 
 .nav-item:hover {
@@ -481,7 +496,7 @@ body {
   }
   .header-slogan {
     margin-top:1rem;
-    width: 150%;
+    width: 170%;
   }
   .footer-title{
     font-size: 1.3rem;
@@ -489,6 +504,12 @@ body {
   .footer-item {
     font-size: 1rem;
     display: flex;
+  }
+  .nav-position{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    margin-top: 1.7rem;
   }
 } 
 
@@ -519,10 +540,12 @@ body {
   .content-activity{
     margin-left: 40px;
   }
-  .nav-prefer{
-    margin-top: 4.5px;
+  .nav-item{
+    font-size: 0.8rem;
   }
-
+  .nav-prefer{
+    margin-top: 7.5px;
+  }
   .nav-position{
     display: flex;
     justify-content: flex-end;
@@ -561,6 +584,9 @@ body {
   }
   .activity-image {
     width: 100%;
+  }
+  .nav-item{
+    font-size: 1.1rem;
   }
 } 
 
