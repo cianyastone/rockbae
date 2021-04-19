@@ -3,9 +3,6 @@ import activities from "../json/activity.json"
 import Cookie from "js-cookie";
 
 import { 
-   PAGE_TITLE_SET,
-   PAGE_CONTENT_SET,
-   NAVBAR_ITEM_SET,
    PREFER_ADD_ITEM,
    PREFER_REMOVE_ITEM, 
    CART_ADD_ITEM,

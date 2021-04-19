@@ -1,11 +1,12 @@
-import { useContext,useState } from "react";
+import { useContext, useEffect } from "react";
 import { Button } from "antd"
 import { StoreContext } from "../store"
 import { CART_ADD_ITEM } from "../utils/constants"
+import Cookie from "js-cookie";
 
 
 export default function AddToCart({activity,qty,ticket}){
-    const { dispatch } = useContext(StoreContext);
+    const { state: { cartItems },dispatch } = useContext(StoreContext);
 
     const addToCart = () => {
         dispatch({
@@ -21,6 +22,10 @@ export default function AddToCart({activity,qty,ticket}){
             },
         });
     };
+
+    useEffect(()=>{
+      Cookie.set("cartItems", JSON.stringify(cartItems));
+   }, [cartItems])
 
     return (
         <Button disabled={activity.countInStock[ticket] > 0 ? false : true} type="primary" className="btn-tocar" onClick={addToCart}>

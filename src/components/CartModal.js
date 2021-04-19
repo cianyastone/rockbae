@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Drawer } from 'antd';
 import { Button, Select } from "antd";
 import CartSummary from "./CartSummary";
 import { useContext } from "react";
 import { StoreContext } from "../store"
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../utils/constants";
+import Cookie from "js-cookie";
 
 const { Option } = Select;
 
 export default function CartModal() {
     const [visible, setVisible] = useState(false);
+
     const showDrawer = () => {
       setVisible(true);
     };
@@ -18,6 +20,11 @@ export default function CartModal() {
     };
 
     const { state: { cartItems }, dispatch } = useContext(StoreContext);
+
+    useEffect(()=>{
+        Cookie.set("cartItems", JSON.stringify(cartItems));
+     }, [cartItems])
+
     const addToCart = (activity, qty) => {
         dispatch({
             type: CART_ADD_ITEM,
