@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Button, Select } from "antd";
 import { useContext } from "react";
 import { StoreContext } from "../store"
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../utils/constants";
 import BreadcrumbItem from "./BreadcrumbItem";
 import Cookie from "js-cookie";
+import { Link } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -47,12 +48,16 @@ export default function CartModal() {
          ) : (
             cartItems.map(item => (
                 <div className="cart-item">
+                    <Link to={`/activity/${item.id}` }className="link">
                     <div className="cart-image">
                         <img src={item.image} alt={item.name} />
                     </div>
+                    </Link>
                     <div className="cart-item-content">
                         <div className="cart-qty">
+                        <Link to={`/activity/${item.id}`} className="link">
                             <div className="cart-name">{item.name}</div>
+                            </Link>
                             <div className="cart-item-delete" onClick={()=>removeFromCart(item.id)}>
                                 x
                             </div>
