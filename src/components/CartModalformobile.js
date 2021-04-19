@@ -1,24 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Drawer } from 'antd';
 import { Button, Select } from "antd";
-import CartSummary from "./CartSummary";
 import { useContext } from "react";
 import { StoreContext } from "../store"
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../utils/constants";
+import BreadcrumbItem from "./BreadcrumbItem";
 import Cookie from "js-cookie";
 
 const { Option } = Select;
 
-export default function CartModalformobile() {
-    const [visible, setVisible] = useState(false);
-
-    const showDrawer = () => {
-      setVisible(true);
-    };
-    const onClose = () => {
-      setVisible(false);
-    };
-
+export default function CartModal() {
     const { state: { cartItems }, dispatch } = useContext(StoreContext);
 
     useEffect(()=>{
@@ -51,17 +41,8 @@ export default function CartModalformobile() {
   
     return (
         <>
-        <p className="nav-item" activeClassName="nav-item--active" type="primary" onClick={showDrawer}>
-            <CartSummary/>
-        </p>
-        <Drawer
-          closable={false}
-          onClose={onClose}
-          visible={visible}
-          className="drawer_style"
-          width="350"
-        >
-          {cartItems.length === 0 ? (
+        <BreadcrumbItem link={'Cart'} name={'婐ㄉ購物車'} />
+        {cartItems.length === 0 ? (
             <div>婐ㄉ心空空如也。･ﾟ･(つд`ﾟ)･ﾟ･</div>
          ) : (
             cartItems.map(item => (
@@ -116,6 +97,5 @@ export default function CartModalformobile() {
             >
             <span>結帳去</span>
             </Button>
-    </Drawer>
     </>
 );}

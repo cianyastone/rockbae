@@ -3,6 +3,7 @@ import './App.css';
 import Home from './pages/Home'
 import Activity from './pages/Activity'
 import Prefer from './pages/Prefer'
+import Cart from './pages/Cart'
 
 import { StoreProvider } from "./store";
 
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/Prefer" component={Prefer} />
+          <Route path="/Cart" component={Cart} />
           <Route exact path="/" component={Home} />
           <Route exact path="/:pageName" component={Home} />
           <Route path="/activity/:activityId" component={Activity} />

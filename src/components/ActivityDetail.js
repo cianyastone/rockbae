@@ -50,16 +50,36 @@ function ActivityDetail({ activity }) {
                </p>
             </div>
             <Row gutter={[8, 16]} className="activity-item">
-               <Col span={2}>
-                  <p>票種</p>
+               <Col 
+                  xs={{ span: 24 }} 
+                  sm={{ span: 24 }} 
+                  lg={{ span: 2 }}
+                  xl={{ span: 2 }}
+                  xxl={{ span: 2 }}>
+                  票種
                </Col>
-               <Col span={22}>
+               <Col 
+                  xs={{ span: 24 }} 
+                  sm={{ span: 24 }} 
+                  lg={{ span: 22 }}
+                  xl={{ span: 22 }}
+                  xxl={{ span: 22 }}>
                   <App/>
                </Col>
-               <Col span={2}>
+               <Col 
+                  xs={{ span: 24 }} 
+                  sm={{ span: 24 }} 
+                  lg={{ span: 2 }}
+                  xl={{ span: 2 }}
+                  xxl={{ span: 2 }}>
                   <p>數量</p>
                </Col>
-               <Col span={2}>
+               <Col 
+                  xs={{ span: 24 }} 
+                  sm={{ span: 24 }} 
+                  lg={{ span: 22 }}
+                  xl={{ span: 22 }}
+                  xxl={{ span: 22 }}>
                   <InputNumber
                      min={1} 
                      max={4} 
