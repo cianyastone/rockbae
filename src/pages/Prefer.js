@@ -11,10 +11,11 @@ const { Header, Content, Footer } = Layout;
 function Cart() {
     const { state: { page: { title } } } = useContext(StoreContext);
     return (
+        <>
+        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
+            <AppHeader title="Rock Bae"/>
+        </Header>
         <Layout className="container main-layout">
-            {/* <Layout className="bg-gray">
-                <NavBar />
-            </Layout> */}
             <Layout className="bg-gray">
                 <Header className="layout-header">
                     <AppHeader title={title} />
@@ -27,6 +28,7 @@ function Cart() {
                 </Footer>
             </Layout>
         </Layout>
+        </>
     );
 }
 

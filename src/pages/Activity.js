@@ -11,6 +11,10 @@ function Activity({ match }) {
       (x) => x.id === match.params.activityId
    );
    return (
+      <>
+      <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
+        <AppHeader title="Rock Bae"/>
+      </Header>
       <Layout className="container main-layout">
          <Header className="layout-header">
             <AppHeader title="Activity Detail"/>
@@ -22,6 +26,7 @@ function Activity({ match }) {
             <AppFooter />
          </Footer>
       </Layout>
+      </>
    );
 }
 

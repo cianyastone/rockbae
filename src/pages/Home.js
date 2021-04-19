@@ -11,8 +11,12 @@ const { Header, Content, Footer } = Layout;
 function Home() {
   const { state: { page: {activities} } } = useContext(StoreContext);
   return (
-    <Layout className="container main-layout">
-      <Header className="layout-header">
+    <>
+    <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
+        <AppHeader title="Rock Bae"/>
+      </Header>
+    <Layout className="container">
+    <Header className="layout-header">
         <AppHeader title="Rock Bae"/>
       </Header>
       <Content className="layout-content content-slide">
@@ -25,6 +29,7 @@ function Home() {
         <AppFooter/>  
       </Footer>  
     </Layout>
+    </>
   );
 }
 

@@ -67,8 +67,8 @@ export default function NavBar() {
       closable={false}
       onClose={handleCloseDrawer}
       visible={isOnTouch}
-      width={400}
-      zIndex={99}
+      width={300}
+      zIndex={100}
       >
         <Link to="/Home">
           <img className="nav-slogan" width="50%" src="https://i.pinimg.com/564x/09/79/8f/09798f85e707c8e84d3e8460318d4998.jpg" alt="description"/>
