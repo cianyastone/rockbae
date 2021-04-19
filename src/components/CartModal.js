@@ -50,7 +50,7 @@ export default function CartModal() {
     }
   
     return (
-      <>
+        <>
         <p className="nav-item" activeClassName="nav-item--active" type="primary" onClick={showDrawer}>
             <CartSummary/>
         </p>
@@ -105,7 +105,7 @@ export default function CartModal() {
                     </div>
                 </div>
             ))
-         )}
+        )}
         <div className="cart-total-price-wrap">
             Total
             <div className="cart-total-price">${getTotalPrice()}</div>

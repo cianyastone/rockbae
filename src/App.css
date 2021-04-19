@@ -314,6 +314,25 @@ body {
   transform: scale(1.1)!important;
 }
 
+/* Hamburger Menu */
+.menu-icon {
+  display: inline-block;
+  position: relative;
+  margin-left: -4rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 2rem;
+  opacity: 0.7;
+  left: 5rem;
+  top: 2.5rem;
+  transition: all .25s linear;
+}
+
+.menu-icon:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 /* Preference */
 .nopreference{
   color:rgb(66, 66, 66);
@@ -507,6 +526,9 @@ body {
   .nav-prefer{
     margin-top: 4.5px;
   }
+  .show-mobile {
+    display: none;
+  }
 } 
 
 /* lg */
@@ -565,6 +587,9 @@ body {
 
 @media (max-width: 768px) {
   .cart-summary-text {
+    display: none;
+  }
+  .collapse-mobile {
     display: none;
   }
 } 

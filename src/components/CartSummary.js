@@ -11,7 +11,7 @@ export default function CartSummary() {
         
     return (
         <>
-        <Badge className="nav-item" count={count} size={"small"} style={{ color: 'white', backgroundColor: '#6366F2' }}>
+        <Badge className="nav-item nav-prefer" count={count} size={"small"} style={{ color: 'white', backgroundColor: '#6366F2' }}>
             <p>婐ㄉ購物車</p>
         </Badge>
         </>
