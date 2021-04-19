@@ -14,7 +14,6 @@ body {
   font-size: 16px;
   line-height: 1.6;
   background-color: #FFFFFF;
-  color: black;
 }
 
 .container-fluid {
@@ -28,7 +27,7 @@ body {
   padding: 0 15;
   height: auto;
   line-height: 1.6;
-  background-color: white;
+  background-color: #FFFFFF;
 }
 
 .layout-content {
@@ -38,11 +37,6 @@ body {
 
 .bg-gray {
   background-color: #FFFFFF;
-}
-
-.text-gray {
-  color: #111828;
-  opacity: 0.6; 
 }
 
 /* Cart */
@@ -74,16 +68,15 @@ body {
 }
 
 .link{
-  color:black;
+  color:#424242;
 }
 
 .link:hover{
-  color:black;
-  opacity: 40%;
+  color:#808080;
 }
 
 .link:active{
-  color:black;
+  color:#424242;
   opacity: 80%;
 }
 
@@ -146,7 +139,7 @@ body {
 /* activity Item */
 .activity {
   border-radius: 1%;
-  border: solid gray 1px;
+  border: solid #808080 1px;
   width: 90%;
 }
 
@@ -177,13 +170,6 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.activity-description {
-  color: #111828;
-  opacity: 0.6;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
 .activity-more {
   display: flex;
   justify-content: space-between;
@@ -208,7 +194,7 @@ body {
 }
 
 .breadcrumb-item:hover{
-  color:rgb(199, 199, 199);
+  color:#C7C7C7;
 }
 
 /* Detail Page */
@@ -340,7 +326,7 @@ body {
 }
 /* Preference */
 .nopreference{
-  color:rgb(66, 66, 66);
+  color:#424242;
   margin-top: 100px;
   text-align: center;
 }
@@ -352,7 +338,7 @@ body {
 
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  border-bottom: .1rem #c0c0c0 solid;
+  border-bottom: .1rem #c7c7c7 solid;
 }
 
 .prefer-image img{
@@ -362,7 +348,7 @@ body {
 }
 
 .prefer-item-delete {
-  color:rgb(66, 66, 66);
+  color:#424242;
   font-size: 1.4rem;
   opacity: 0.6;
   text-align: right;
@@ -372,7 +358,7 @@ body {
 }
 
 .prefer-name{
-  color: rgb(66, 66, 66);
+  color: #424242;
 }
 
 /* Footer */
@@ -394,14 +380,14 @@ body {
 .footer-title{
   font-size: 1.5rem;
   font-weight: bold;
-  color: rgb(66, 66, 66);
+  color: #424242;
   opacity: 0.8;
 }
 
 .footer-item {
   font-size: 1rem;
   line-height: 2.5rem;
-  color: rgb(66, 66, 66);
+  color: #424242;
   opacity: 0.6;
 }
 
@@ -424,8 +410,7 @@ body {
 .statement{
   margin-top: 2rem;
   font-size: 0.8rem;
-  color:rgb(66, 66, 66);
-  opacity: 0.4;
+  color:#c7c7c7;
 }
 
 /* RWD Container */
