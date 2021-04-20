@@ -1,3 +1,6 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow:
+
+新增樂團周邊：加一堆特效
+3d:https://codepen.io/ChangQing666/pen/pZzMRx
+一堆動畫：http://srdesign.com.tw/design/thread-536-1-1.html
+翻面：https://codepen.io/hakimel/pen/ZYRgwB
+臉：https://codepen.io/scottkellum/pen/PpBaWW https://codepen.io/candroo/pen/pJEjjp
