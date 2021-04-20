@@ -1,33 +1,36 @@
+import { useContext } from "react"; 
 import { Layout } from 'antd';
+import ActivityList from "../components/ActivityList";
+import { StoreContext } from "../store"
 import AppHeader from "../components/Header"
 import AppFooter from "../components/Footer"
-import ActivityDetail from "../components/ActivityDetail";
-import activities from "../json/activity.json";
+import Slide from '../components/Slide';
 
 const { Header, Content, Footer } = Layout;
 
-function Activity({ match }) {
-   const activity = activities.find(
-      (x) => x.id === match.params.activityId
-   );
-   return (
-      <>
-      <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
+function Home() {
+  const { state: { page: {activities} } } = useContext(StoreContext);
+  return (
+    <>
+    <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
         <AppHeader title="Rock Bae"/>
       </Header>
-      <Layout className="container main-layout">
-         <Header className="layout-header">
-            <AppHeader title="Activity Detail"/>
-         </Header>
-         <Content className="layout-content">
-            <ActivityDetail activity = {activity} />
-         </Content>
-         <Footer className="layout-footer">
-            <AppFooter />
-         </Footer>
-      </Layout>
-      </>
-   );
+    <Layout className="container">
+    <Header className="layout-header">
+        <AppHeader title="Rock Bae"/>
+      </Header>
+      <Content className="layout-content content-slide">
+        <Slide activities={activities}/>
+      </Content>
+      <Content className="layout-content content-one">
+        <ActivityList activities={activities}/>
+      </Content>   
+      <Footer className="layout-footer">
+        <AppFooter/>  
+      </Footer>  
+    </Layout>
+    </>
+  );
 }
 
-export default Activity;
+export default Home;
