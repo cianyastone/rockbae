@@ -1,5 +1,6 @@
 
 新增樂團周邊：加一堆特效
+react特效：https://react-spring.io/hooks/use-spring
 3d:https://codepen.io/ChangQing666/pen/pZzMRx
 一堆動畫：http://srdesign.com.tw/design/thread-536-1-1.html
 翻面：https://codepen.io/hakimel/pen/ZYRgwB
