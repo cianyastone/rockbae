@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import useReducerWithThunk from 'use-reducer-thunk';
 import activities from "../json/activity.json"
 import Cookie from "js-cookie";
 
@@ -63,7 +64,7 @@ function reducer(state, action) {
 }
 
 export function StoreProvider(props) {
-   const [state, dispatch] = useReducer(reducer, initialState);
+   const [state, dispatch] = useReducerWithThunk(reducer, initialState,"example");
    const value = { state, dispatch };
 
    return (
