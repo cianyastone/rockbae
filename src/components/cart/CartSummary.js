@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Badge } from "antd";
-import { StoreContext } from "../store";
+import { StoreContext } from "../../store";
 
 export default function CartSummary() {
     const { state: { cartItems } } = useContext(StoreContext);

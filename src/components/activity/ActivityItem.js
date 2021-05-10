@@ -1,6 +1,6 @@
 import { Card } from "antd"
 import { Link } from 'react-router-dom';
-import AddToPrefer from "./AddToPrefer"
+import AddToPrefer from "../prefer/AddToPrefer"
 
 export default function ActivityItem({ activity }) {
     return (

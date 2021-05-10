@@ -16,7 +16,7 @@ function App() {
           <Route path="/Prefer" component={Prefer} />
           <Route path="/Cart" component={Cart} />
           <Route exact path="/" component={Activity} />
-          <Route exact path="/:pageName" component={Activity} />
+          <Route exact path="/:pageName" component={Home} />
           <Route path="/activity/:activityId" component={ActivityDetail} />
         </Switch>
       </BrowserRouter>

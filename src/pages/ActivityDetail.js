@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
-import AppHeader from "../components/Header"
-import AppFooter from "../components/Footer"
-import ActivityDetail from "../components/ActivityDetail";
+import AppHeader from "../components/normal/Header"
+import AppFooter from "../components/normal/Footer"
+import ActivityDetail from "../components/activitydetail/ActivityDetail";
 import activities from "../json/activity.json";
 
 const { Header, Content, Footer } = Layout;

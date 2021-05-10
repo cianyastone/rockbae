@@ -1,6 +1,6 @@
 import { Row, Col } from "antd";
 import ActivityItem from "./ActivityItem";
-import BreadcrumbItem from "./BreadcrumbItem";
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 
 export default function Activity({activities}) {
     return(

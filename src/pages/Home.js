@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
 // import NavBar from "../components/NavBar";
-import AppHeader from '../components/Header';
-import AppFooter from '../components/Footer';
+import AppHeader from '../components/normal/Header';
+import AppFooter from '../components/normal/Footer';
 
 const { Header, Content, Footer } = Layout;
 

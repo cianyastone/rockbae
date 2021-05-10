@@ -1,10 +1,10 @@
 import { useContext } from "react"; 
 import { Layout } from 'antd';
-import ActivityList from "../components/ActivityList";
+import ActivityList from "../components/activity/ActivityList";
 import { StoreContext } from "../store"
-import AppHeader from "../components/Header"
-import AppFooter from "../components/Footer"
-import Slide from '../components/Slide';
+import AppHeader from "../components/normal/Header"
+import AppFooter from "../components/normal/Footer"
+import Slide from '../components/activity/Slide';
 
 const { Header, Content, Footer } = Layout;
 

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Button } from "antd"
-import { StoreContext } from "../store"
-import { CART_ADD_ITEM } from "../utils/constants"
+import { StoreContext } from "../../store"
+import { CART_ADD_ITEM } from "../../utils/constants"
 import Cookie from "js-cookie";
 
 
