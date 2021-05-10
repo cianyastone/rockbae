@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Button, Select } from "antd";
 import { useContext } from "react";
-import { StoreContext } from "../store"
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../utils/constants";
-import BreadcrumbItem from "./BreadcrumbItem";
+import { StoreContext } from "../../store"
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../../utils/constants";
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 import Cookie from "js-cookie";
 import { Link } from 'react-router-dom';
 

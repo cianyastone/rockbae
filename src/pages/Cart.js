@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Layout } from 'antd';
 // import NavBar from "../components/NavBar";
-import AppHeader from '../components/Header';
-import AppFooter from '../components/Footer';
-import CartModalformobile from '../components/CartModalformobile';
+import AppHeader from '../components/normal/Header';
+import AppFooter from '../components/normal/Footer';
+import CartModalformobile from '../components/cart/CartModalformobile';
 import { StoreContext } from "../store"
 
 const { Header, Content, Footer } = Layout;

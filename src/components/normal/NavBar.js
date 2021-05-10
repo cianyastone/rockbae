@@ -2,12 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Drawer } from 'antd';
 import { useState, useContext } from "react";
 import { DownOutlined } from '@ant-design/icons';
-import activity from '../json/activity.json';
+import activity from '../../json/activity.json';
 import { Link } from 'react-router-dom';
-import PreferSummary from "./PreferSummary";
-import CartModal from "./CartModal";
+import PreferSummary from "../prefer/PreferSummary";
+import CartModal from "../cart/CartModal";
+import Activity from "../../pages/Activity";
 import { Badge } from "antd";
-import { StoreContext } from "../store";
+import { StoreContext } from "../../store";
 
 const { SubMenu } = Menu;
 
@@ -24,6 +25,13 @@ const menu = (
         </Link>
       </Menu.Item>
     ))}
+    <Menu.Item>
+      <Link to='/'>
+          <p className="activity-name">
+            更多活動
+          </p>
+      </Link>
+    </Menu.Item>
   </Menu>
   
 );

@@ -1,8 +1,8 @@
 import { Row, Col } from "antd";
 import { useContext, useEffect} from "react";
-import { StoreContext } from "../store"
+import { StoreContext } from "../../store"
 import PreferItem from "./PreferItem";
-import BreadcrumbItem from "./BreadcrumbItem";
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 import Cookie from "js-cookie";
 
 export default function PreferModal() {

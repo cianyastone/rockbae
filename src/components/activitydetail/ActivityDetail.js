@@ -2,8 +2,8 @@ import { Row, Col, Tabs, Radio, InputNumber } from "antd";
 import { StickyContainer, Sticky } from 'react-sticky';
 import React from 'react';
 import { useState } from "react";
-import AddToCart from "./AddToCart"
-import BreadcrumbItem from "./BreadcrumbItem";
+import AddToCart from "../cart/AddToCart"
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 
 const { TabPane } = Tabs;
 const renderTabBar = (props, DefaultTabBar) => (

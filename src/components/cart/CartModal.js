@@ -3,8 +3,8 @@ import { Drawer } from 'antd';
 import { Button, Select } from "antd";
 import CartSummary from "./CartSummary";
 import { useContext } from "react";
-import { StoreContext } from "../store"
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../utils/constants";
+import { StoreContext } from "../../store"
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../../utils/constants";
 import Cookie from "js-cookie";
 import { Link } from 'react-router-dom';
 
