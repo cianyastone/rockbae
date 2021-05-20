@@ -7,10 +7,11 @@ import { StoreContext } from "../../store"
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../../utils/constants";
 import Cookie from "js-cookie";
 import { Link } from 'react-router-dom';
+import {removeFromCart, addCartItemforModal} from "../../actions/index"
 
 const { Option } = Select;
 
-export default function CartModalformobile() {
+export default function CartModal() {
     const [visible, setVisible] = useState(false);
 
     const showDrawer = () => {
@@ -25,24 +26,6 @@ export default function CartModalformobile() {
     useEffect(()=>{
         Cookie.set("cartItems", JSON.stringify(cartItems));
      }, [cartItems])
-
-    const addToCart = (activity, qty) => {
-        dispatch({
-            type: CART_ADD_ITEM,
-            payload: {
-                id: activity.id,
-                name: activity.name,
-                image: activity.image,
-                price: activity.price,
-                countInStock: activity.countInStock,
-                qty,
-            },
-        });
-    };
-
-    const removeFromCart = (activityId) => {
-        dispatch({ type: CART_REMOVE_ITEM, payload: activityId });
-    };
 
     const getTotalPrice = () => {
         return (cartItems.length > 0) ?
@@ -75,7 +58,7 @@ export default function CartModalformobile() {
                     <div className="cart-item-content">
                         <div className="cart-qty">
                             <Link to={`/activity/${item.id}`} className="cart-name link">{item.name}</Link>
-                            <div className="cart-item-delete" onClick={()=>removeFromCart(item.id)}>
+                            <div className="cart-item-delete" onClick={()=>removeFromCart(dispatch, item.id)}>
                                 x
                             </div>
                         </div>
@@ -85,7 +68,7 @@ export default function CartModalformobile() {
                                 <Select
                                     defaultValue={item.qty}
                                     className="select-style"
-                                    onChange={(val) => addToCart(item, val)}
+                                    onChange={(val) => addCartItemforModal(dispatch, item, val)}
                                     >
                                     <Option key={1} value={1}>
                                         {1}

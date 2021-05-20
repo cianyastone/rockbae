@@ -2,9 +2,9 @@ import { useContext, useEffect } from "react";
 import { notification } from "antd"
 import { Link } from 'react-router-dom';
 import { StoreContext } from "../../store"
-import { PREFER_ADD_ITEM } from "../../utils/constants"
 import { HeartTwoTone, HeartFilled } from '@ant-design/icons';
 import Cookie from "js-cookie";
+import {addPreferItem} from "../../actions"
 
 export default function AddToPrefer({activity}){
     const { state: { preferItems }, dispatch } = useContext(StoreContext);
@@ -35,14 +35,7 @@ export default function AddToPrefer({activity}){
 
     const addToPrefer = () => {
         openNotification();
-        dispatch({
-          type: PREFER_ADD_ITEM,
-          payload: {
-            id: activity.id,
-            name: activity.name,
-            image: activity.image,
-          },
-        });
+        addPreferItem(dispatch, activity);
         // if (count === 0) {  
         //     count = 1;  
         //    } 

@@ -2,14 +2,11 @@ import { Card } from "antd"
 import { useContext } from "react";
 import { StoreContext } from "../../store"
 import { Link } from 'react-router-dom';
-import { PREFER_REMOVE_ITEM } from "../../utils/constants";
 import { HeartTwoTone } from '@ant-design/icons';
+import {removeFromPrefer} from "../../actions"
 
 export default function PerferItem({ item }) {
     const { state: { preferItems }, dispatch } = useContext(StoreContext);
-    const removeFromPrefer = (productId) => {
-        dispatch({ type: PREFER_REMOVE_ITEM, payload: productId });
-     };
     return (
         <Card
             hoverable
@@ -30,7 +27,7 @@ export default function PerferItem({ item }) {
                 </h2>
             </div>
             <div className="prefer-item-end">
-                <div className="prefer-item-delete btn-toprefer" onClick={()=>removeFromPrefer(item.id)}>
+                <div className="prefer-item-delete btn-toprefer" onClick={()=>removeFromPrefer(dispatch, item.id)}>
                     <HeartTwoTone twoToneColor="#eb2f96" />
                 </div>
             </div>
