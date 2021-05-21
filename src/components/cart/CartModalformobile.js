@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { StoreContext } from "../../store"
 import BreadcrumbItem from "../normal/BreadcrumbItem";
 import Cookie from "js-cookie";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {removeFromCart, addCartItemforModal} from "../../actions"
 
 
@@ -12,6 +12,12 @@ const { Option } = Select;
 
 export default function CartModalformobile() {
     const { state: { cartItems }, dispatch } = useContext(StoreContext);
+
+    const history = useHistory();
+
+    const checkoutHandler = () => {
+        history.push("/login?redirect=shipping");
+    }
 
     useEffect(()=>{
         Cookie.set("cartItems", JSON.stringify(cartItems));
@@ -82,6 +88,7 @@ export default function CartModalformobile() {
         <Button
             className="cart-modal-btn"
             type="primary"
+            onClick={checkoutHandler}
             >
             <span>結帳去</span>
             </Button>

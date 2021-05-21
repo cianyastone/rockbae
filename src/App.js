@@ -7,6 +7,7 @@ import Cart from './pages/Cart'
 import Feed from './pages/Feed'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import Profile from './pages/ProfilePage'
 
 import { StoreProvider } from "./store";
 
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/feeder" component={Feed} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/profile" component={Profile} />
           <Route path="/Cart" component={Cart} />
           <Route path="/activity/:activityId" component={ActivityDetail} />
         </Switch>

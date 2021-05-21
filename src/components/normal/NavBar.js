@@ -6,6 +6,8 @@ import activity from '../../json/activity.json';
 import { Link } from 'react-router-dom';
 import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
+import UserInfo from "../user/UserInfo";
+import UserInfoForMobile from "../user/UserInfoForMobile";
 import { Badge } from "antd";
 import { StoreContext } from "../../store";
 
@@ -69,9 +71,10 @@ export default function NavBar() {
         <PreferSummary preference={'想去ㄉ活動'} />
       </NavLink>
       <NavLink to="/feeder" className="nav-item" activeClassName="nav-item--active">
-                    JSON Feeder
+        JSON Feeder
       </NavLink>
       <CartModal/>
+      <UserInfo style={{marginRight: '20px'}} />
     </div>
     <Drawer
       closable={false}
@@ -83,6 +86,7 @@ export default function NavBar() {
         <Link to="/Home">
           <img className="nav-slogan" width="50%" src="https://i.pinimg.com/564x/09/79/8f/09798f85e707c8e84d3e8460318d4998.jpg" alt="description"/>
         </Link>
+        <UserInfoForMobile />
         <Menu mode="inline" >
           <SubMenu key="sub1" title="煞氣ㄉ音樂祭" openKeys={openKeys} onOpenChange={onOpenChange}>
             {[...Array(activity.length).keys()].map((x) => (

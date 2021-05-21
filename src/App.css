@@ -292,6 +292,11 @@ body {
   cursor: pointer; 
 }
 
+.nav-item-mobile{
+  list-style:none;
+  list-style-type: none; 
+}
+
 .nav-item:hover {
   color: #2bff47;
   font-weight: bold;
