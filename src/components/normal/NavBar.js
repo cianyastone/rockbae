@@ -6,7 +6,6 @@ import activity from '../../json/activity.json';
 import { Link } from 'react-router-dom';
 import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
-import Activity from "../../pages/Activity";
 import { Badge } from "antd";
 import { StoreContext } from "../../store";
 

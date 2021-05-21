@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext } from "react";
 import useReducerWithThunk from 'use-reducer-thunk';
 import activities from "../json/activity.json"
 import Cookie from "js-cookie";
@@ -8,6 +8,17 @@ import {
    PREFER_REMOVE_ITEM, 
    CART_ADD_ITEM,
    CART_REMOVE_ITEM, 
+   BEGIN_LOGIN_REQUEST,
+   SUCCESS_LOGIN_REQUEST,
+   FAIL_LOGIN_REQUEST,
+   LOGOUT_REQUEST,
+   REMEMBER_LOGIN,
+   BEGIN_REGISTER_REQUEST,
+   SUCCESS_REGISTER_REQUEST,
+   FAIL_REGISTER_REQUEST,
+   BEGIN_UPDATE_USERINFO,
+   SUCCESS_UPDATE_USERINFO,
+   FAIL_UPDATE_USERINFO,
 } from "../utils/constants"
 
 export const StoreContext = createContext();
@@ -26,6 +37,19 @@ const initialState = {
    },
    preferItems,
    cartItems,
+   userSignin: {
+      loading: false,
+      userInfo: localStorage.getItem("userInfo")
+        ? JSON.parse(localStorage.getItem("userInfo"))
+        : null,
+      remember: true,
+      error: "",
+   },
+   userRegister: {
+      loading: false,
+      userInfo: null,
+      error: "",
+   },
 };
 
 function reducer(state, action) {
@@ -45,19 +69,108 @@ function reducer(state, action) {
          preferItems = state.preferItems.filter((x) => x.id !== action.payload);
          return { ...state, preferItems };
       case CART_ADD_ITEM:
-            const item1 = action.payload;
-            const activity1 = state.cartItems.find((x) => x.id === item1.id);
-            if (activity1) {
-               cartItems = state.cartItems.map((x) =>
-                  x.id === activity1.id ? item1 : x
-               );
-               return { ...state, cartItems };
-            }
+         const item1 = action.payload;
+         const activity1 = state.cartItems.find((x) => x.id === item1.id);
+         if (activity1) {
+            cartItems = state.cartItems.map((x) =>
+               x.id === activity1.id ? item1 : x
+            );
+            return { ...state, cartItems };
+         }
             cartItems = [...state.cartItems, item1];
             return { ...state, cartItems };
-         case CART_REMOVE_ITEM:
+      case CART_REMOVE_ITEM:
             cartItems = state.cartItems.filter((x) => x.id !== action.payload);
-            return { ...state, cartItems };   
+            return { ...state, cartItems };  
+            case BEGIN_LOGIN_REQUEST:
+               return { ...state, userSignin: { ...state.userSignin, loading: true } };
+             case SUCCESS_LOGIN_REQUEST:
+               return {
+                 ...state,
+                 userSignin: {
+                   ...state.userSignin,
+                   loading: false,
+                   userInfo: action.payload,
+                   error: "",
+                 },
+               };
+             case FAIL_LOGIN_REQUEST:
+               return {
+                 ...state,
+                 userSignin: {
+                   ...state.userSignin,
+                   loading: false,
+                   userInfo: null,
+                   error: action.payload,
+                 },
+               };
+             case BEGIN_UPDATE_USERINFO:
+               return { ...state, userSignin: { ...state.userSignin, loading: true } };
+             case SUCCESS_UPDATE_USERINFO:
+               return {
+                 ...state,
+                 userSignin: {
+                   ...state.userSignin,
+                   loading: false,
+                   userInfo: action.payload,
+                   error: "",
+                 },
+               };
+             case FAIL_UPDATE_USERINFO:
+               return {
+                 ...state,
+                 userSignin: {
+                   ...state.userSignin,
+                   loading: false,
+                   error: action.payload,
+                 },
+               };
+             case LOGOUT_REQUEST:
+               cartItems = [];
+               return {
+                 ...state,
+                 userSignin: {
+                   ...state.userSignin,
+                   userInfo: null,
+                 },
+               };
+             case REMEMBER_LOGIN:
+               return {
+                 ...state,
+                 userSignin: {
+                   ...state.userSignin,
+                   remember: action.payload,
+                 },
+               };
+             case BEGIN_REGISTER_REQUEST:
+               return {
+                 ...state,
+                 userRegister: { ...state.userRegister, loading: true },
+               };
+             case SUCCESS_REGISTER_REQUEST:
+               return {
+                 ...state,
+                 userRegister: {
+                   ...state.userRegister,
+                   loading: false,
+                   userInfo: action.payload,
+                   error: "",
+                 },
+                 userSignin: {
+                   ...state.userSignin,
+                   userInfo: action.payload,
+                 },
+               };
+             case FAIL_REGISTER_REQUEST:
+               return {
+                 ...state,
+                 userRegister: {
+                   ...state.userRegister,
+                   loading: false,
+                   userInfo: null,
+                   error: action.payload,
+                 },
+               }; 
       default:
          return state;
    }

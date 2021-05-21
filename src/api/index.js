@@ -25,6 +25,9 @@ const activitiesCollectionRef = firebase.firestore().collection("Activity");
 const activitiesDocRef = activitiesCollectionRef.doc("json");
 const allActivitiesCollectionRef = activitiesDocRef.collection("allActivity");
 
+//REFERENCE AUTH
+const auth = firebase.auth();
+
 export const getJSON = (url) => {
       switch (url) {
           case "/":
@@ -48,5 +51,36 @@ export const feedActivities = () => {
 
 export const authenticateAnonymously = () => {
     return firebase.auth().signInAnonymously();
-  };
-  
+};
+
+export const signInWithEmailPassword = async (email, password) => {
+  return await auth.signInWithEmailAndPassword(email, password);
+}
+
+export const registerWithEmailPassword = async (email, password, displayName) => {
+  await auth.createUserWithEmailAndPassword(email, password);
+  const user = auth.currentUser;
+  await user.updateProfile({ displayName })
+  return user;
+}
+
+export const updateUserInfoApi = async (email, password, displayName) => {
+  console.log(email);
+  console.log(password);
+  console.log(displayName)
+  const user = auth.currentUser;
+  if(displayName)
+    await user.updateProfile({ displayName });
+  if(email)
+    await user.updateEmail(String(email));
+  if(password)
+    await user.updatePassword(password);
+  return user;
+}
+
+
+export const signOut = () => {
+  auth.signOut();
+}
+
+

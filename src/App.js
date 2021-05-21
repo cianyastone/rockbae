@@ -5,6 +5,8 @@ import ActivityDetail from './pages/ActivityDetail'
 import Prefer from './pages/Prefer'
 import Cart from './pages/Cart'
 import Feed from './pages/Feed'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 import { StoreProvider } from "./store";
 
@@ -17,7 +19,9 @@ function App() {
           <Route path="/Cart" component={Cart} />
           <Route exact path="/" component={Activity} />
           <Route exact path="/feeder" component={Feed} />
-          <Route exact path="/:pageName" component={Activity} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+          <Route path="/Cart" component={Cart} />
           <Route path="/activity/:activityId" component={ActivityDetail} />
         </Switch>
       </BrowserRouter>
