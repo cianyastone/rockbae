@@ -1,14 +1,13 @@
-import { NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Drawer } from 'antd';
-import { useState, useContext } from "react";
+import { Link, NavLink } from 'react-router-dom';
+import { Menu, Dropdown, Drawer, Badge } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { useState, useContext } from "react";
 import activity from '../../json/activity.json';
-import { Link } from 'react-router-dom';
 import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
 import UserInfo from "../user/UserInfo";
 import UserInfoForMobile from "../user/UserInfoForMobile";
-import { Badge } from "antd";
+
 import { StoreContext } from "../../store";
 
 const { SubMenu } = Menu;
@@ -74,6 +73,9 @@ export default function NavBar() {
         JSON Feeder
       </NavLink>
       <CartModal/>
+      <NavLink to="/post" className="nav-item" activeClassName="nav-item--active">
+        文章
+      </NavLink>
       <UserInfo style={{marginRight: '20px'}} />
     </div>
     <Drawer

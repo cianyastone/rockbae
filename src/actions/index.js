@@ -14,6 +14,11 @@ import {
     BEGIN_UPDATE_USERINFO,
     SUCCESS_UPDATE_USERINFO,
     FAIL_UPDATE_USERINFO,
+    BEGIN_POSTING,
+    SUCCESS_POSTING,
+    BEGIN_POST_DETAIL,
+    SUCCESS_POST_DETAIL,
+    FAIL_POST_DETAIL,
 } from "../utils/constants"
 
 import {
@@ -21,6 +26,8 @@ import {
     registerWithEmailPassword,
     signOut,
     updateUserInfoApi,
+    createPostApi,
+    getPostById,
 } from "../api";
 
 
@@ -151,4 +158,41 @@ export const updateUserInfo = async (dispatch, userInfo) => {
 export const logoutFromFirebase = async (dispatch) => {
     signOut();
     dispatch({ type: LOGOUT_REQUEST });
+}
+
+export const createPost = async (dispatch, postData) => {
+  dispatch({ type: BEGIN_POSTING });
+  try {
+    const post = {
+      article: postData.article,
+      activity: postData.activity,
+      content: postData.content,
+    };    
+    const postInfo = await createPostApi(post);
+    dispatch({ 
+      type: SUCCESS_POSTING, 
+      payload: postInfo
+    });
+    return postInfo;
+  } catch (error) {
+    console.log(error);
+    //dispatch({ type: FAIL_POSTING, payload: error });
+    return null;
+  }  
+};
+
+export const requestPostDetail = async (dispatch, postId) => {
+  dispatch({ type: BEGIN_POST_DETAIL });
+  try {
+    const post = await getPostById(postId);
+    dispatch({ 
+      type: SUCCESS_POST_DETAIL,
+      payload: post
+    });
+  } catch (error) {
+    dispatch({ 
+      type: FAIL_POST_DETAIL, 
+      payload: error 
+    });
+  }
 }

@@ -19,6 +19,11 @@ import {
    BEGIN_UPDATE_USERINFO,
    SUCCESS_UPDATE_USERINFO,
    FAIL_UPDATE_USERINFO,
+   BEGIN_POSTING,
+   SUCCESS_POSTING,
+   BEGIN_POST_DETAIL,
+   SUCCESS_POST_DETAIL,
+   FAIL_POST_DETAIL,
 } from "../utils/constants"
 
 export const StoreContext = createContext();
@@ -50,6 +55,14 @@ const initialState = {
       userInfo: null,
       error: "",
    },
+   createPost: {
+      loading:false,
+   },
+   postDetail: {
+      loading: true,
+      post: [],
+      error: null,
+    },
 };
 
 function reducer(state, action) {
@@ -69,33 +82,33 @@ function reducer(state, action) {
          preferItems = state.preferItems.filter((x) => x.id !== action.payload);
          return { ...state, preferItems };
       case CART_ADD_ITEM:
-         const item1 = action.payload;
-         const activity1 = state.cartItems.find((x) => x.id === item1.id);
-         if (activity1) {
-            cartItems = state.cartItems.map((x) =>
-               x.id === activity1.id ? item1 : x
-            );
+          const item1 = action.payload;
+          const activity1 = state.cartItems.find((x) => x.id === item1.id);
+          if (activity1) {
+              cartItems = state.cartItems.map((x) =>
+                x.id === activity1.id ? item1 : x
+              );
             return { ...state, cartItems };
-         }
-            cartItems = [...state.cartItems, item1];
-            return { ...state, cartItems };
+          }
+          cartItems = [...state.cartItems, item1];
+          return { ...state, cartItems };
       case CART_REMOVE_ITEM:
-            cartItems = state.cartItems.filter((x) => x.id !== action.payload);
-            return { ...state, cartItems };  
-            case BEGIN_LOGIN_REQUEST:
-               return { ...state, userSignin: { ...state.userSignin, loading: true } };
-             case SUCCESS_LOGIN_REQUEST:
-               return {
-                 ...state,
-                 userSignin: {
-                   ...state.userSignin,
-                   loading: false,
-                   userInfo: action.payload,
-                   error: "",
-                 },
-               };
-             case FAIL_LOGIN_REQUEST:
-               return {
+          cartItems = state.cartItems.filter((x) => x.id !== action.payload);
+          return { ...state, cartItems };  
+      case BEGIN_LOGIN_REQUEST:
+          return { ...state, userSignin: { ...state.userSignin, loading: true } };
+      case SUCCESS_LOGIN_REQUEST:
+          return {
+            ...state,
+            userSignin: {
+              ...state.userSignin,
+              loading: false,
+              userInfo: action.payload,
+              error: "",
+            },
+          };
+      case FAIL_LOGIN_REQUEST:
+          return {
                  ...state,
                  userSignin: {
                    ...state.userSignin,
@@ -104,10 +117,10 @@ function reducer(state, action) {
                    error: action.payload,
                  },
                };
-             case BEGIN_UPDATE_USERINFO:
-               return { ...state, userSignin: { ...state.userSignin, loading: true } };
-             case SUCCESS_UPDATE_USERINFO:
-               return {
+      case BEGIN_UPDATE_USERINFO:
+          return { ...state, userSignin: { ...state.userSignin, loading: true } };
+      case SUCCESS_UPDATE_USERINFO:
+          return {
                  ...state,
                  userSignin: {
                    ...state.userSignin,
@@ -116,8 +129,8 @@ function reducer(state, action) {
                    error: "",
                  },
                };
-             case FAIL_UPDATE_USERINFO:
-               return {
+      case FAIL_UPDATE_USERINFO:
+          return {
                  ...state,
                  userSignin: {
                    ...state.userSignin,
@@ -125,30 +138,30 @@ function reducer(state, action) {
                    error: action.payload,
                  },
                };
-             case LOGOUT_REQUEST:
-               cartItems = [];
-               return {
+      case LOGOUT_REQUEST:
+          cartItems = [];
+          return {
                  ...state,
                  userSignin: {
                    ...state.userSignin,
                    userInfo: null,
                  },
                };
-             case REMEMBER_LOGIN:
-               return {
+      case REMEMBER_LOGIN:
+          return {
                  ...state,
                  userSignin: {
                    ...state.userSignin,
                    remember: action.payload,
                  },
                };
-             case BEGIN_REGISTER_REQUEST:
-               return {
+      case BEGIN_REGISTER_REQUEST:
+          return {
                  ...state,
                  userRegister: { ...state.userRegister, loading: true },
                };
-             case SUCCESS_REGISTER_REQUEST:
-               return {
+      case SUCCESS_REGISTER_REQUEST:
+          return {
                  ...state,
                  userRegister: {
                    ...state.userRegister,
@@ -161,8 +174,8 @@ function reducer(state, action) {
                    userInfo: action.payload,
                  },
                };
-             case FAIL_REGISTER_REQUEST:
-               return {
+      case FAIL_REGISTER_REQUEST:
+          return {
                  ...state,
                  userRegister: {
                    ...state.userRegister,
@@ -171,6 +184,42 @@ function reducer(state, action) {
                    error: action.payload,
                  },
                }; 
+      case BEGIN_POSTING:
+          return { ...state, createPost: { ...state.createPost, loading: true } };
+      case SUCCESS_POSTING:
+          return {
+            ...state,
+            createPost: {
+              ...state.createPost,
+              loading: false,
+            },
+          };
+      case BEGIN_POST_DETAIL:
+          return {
+              ...state,
+              postDetail: {
+                ...state.postDetail,
+                loading: true,
+              }
+            };
+      case SUCCESS_POST_DETAIL:
+          return {
+              ...state,
+              postDetail: {
+                ...state.postDetail,
+                loading: false,
+                post: action.payload,
+              },
+            };
+      case FAIL_POST_DETAIL:
+          return {
+              ...state,
+              postDetail: {
+                ...state.postDetail,
+                loading: false,
+                error: action.payload,
+              },
+            };
       default:
          return state;
    }

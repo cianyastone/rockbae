@@ -5,12 +5,7 @@ import { logoutFromFirebase, updateUserInfo } from "../../actions";
 import { StoreContext } from "../../store";
 
 const ProfileCard = () => {
-  const {
-    state: {
-      userSignin: { userInfo },
-    },
-    dispatch,
-  } = useContext(StoreContext);
+  const { state: { userSignin: { userInfo } },dispatch } = useContext(StoreContext);
   const { displayName, email } = userInfo;
   const history = useHistory();
   const [form] = Form.useForm();

@@ -8,6 +8,8 @@ import Feed from './pages/Feed'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import Profile from './pages/ProfilePage'
+import PostDetail from './pages/PostDetail'
+import CreatePost from './pages/CreatePost'
 
 import { StoreProvider } from "./store";
 
@@ -19,11 +21,13 @@ function App() {
           <Route path="/Prefer" component={Prefer} />
           <Route path="/Cart" component={Cart} />
           <Route exact path="/" component={Activity} />
+          <Route exact path="/Home" component={Activity} />
           <Route exact path="/feeder" component={Feed} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/profile" component={Profile} />
-          <Route path="/Cart" component={Cart} />
+          <Route path="/createPost" component={CreatePost} />
+          <Route path="/post" component={PostDetail} />
           <Route path="/activity/:activityId" component={ActivityDetail} />
         </Switch>
       </BrowserRouter>

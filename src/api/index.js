@@ -20,13 +20,18 @@ const firebaseConfig = {
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
 firebase.initializeApp(firebaseConfig);
-
+// REFERENCE PRODUCTS
 const activitiesCollectionRef = firebase.firestore().collection("Activity");
 const activitiesDocRef = activitiesCollectionRef.doc("json");
 const allActivitiesCollectionRef = activitiesDocRef.collection("allActivity");
 
 //REFERENCE AUTH
 const auth = firebase.auth();
+
+//REFERENCE AUTH
+const post = firebase.firestore().collection("Post");
+const postDocRef = post.doc("postJson");
+const allPostCollectionRef = postDocRef.collection("allPost");
 
 export const getJSON = (url) => {
       switch (url) {
@@ -47,6 +52,24 @@ export const feedActivities = () => {
         id:id
       });
     })
+}
+
+export const createPostApi = async (post) => {
+  const user = auth.currentUser.uid;
+  const postRef = await allPostCollectionRef.doc();
+  const id = postRef.id;
+  // Store Data for Aggregation Queries
+  await postRef.set({
+    ...post,
+    id,
+    user
+  });
+  return { ...post, id };
+}
+
+export const getPostById = async (postId) => {
+  const doc = await allPostCollectionRef.doc(postId).get();
+  return doc.data()
 }
 
 export const authenticateAnonymously = () => {
