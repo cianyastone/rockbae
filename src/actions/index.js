@@ -66,13 +66,13 @@ export const addCartItem = (dispatch, activity, qty, ticket) => {
     });
 };
 
-export const addCartItemforModal = (dispatch, activity, qty) => {
+export const addCartItemforModal = (dispatch, activity, qty, ticket) => {
     const item = {
       id: activity.id,
       name: activity.name,
       image: activity.image,
-      ticketClass: activity.ticketClass,
-      price: activity.price,
+      ticketClass: activity.ticketClass[ticket],
+      price: activity.price[ticket],
       countInStock: activity.countInStock,
       qty,
     };

@@ -90,10 +90,10 @@ function reducer(state, action) {
          return { ...state, preferItems };
       case CART_ADD_ITEM:
           const item1 = action.payload;
-          const activity1 = state.cartItems.find((x) => x.id === item1.id);
+          const activity1 = state.cartItems.find((x) => x.ticketClass === item1.ticketClass);
           if (activity1) {
               cartItems = state.cartItems.map((x) =>
-                x.id === activity1.id ? item1 : x
+                x.id === activity1.ticketClass ? item1 : x
               );
             return { ...state, cartItems };
           }
