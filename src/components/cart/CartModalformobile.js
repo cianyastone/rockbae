@@ -44,12 +44,13 @@ export default function CartModalformobile() {
                     </Link>
                     <div className="cart-item-content">
                         <div className="cart-qty">
-                        <Link to={`/activity/${item.id}`} className="link">
-                            <div className="cart-name">{item.name}</div>
-                            </Link>
-                            <div className="cart-item-delete" onClick={()=>removeFromCart(dispatch,item.id)}>
+                            <Link to={`/activity/${item.id}`} className="cart-name link">{item.name}</Link>
+                            <div className="cart-item-delete" onClick={()=>removeFromCart(dispatch, item.ticketClass)}>
                                 x
                             </div>
+                        </div>
+                        <div className="product-qty">
+                            票種: {item.ticketClass}
                         </div>
                         <div className="cart-qty">
                             <div className="product-qty">
