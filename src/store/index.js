@@ -100,7 +100,7 @@ function reducer(state, action) {
           cartItems = [...state.cartItems, item1];
           return { ...state, cartItems };
       case CART_REMOVE_ITEM:
-          cartItems = state.cartItems.filter((x) => x.id !== action.payload);
+          cartItems = state.cartItems.filter((x) => x.ticketClass !== action.payload);
           return { ...state, cartItems };  
       case BEGIN_LOGIN_REQUEST:
           return { ...state, userSignin: { ...state.userSignin, loading: true } };

@@ -62,7 +62,7 @@ export default function CartModal() {
                     <div className="cart-item-content">
                         <div className="cart-qty">
                             <Link to={`/activity/${item.id}`} className="cart-name link">{item.name}</Link>
-                            <div className="cart-item-delete" onClick={()=>removeFromCart(dispatch, item.id)}>
+                            <div className="cart-item-delete" onClick={()=>removeFromCart(dispatch, item.ticketClass)}>
                                 x
                             </div>
                         </div>

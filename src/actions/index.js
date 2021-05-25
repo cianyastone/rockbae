@@ -82,10 +82,10 @@ export const addCartItemforModal = (dispatch, activity, qty, ticket) => {
     });
 };
 
-export const removeFromCart = (dispatch, activityId) => {
+export const removeFromCart = (dispatch, activityTicketClass) => {
     dispatch({
         type: CART_REMOVE_ITEM, 
-        payload: activityId,
+        payload: activityTicketClass,
     });
 };
 
