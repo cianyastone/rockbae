@@ -152,6 +152,16 @@ body {
   padding: 0;
 }
 
+.card {
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
 .activity-info {
   padding: 1.2rem;
 }
@@ -330,6 +340,19 @@ body {
 .nav-slogan{
   margin:1rem;
 }
+
+/* Place Order */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.primary-btn{
+  margin-top: 20px;
+}
+
 /* Preference */
 .nopreference{
   color:#424242;
@@ -419,7 +442,7 @@ body {
   color:#c7c7c7;
 }
 
-/* RWD Container */
+
 
 
 /* xs */

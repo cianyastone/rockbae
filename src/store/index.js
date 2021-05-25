@@ -63,6 +63,13 @@ const initialState = {
       post: [],
       error: null,
     },
+  cart: {
+    cartItems,
+    // shippingAddress: localStorage.getItem('shippingAddress')
+    //   ? JSON.parse(localStorage.getItem('shippingAddress'))
+    //   : {},
+    // paymentMethod: 'Google',
+    },
 };
 
 function reducer(state, action) {

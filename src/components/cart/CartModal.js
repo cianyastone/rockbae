@@ -24,7 +24,7 @@ export default function CartModal() {
     const history = useHistory();
 
     const checkoutHandler = () => {
-        history.push("/login?redirect=shipping");
+        history.push("/login?redirect=placeorder");
     }
     
     useEffect(()=>{
@@ -65,6 +65,9 @@ export default function CartModal() {
                             <div className="cart-item-delete" onClick={()=>removeFromCart(dispatch, item.id)}>
                                 x
                             </div>
+                        </div>
+                        <div className="product-qty">
+                            票種: {item.ticketClass}
                         </div>
                         <div className="cart-qty">
                             <div className="product-qty">

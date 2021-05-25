@@ -10,6 +10,7 @@ import RegisterPage from './pages/RegisterPage'
 import Profile from './pages/ProfilePage'
 import PostDetail from './pages/PostDetail'
 import CreatePost from './pages/CreatePost'
+import PlaceOrder from './pages/PlaceOrder'
 
 import { StoreProvider } from "./store";
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/" component={Activity} />
           <Route exact path="/Home" component={Activity} />
           <Route exact path="/feeder" component={Feed} />
+          <Route path="/placeorder" component={PlaceOrder} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/profile" component={Profile} />
