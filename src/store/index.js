@@ -93,7 +93,7 @@ function reducer(state, action) {
           const activity1 = state.cartItems.find((x) => x.ticketClass === item1.ticketClass);
           if (activity1) {
               cartItems = state.cartItems.map((x) =>
-                x.id === activity1.ticketClass ? item1 : x
+                x.ticketClass === activity1.ticketClass ? item1 : x
               );
             return { ...state, cartItems };
           }

@@ -90,7 +90,7 @@ export default function PlaceOrderCard() {
         lg={{ span: 7, offset: 0 }}
       >
         <div className="card card-body">
-          <h2 style={{ color: 'black' }}>總共！</h2>
+          <h2 style={{ color: 'black' }}>繼續！</h2>
           <div className="row">
             <div>Items</div>
             <div>${cart.itemsPrice}</div>

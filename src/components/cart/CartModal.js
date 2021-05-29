@@ -75,7 +75,7 @@ export default function CartModal() {
                                 <Select
                                     defaultValue={item.qty}
                                     className="select-style"
-                                    onChange={(val, ticket) => addCartItemforModal(dispatch, item, val, ticket)}
+                                    onChange={(val) => addCartItemforModal(dispatch, item, val)}
                                     >
                                     <Option key={1} value={1}>
                                         {1}

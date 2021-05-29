@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import PlaceOrderCard from "../components/cart/PlaceOrder";
+import PlaceOrderCard from "../components/order/PlaceOrder";
 import AppHeader from '../components/normal/Header';
 import AppFooter from '../components/normal/Footer';
 const { Header, Content, Footer } = Layout;
