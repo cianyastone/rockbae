@@ -19,6 +19,8 @@ import {
     BEGIN_POST_DETAIL,
     SUCCESS_POST_DETAIL,
     FAIL_POST_DETAIL,
+    SAVE_SHIPPING_ADDRESS,
+    SAVE_PAYMENT_METHOD,
 } from "../utils/constants"
 
 import {
@@ -197,4 +199,21 @@ export const requestPostDetail = async (dispatch, postId) => {
       payload: error 
     });
   }
+}
+
+export const saveShippingAddress = (dispatch, shippingAddress) => {
+  console.log('Address: ')
+  console.log(shippingAddress)
+  dispatch({
+    type: SAVE_SHIPPING_ADDRESS,
+    payload: shippingAddress,
+  });
+  localStorage.setItem('shippingAddress', JSON.stringify(shippingAddress));
+}
+
+export const savePaymentMethod = (dispatch, paymentMethod) => {
+  dispatch({
+    type: SAVE_PAYMENT_METHOD,
+    payload: paymentMethod.paymentMethod,
+  });
 }

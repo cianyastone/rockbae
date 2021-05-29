@@ -11,6 +11,8 @@ import Profile from './pages/ProfilePage'
 import PostDetail from './pages/PostDetail'
 import CreatePost from './pages/CreatePost'
 import PlaceOrder from './pages/PlaceOrder'
+import Shipping from './pages/Shipping'
+import Payment from './pages/Payment'
 
 import { StoreProvider } from "./store";
 
@@ -31,6 +33,8 @@ function App() {
           <Route path="/createPost" component={CreatePost} />
           <Route path="/post" component={PostDetail} />
           <Route path="/activity/:activityId" component={ActivityDetail} />
+          <Route path="/shipping" component={Shipping} />
+          <Route path="/payment" component={Payment} />
         </Switch>
       </BrowserRouter>
     </StoreProvider>

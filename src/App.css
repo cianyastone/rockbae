@@ -353,6 +353,11 @@ body {
   margin-top: 20px;
 }
 
+.shipping-title{
+  font-size: 1.5em;
+  color:#424242;
+}
+
 /* Preference */
 .nopreference{
   color:#424242;

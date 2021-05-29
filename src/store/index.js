@@ -24,6 +24,8 @@ import {
    BEGIN_POST_DETAIL,
    SUCCESS_POST_DETAIL,
    FAIL_POST_DETAIL,
+   SAVE_SHIPPING_ADDRESS,
+   SAVE_PAYMENT_METHOD,
 } from "../utils/constants"
 
 export const StoreContext = createContext();
@@ -65,10 +67,10 @@ const initialState = {
     },
   cart: {
     cartItems,
-    // shippingAddress: localStorage.getItem('shippingAddress')
-    //   ? JSON.parse(localStorage.getItem('shippingAddress'))
-    //   : {},
-    // paymentMethod: 'Google',
+    shippingAddress: localStorage.getItem('shippingAddress')
+      ? JSON.parse(localStorage.getItem('shippingAddress'))
+      : {},
+    paymentMethod: 'Google',
     },
 };
 
@@ -102,6 +104,12 @@ function reducer(state, action) {
       case CART_REMOVE_ITEM:
           cartItems = state.cartItems.filter((x) => x.ticketClass !== action.payload);
           return { ...state, cartItems };  
+      case SAVE_SHIPPING_ADDRESS:
+          console.log('action.payload.shippingAddress = ')
+          console.log(action.payload)
+          return { ...state, cart: { ...state.cart, shippingAddress: action.payload } };
+      case SAVE_PAYMENT_METHOD:
+          return { ...state, cart: { ...state.cart, paymentMethod: action.payload } };
       case BEGIN_LOGIN_REQUEST:
           return { ...state, userSignin: { ...state.userSignin, loading: true } };
       case SUCCESS_LOGIN_REQUEST:
