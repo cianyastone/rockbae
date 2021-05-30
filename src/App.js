@@ -33,15 +33,11 @@ function App() {
           <Route path="/register" component={RegisterPage} />
           <Route path="/profile" component={Profile} />
           <Route path="/createPost" component={CreatePost} />
-<<<<<<< HEAD
           <Route path="/post" component={Post} />
           <Route path="/post/:activity/:postId" component={PostDetail} />
-=======
-          <Route path="/post" component={PostDetail} />
           <Route path="/activity/:activityId" component={ActivityDetail} />
           <Route path="/shipping" component={Shipping} />
           <Route path="/payment" component={Payment} />
->>>>>>> 7fae29ee5b3bd6f8687182126440aa6bffbf0f3d
         </Switch>
       </BrowserRouter>
     </StoreProvider>

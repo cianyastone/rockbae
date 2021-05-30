@@ -81,19 +81,11 @@ const initialState = {
   },
   cart: {
     cartItems,
-<<<<<<< HEAD
-    // shippingAddress: localStorage.getItem('shippingAddress')
-    //   ? JSON.parse(localStorage.getItem('shippingAddress'))
-    //   : {},
-    // paymentMethod: 'Google',
-  },
-=======
     shippingAddress: localStorage.getItem('shippingAddress')
       ? JSON.parse(localStorage.getItem('shippingAddress'))
       : {},
     paymentMethod: 'Google',
     },
->>>>>>> 7fae29ee5b3bd6f8687182126440aa6bffbf0f3d
 };
 
 function reducer(state, action) {
@@ -126,7 +118,6 @@ function reducer(state, action) {
       case CART_REMOVE_ITEM:
           cartItems = state.cartItems.filter((x) => x.ticketClass !== action.payload);
           return { ...state, cartItems };  
-<<<<<<< HEAD
       case SET_ACTIVITY_DETAIL:
         return { ...state, activityDetail: { ...state.activityDetail, ...action.payload} };
       case BEGIN_ACTIVITY_REQUEST:
@@ -148,14 +139,12 @@ function reducer(state, action) {
             error: action.payload,
           },
         };
-=======
       case SAVE_SHIPPING_ADDRESS:
           console.log('action.payload.shippingAddress = ')
           console.log(action.payload)
           return { ...state, cart: { ...state.cart, shippingAddress: action.payload } };
       case SAVE_PAYMENT_METHOD:
           return { ...state, cart: { ...state.cart, paymentMethod: action.payload } };
->>>>>>> 7fae29ee5b3bd6f8687182126440aa6bffbf0f3d
       case BEGIN_LOGIN_REQUEST:
         return { ...state, userSignin: { ...state.userSignin, loading: true } };
       case SUCCESS_LOGIN_REQUEST:
