@@ -1,11 +1,11 @@
 import { Layout } from 'antd';
 import AppHeader from '../components/normal/Header';
 import AppFooter from '../components/normal/Footer';
-import CreatePost from '../components/Post/CreatePost';
+import PostList from '../components/Post/Postlist';
 
 const { Header, Content, Footer } = Layout;
 
-function CreatePostPage() {
+function Post() {
     return (
         <>
         <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
@@ -17,7 +17,7 @@ function CreatePostPage() {
                     <AppHeader />
                 </Header>
                 <Content className="layout-content content-activity">
-                    <CreatePost />
+                    <PostList />
                 </Content>
                 <Footer className="layout-footer">
                     <AppFooter />
@@ -28,4 +28,4 @@ function CreatePostPage() {
     );
 }
 
-export default CreatePostPage;
+export default Post;

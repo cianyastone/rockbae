@@ -1,24 +1,19 @@
 import { Row, Col, Tabs, Radio, InputNumber } from "antd";
-import { StickyContainer, Sticky } from 'react-sticky';
 import React from 'react';
-import { useState } from "react";
+import { useContext } from "react";
 import AddToCart from "../cart/AddToCart"
 import BreadcrumbItem from "../normal/BreadcrumbItem";
+import { StoreContext } from "../../store"
+import { setActivityDetail } from "../../actions";
 
 const { TabPane } = Tabs;
-const renderTabBar = (props, DefaultTabBar) => (
-   <Sticky bottomOffset={80}>
-      {({ style }) => (
-         <DefaultTabBar {...props} className="site-custom-tab-bar" style={{ ...style }} />
-      )}
-   </Sticky>
-);
-function ActivityDetail({ activity }) {
-   const [qty, setQty] = useState(activity.countInStock > 0 ? 1 : 1);
-   const [ticket, setTicket] = useState(0);
+function ActivityDetail({activity}) {
+   const { state: { activityDetail: { ticket, qty} }, dispatch } = useContext(StoreContext);
+
    function onChange(e){
-      setTicket(e.target.value);
+      setActivityDetail(dispatch, activity.id, e.target.value, qty);
    };
+   
    const App = () => (
       <Radio.Group value={ticket} onChange={onChange}>
          {[...Array(activity.ticketClass.length).keys()].map((x) => (
@@ -85,8 +80,8 @@ function ActivityDetail({ activity }) {
                      max={4} 
                      defaultValue={1} 
                      className="input-number"
-                     onChange={value=>setQty(value)}
-                     disabled={activity.countInStock[ticket] > 0 ? false : true} />
+                     onChange={val => setActivityDetail(dispatch, activity.id, ticket, val, activity.category)}
+                  />
                </Col>
                <Col className="ticket-qty">
                   <p className="notice">一人限購4張</p>
@@ -100,8 +95,7 @@ function ActivityDetail({ activity }) {
          </div>           
          </Col>
          <Col span={24}>
-            <StickyContainer>
-               <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
+               <Tabs defaultActiveKey="1">
                   <TabPane tab="簡介" key="1">
                   <p>
                      {activity.description_long}
@@ -120,7 +114,6 @@ function ActivityDetail({ activity }) {
                   </p>
                   </TabPane>
                </Tabs>
-            </StickyContainer>
          </Col>
       </Row>
       </>

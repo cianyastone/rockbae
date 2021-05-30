@@ -1,12 +1,10 @@
 import firebase from "firebase/app";
 // If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
 // import * as firebase from "firebase/app"
-// Add the Firebase products that you want to use
 import "firebase/firestore";
 import "firebase/auth";
 
 import activities from "../json/activity.json";
-// import jsonInfo from "../json/jsonInfo.json";
 
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 const firebaseConfig = {
@@ -33,14 +31,22 @@ const post = firebase.firestore().collection("Post");
 const postDocRef = post.doc("postJson");
 const allPostCollectionRef = postDocRef.collection("allPost");
 
-export const getJSON = (url) => {
-      switch (url) {
-          case "/":
-              return activities;
-          default:
-              return activities;
-      }
-  };
+export const getActivityById = async (activityId) => {
+  // REFERENCE Activities COLLECTION
+  const doc = await allActivitiesCollectionRef.doc(activityId).get();
+  return doc.data()
+}
+
+export const getActivities = async () => {
+  let jsonActivity = [];
+  // QUERY PRODUCTS
+  let querySnapshot;
+  querySnapshot = await allActivitiesCollectionRef.get();
+  querySnapshot.forEach((doc) => {
+    jsonActivity.push(doc.data());
+  })
+  return jsonActivity;
+}
 
 export const feedActivities = () => {
     activities.forEach((activity) => {

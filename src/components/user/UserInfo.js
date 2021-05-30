@@ -1,20 +1,23 @@
 import { useEffect, useContext } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Menu, Avatar, Dropdown } from 'antd';
-import { UserOutlined, UserSwitchOutlined } from '@ant-design/icons';
-import { useHistory } from 'react-router-dom';
+import { UserOutlined } from '@ant-design/icons';
+import { logoutFromFirebase } from "../../actions";
 
 import { StoreContext } from "../../store"
 
 
 
 export default function UserInfo(props) {
-
-   const { state: { userSignin : { userInfo } } } = useContext(StoreContext);
+   const { state: { userSignin: { userInfo } },dispatch } = useContext(StoreContext);
    const history = useHistory();
    const goToProfile = () => {
       history.push("/login?redirect=profile");
    };
+   const Logout = () => {
+      logoutFromFirebase(dispatch);
+      history.push("/");
+    };
 
    const menu = (
       <Menu>
@@ -22,9 +25,14 @@ export default function UserInfo(props) {
             <NavLink to="/profile">
                個人檔案
             </NavLink>
+         </Menu.Item>
+         <Menu.Item>
             <NavLink to="/createpost">
                發布文章
             </NavLink>
+         </Menu.Item>
+         <Menu.Item onClick={Logout}>
+            登出
          </Menu.Item>
       </Menu> 
    );

@@ -1,8 +1,13 @@
 import { 
+  SET_PAGE_CONTENT,
     PREFER_ADD_ITEM,
     PREFER_REMOVE_ITEM, 
     CART_ADD_ITEM,
     CART_REMOVE_ITEM, 
+    SET_ACTIVITY_DETAIL,
+    BEGIN_ACTIVITY_REQUEST,
+    SUCCESS_ACTIVITY_REQUEST,
+    FAIL_ACTIVITY_REQUEST,
     BEGIN_LOGIN_REQUEST,
     SUCCESS_LOGIN_REQUEST,
     FAIL_LOGIN_REQUEST,
@@ -22,6 +27,8 @@ import {
 } from "../utils/constants"
 
 import {
+  getActivityById,
+  getActivities,
     signInWithEmailPassword,
     registerWithEmailPassword,
     signOut,
@@ -89,6 +96,38 @@ export const removeFromCart = (dispatch, activityTicketClass) => {
     });
 };
 
+export const setActivityDetail = async (dispatch, activityId, ticket, qty) => {
+  try {
+    const activity = await getActivityById(activityId);
+    dispatch({
+      type: SET_ACTIVITY_DETAIL,
+      payload: {
+        activity,
+        ticket,
+        qty,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+    dispatch({ payload: error });
+  }
+}
+
+export const setPage = async (dispatch) => {
+  let activities;
+  dispatch({ type: BEGIN_ACTIVITY_REQUEST });
+  try {
+    activities = await getActivities();
+    dispatch({
+      type: SET_PAGE_CONTENT,
+      payload: { activities },
+    });
+    dispatch({ type: SUCCESS_ACTIVITY_REQUEST });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_ACTIVITY_REQUEST, payload: error });
+  }
+}
 
 export const loginToFirebase = async (dispatch, userInfo) => {
     dispatch({ type: BEGIN_LOGIN_REQUEST });

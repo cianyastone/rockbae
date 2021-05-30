@@ -8,6 +8,10 @@ import {
    PREFER_REMOVE_ITEM, 
    CART_ADD_ITEM,
    CART_REMOVE_ITEM, 
+   SET_ACTIVITY_DETAIL,
+   BEGIN_ACTIVITY_REQUEST,
+   SUCCESS_ACTIVITY_REQUEST,
+   FAIL_ACTIVITY_REQUEST,
    BEGIN_LOGIN_REQUEST,
    SUCCESS_LOGIN_REQUEST,
    FAIL_LOGIN_REQUEST,
@@ -33,43 +37,53 @@ let cartItems = Cookie.getJSON("cartItems");
 if(!cartItems) cartItems = []; 
 
 const initialState = {
-   page: {
-      title: "Rock Bae",
-      activities,
-   },
-   navBar: {
-      activeItem: "",
-   },
-   preferItems,
-   cartItems,
-   userSignin: {
-      loading: false,
-      userInfo: localStorage.getItem("userInfo")
-        ? JSON.parse(localStorage.getItem("userInfo"))
-        : null,
-      remember: true,
-      error: "",
-   },
-   userRegister: {
-      loading: false,
-      userInfo: null,
-      error: "",
-   },
-   createPost: {
-      loading:false,
-   },
-   postDetail: {
-      loading: true,
-      post: [],
-      error: null,
-    },
+  page: {
+    title: "Rock Bae",
+    activities,
+    posts:[],
+  },
+  navBar: {
+    activeItem: "",
+  },
+  preferItems,
+  cartItems,
+  requestActivity: {
+    loading: false,
+    error: null,
+  },
+  activityDetail: {
+    activity: {},
+    ticket: 0,
+    qty: 1,
+  },
+  userSignin: {
+    loading: false,
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
+    remember: true,
+    error: "",
+  },
+  userRegister: {
+    loading: false,
+    userInfo: null,
+    error: "",
+  },
+  createPost: {
+    loading:false,
+  },
+  postDetail: {
+    loading: true,
+    post: {},
+    error: null,
+  },
   cart: {
     cartItems,
     // shippingAddress: localStorage.getItem('shippingAddress')
     //   ? JSON.parse(localStorage.getItem('shippingAddress'))
     //   : {},
     // paymentMethod: 'Google',
-    },
+  },
 };
 
 function reducer(state, action) {
@@ -102,8 +116,29 @@ function reducer(state, action) {
       case CART_REMOVE_ITEM:
           cartItems = state.cartItems.filter((x) => x.ticketClass !== action.payload);
           return { ...state, cartItems };  
+      case SET_ACTIVITY_DETAIL:
+        return { ...state, activityDetail: { ...state.activityDetail, ...action.payload} };
+      case BEGIN_ACTIVITY_REQUEST:
+        return {
+          ...state,
+          requestActivity: { ...state.requestActivity, loading: true },
+        };
+      case SUCCESS_ACTIVITY_REQUEST:
+        return {
+          ...state,
+          requestActivity: { ...state.requestActivity, loading: false },
+        };
+      case FAIL_ACTIVITY_REQUEST:
+        return {
+          ...state,
+          requestActivity: {
+            ...state.requestActivity,
+            loading: false,
+            error: action.payload,
+          },
+        };
       case BEGIN_LOGIN_REQUEST:
-          return { ...state, userSignin: { ...state.userSignin, loading: true } };
+        return { ...state, userSignin: { ...state.userSignin, loading: true } };
       case SUCCESS_LOGIN_REQUEST:
           return {
             ...state,

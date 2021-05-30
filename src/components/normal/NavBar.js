@@ -7,39 +7,40 @@ import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
 import UserInfo from "../user/UserInfo";
 import UserInfoForMobile from "../user/UserInfoForMobile";
-
-import { StoreContext } from "../../store";
+import { StoreContext } from "../../store"
+import { setActivityDetail } from "../../actions";
 
 const { SubMenu } = Menu;
-
 const rootSubmenuKeys = ['sub1'];
 
-const menu = (
-  <Menu>
-    {[...Array(activity.length).keys()].map((x) => (
-      <Menu.Item value={x}>
-        <Link to={`/activity/${activity[x].id}`}>
-          <p className="activity-name">
-            {activity[x].name}
-          </p>
-        </Link>
-      </Menu.Item>
-    ))}
-    <Menu.Item>
-      <Link to='/'>
-          <p className="activity-name">
-            更多活動
-          </p>
-      </Link>
-    </Menu.Item>
-  </Menu>
-  
-);
-
 export default function NavBar() {
+  const { dispatch } = useContext(StoreContext);
   const [isOnTouch, setIsOnTouch] = useState(false);
   const handleCloseDrawer = () => setIsOnTouch(false);
   const [openKeys, setOpenKeys] = useState(['sub1']);
+
+  const menu = (
+    <Menu>
+      {[...Array(activity.length).keys()].map((x) => (
+        <Menu.Item value={x}>
+          <Link to={`/activity/${activity[x].id}`}
+              onClick={() => {setActivityDetail(dispatch, activity[x].id, 0, 1);}}
+          >
+            <p className="activity-name">
+              {activity[x].name}
+            </p>
+          </Link>
+        </Menu.Item>
+      ))}
+      <Menu.Item>
+        <Link to='/'>
+            <p className="activity-name">
+              更多活動
+            </p>
+        </Link>
+      </Menu.Item>
+    </Menu>
+  );
 
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);

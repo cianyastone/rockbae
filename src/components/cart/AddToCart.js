@@ -5,11 +5,11 @@ import Cookie from "js-cookie";
 import {addCartItem} from "../../actions"
 
 
-export default function AddToCart({activity, qty,ticket}){
-    const { state: { cartItems },dispatch } = useContext(StoreContext);
+export default function AddToCart(){
+    const { state: { cartItems, activityDetail: { activity, ticketClass, qty } },dispatch } = useContext(StoreContext);
 
     const addToCart = () => {
-      addCartItem(dispatch, activity, qty, ticket);
+      addCartItem(dispatch, activity, qty, ticketClass);
     };
 
     useEffect(()=>{
@@ -17,7 +17,7 @@ export default function AddToCart({activity, qty,ticket}){
    }, [cartItems])
 
     return (
-        <Button disabled={activity.countInStock[ticket] > 0 ? false : true} type="primary" className="btn-tocar" onClick={addToCart}>
+        <Button type="primary" className="btn-tocar" onClick={addToCart}>
           買爆
         </Button>
     );
