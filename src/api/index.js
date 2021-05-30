@@ -78,6 +78,18 @@ export const getPostById = async (postId) => {
   return doc.data()
 }
 
+export const getPosts = async () => {
+  let jsonPosts = [];
+
+  // QUERY PRODUCTS
+  let querySnapshot;
+    querySnapshot = await allPostCollectionRef.get();
+  querySnapshot.forEach((doc) => {
+    jsonPosts.push(doc.data());
+  });
+  return jsonPosts;
+}
+
 export const authenticateAnonymously = () => {
     return firebase.auth().signInAnonymously();
 };

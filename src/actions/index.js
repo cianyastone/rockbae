@@ -8,6 +8,9 @@ import {
     BEGIN_ACTIVITY_REQUEST,
     SUCCESS_ACTIVITY_REQUEST,
     FAIL_ACTIVITY_REQUEST,
+    BEGIN_POST_REQUEST,
+    SUCCESS_POST_REQUEST,
+    FAIL_POST_REQUEST,
     BEGIN_LOGIN_REQUEST,
     SUCCESS_LOGIN_REQUEST,
     FAIL_LOGIN_REQUEST,
@@ -21,6 +24,7 @@ import {
     FAIL_UPDATE_USERINFO,
     BEGIN_POSTING,
     SUCCESS_POSTING,
+    SET_POST_DETAIL,
     BEGIN_POST_DETAIL,
     SUCCESS_POST_DETAIL,
     FAIL_POST_DETAIL,
@@ -31,6 +35,7 @@ import {
 import {
   getActivityById,
   getActivities,
+  getPosts,
     signInWithEmailPassword,
     registerWithEmailPassword,
     signOut,
@@ -224,19 +229,34 @@ export const createPost = async (dispatch, postData) => {
   }  
 };
 
-export const requestPostDetail = async (dispatch, postId) => {
-  dispatch({ type: BEGIN_POST_DETAIL });
+export const setPostDetail = async (dispatch, postId) => {
   try {
     const post = await getPostById(postId);
-    dispatch({ 
-      type: SUCCESS_POST_DETAIL,
-      payload: post
-    });
+    dispatch({
+      type: SET_POST_DETAIL,
+      payload: {
+        post,
+      }
+    })
   } catch (error) {
-    dispatch({ 
-      type: FAIL_POST_DETAIL, 
-      payload: error 
+    console.log(error);
+    dispatch({ payload: error });
+  }
+}
+
+export const setPostPage = async (dispatch, url) => {
+  let posts;
+  dispatch({ type: BEGIN_POST_REQUEST });
+  try {
+    posts = await getPosts(url);
+    dispatch({
+      type: SET_PAGE_CONTENT,
+      payload: { posts },
     });
+    dispatch({ type: SUCCESS_POST_REQUEST });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_POST_REQUEST, payload: error });
   }
 }
 

@@ -1,35 +1,34 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Layout } from 'antd';
-// import NavBar from "../components/NavBar";
-import AppHeader from '../components/normal/Header';
-import AppFooter from '../components/normal/Footer';
-import PostModal from '../components/Post/PostModal';
+import AppHeader from "../components/normal/Header"
+import AppFooter from "../components/normal/Footer"
+import PostDetail from "../components/Post/PostDetail";
+import { setPostDetail } from "../actions";
 import { StoreContext } from "../store"
 
 const { Header, Content, Footer } = Layout;
 
-function PostDetailPage() {
-    const { state: { page: { title } } } = useContext(StoreContext);
+function Post({ match }) {
+    const { dispatch } = useContext(StoreContext);
+    useEffect(() => setPostDetail(dispatch, match.params.postId), [])
     return (
-        <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
-            <AppHeader title="Rock Bae"/>
-        </Header>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
-                    <AppHeader title={title} />
-                </Header>
-                <Content className="layout-content content-activity">
-                    <PostModal />
-                </Content>
-                <Footer className="layout-footer">
-                    <AppFooter />
-                </Footer>
-            </Layout>
-        </Layout>
-        </>
-    );
+      <>
+      <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
+        <AppHeader title="Rock Bae"/>
+      </Header>
+      <Layout className="container main-layout">
+         <Header className="layout-header">
+            <AppHeader />
+         </Header>
+         <Content className="layout-content">
+            <PostDetail />
+         </Content>
+         <Footer className="layout-footer">
+            <AppFooter />
+         </Footer>
+      </Layout>
+      </>
+   );
 }
 
-export default PostDetailPage;
+export default Post;

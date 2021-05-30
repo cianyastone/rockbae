@@ -1,9 +1,9 @@
 import { createContext } from "react";
 import useReducerWithThunk from 'use-reducer-thunk';
-import activities from "../json/activity.json"
 import Cookie from "js-cookie";
 
 import { 
+  SET_PAGE_CONTENT,
    PREFER_ADD_ITEM,
    PREFER_REMOVE_ITEM, 
    CART_ADD_ITEM,
@@ -25,9 +25,7 @@ import {
    FAIL_UPDATE_USERINFO,
    BEGIN_POSTING,
    SUCCESS_POSTING,
-   BEGIN_POST_DETAIL,
-   SUCCESS_POST_DETAIL,
-   FAIL_POST_DETAIL,
+   SET_POST_DETAIL,
    SAVE_SHIPPING_ADDRESS,
    SAVE_PAYMENT_METHOD,
 } from "../utils/constants"
@@ -41,11 +39,8 @@ if(!cartItems) cartItems = [];
 const initialState = {
   page: {
     title: "Rock Bae",
-    activities,
+    activities:[],
     posts:[],
-  },
-  navBar: {
-    activeItem: "",
   },
   preferItems,
   cartItems,
@@ -90,6 +85,11 @@ const initialState = {
 
 function reducer(state, action) {
    switch (action.type) {
+      case SET_PAGE_CONTENT:
+        return {
+          ...state,
+          page: action.payload,
+        };
       case PREFER_ADD_ITEM:
          const item = action.payload;
          const activity = state.preferItems.find((x) => x.id === item.id);
@@ -244,32 +244,8 @@ function reducer(state, action) {
               loading: false,
             },
           };
-      case BEGIN_POST_DETAIL:
-          return {
-              ...state,
-              postDetail: {
-                ...state.postDetail,
-                loading: true,
-              }
-            };
-      case SUCCESS_POST_DETAIL:
-          return {
-              ...state,
-              postDetail: {
-                ...state.postDetail,
-                loading: false,
-                post: action.payload,
-              },
-            };
-      case FAIL_POST_DETAIL:
-          return {
-              ...state,
-              postDetail: {
-                ...state.postDetail,
-                loading: false,
-                error: action.payload,
-              },
-            };
+      case SET_POST_DETAIL:
+        return { ...state, postDetail: { ...state.postDetail, ...action.payload} };
       default:
          return state;
    }
