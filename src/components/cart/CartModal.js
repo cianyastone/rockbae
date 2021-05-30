@@ -24,7 +24,7 @@ export default function CartModal() {
     const history = useHistory();
 
     const checkoutHandler = () => {
-        history.push("/login?redirect=placeorder");
+        history.push("/login?redirect=shipping");
     }
     
     useEffect(()=>{
