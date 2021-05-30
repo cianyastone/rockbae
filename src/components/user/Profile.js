@@ -30,13 +30,8 @@ const ProfileCard = () => {
         label="name: "
         name="name"
         rules={[
-          {
-            type: "string",
-            message: "The input is not valid name!",
-          },
-          {
-            message: "Please input your name!",
-          },
+          { type: "string",message: "The input is not valid name!", },
+          { message: "Please input your name!", },
         ]}
         hasFeedback
       >
@@ -46,15 +41,9 @@ const ProfileCard = () => {
         label="email: "
         name="email"
         rules={[
-          {
-            type: "email",
-            message: "The input is not valid E-mail!",
-          },
-          {
-            message: "Please input your E-mail!",
-          },
+          { type: "email",message: "The input is not valid E-mail!", },
+          { message: "Please input your E-mail!", },
         ]}
-        hasFeedback
       >
         <Input defaultValue={email} placeholder={email} />
       </Form.Item>
@@ -62,9 +51,7 @@ const ProfileCard = () => {
         name="password"
         label="Password"
         rules={[
-          {
-            message: "Please input your password!",
-          },
+          { message: "Please input your password!", },
         ]}
         hasFeedback
       >
@@ -77,9 +64,7 @@ const ProfileCard = () => {
         dependencies={["password"]}
         hasFeedback
         rules={[
-          {
-            message: "Please re-enter your password!",
-          },
+          { message: "Please re-enter your password!", },
           ({ getFieldValue }) => ({
             validator(_, value) {
               if (!value || getFieldValue("password") === value) {

@@ -8,17 +8,17 @@ import activities from "../json/activity.json";
 
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APPID,
-    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
 firebase.initializeApp(firebaseConfig);
-// REFERENCE PRODUCTS
+// REFERENCE ACTIVITIES
 const activitiesCollectionRef = firebase.firestore().collection("Activity");
 const activitiesDocRef = activitiesCollectionRef.doc("json");
 const allActivitiesCollectionRef = activitiesDocRef.collection("allActivity");
@@ -26,13 +26,12 @@ const allActivitiesCollectionRef = activitiesDocRef.collection("allActivity");
 //REFERENCE AUTH
 const auth = firebase.auth();
 
-//REFERENCE AUTH
+//REFERENCE POST
 const post = firebase.firestore().collection("Post");
 const postDocRef = post.doc("postJson");
 const allPostCollectionRef = postDocRef.collection("allPost");
 
 export const getActivityById = async (activityId) => {
-  // REFERENCE Activities COLLECTION
   const doc = await allActivitiesCollectionRef.doc(activityId).get();
   return doc.data()
 }
@@ -49,15 +48,15 @@ export const getActivities = async () => {
 }
 
 export const feedActivities = () => {
-    activities.forEach((activity) => {
-      const docRef = allActivitiesCollectionRef.doc();
-      const id = docRef.id;
-      // Store Data for Aggregation Queries
-      docRef.set({
-        ...activity,
-        id:id
-      });
-    })
+  activities.forEach((activity) => {
+    const docRef = allActivitiesCollectionRef.doc();
+    const id = docRef.id;
+    // Store Data for Aggregation Queries
+    docRef.set({
+      ...activity,
+      id:id
+    });
+  })
 }
 
 export const createPostApi = async (post) => {
@@ -81,7 +80,6 @@ export const getPostById = async (postId) => {
 export const getPosts = async () => {
   let jsonPosts = [];
 
-  // QUERY PRODUCTS
   let querySnapshot;
     querySnapshot = await allPostCollectionRef.get();
   querySnapshot.forEach((doc) => {
@@ -91,7 +89,7 @@ export const getPosts = async () => {
 }
 
 export const authenticateAnonymously = () => {
-    return firebase.auth().signInAnonymously();
+  return firebase.auth().signInAnonymously();
 };
 
 export const signInWithEmailPassword = async (email, password) => {

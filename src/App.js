@@ -33,9 +33,8 @@ function App() {
           <Route path="/register" component={RegisterPage} />
           <Route path="/profile" component={Profile} />
           <Route path="/createPost" component={CreatePost} />
-          <Route path="/post" component={Post} />
-          <Route path="/post/:postId" component={PostDetail} />
-          <Route path="/activity/:activityId" component={ActivityDetail} />
+          <Route exact path="/post" component={Post} />
+          <Route exact path="/post/:postId" component={PostDetail} />
           <Route path="/shipping" component={Shipping} />
           <Route path="/payment" component={Payment} />
         </Switch>
