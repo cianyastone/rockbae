@@ -236,14 +236,16 @@ export const setPostDetail = async (dispatch, postId) => {
   })
 }
 
-export const setPostPage = async (dispatch, url) => {
+export const setPostPage = async (dispatch) => {
   let posts;
+  let activities;
   dispatch({ type: BEGIN_POST_REQUEST });
   try {
-    posts = await getPosts(url);
+    posts = await getPosts();
+    activities = await getActivities();
     dispatch({
       type: SET_PAGE_CONTENT,
-      payload: { posts },
+      payload: { posts, activities },
     });
     dispatch({ type: SUCCESS_POST_REQUEST });
   } catch (error) {
