@@ -27,6 +27,14 @@ import {
   SET_POST_DETAIL,
   SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
+  BEGIN_ORDER_CREATE,
+  SUCCESS_ORDER_CREATE,
+  FAIL_ORDER_CREATE,
+  RESET_ORDER,
+  BEGIN_ORDER_DETAIL,
+  SUCCESS_ORDER_DETAIL,
+  FAIL_ORDER_DETAIL,
+  EMPTY_CART,
 } from "../utils/constants"
 
 import {
@@ -39,6 +47,8 @@ import {
   updateUserInfoApi,
   createPostApi,
   getPostById,
+  createOrderApi,
+  getOrderById,
 } from "../api";
 
 
@@ -270,3 +280,52 @@ export const savePaymentMethod = (dispatch, paymentMethod) => {
     payload: paymentMethod.paymentMethod,
   });
 }
+
+export const createOrder = async (dispatch, cart) => {
+  dispatch({ type: BEGIN_ORDER_CREATE });
+  try {
+    const item = {
+      orderItems: cart.cartItems,
+      shippingAddress: cart.shippingAddress,
+      paymentMethod: cart.paymentMethod,
+      itemsPrice: cart.itemsPrice,
+      shippingPrice: cart.shippingPrice,
+      taxPrice: cart.taxPrice,
+      totalPrice: cart.totalPrice,
+    };    
+    const orderInfo = await createOrderApi(item);
+    dispatch({ 
+      type: SUCCESS_ORDER_CREATE, 
+      payload: orderInfo 
+    });
+    dispatch({ type: EMPTY_CART,})
+    localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+    localStorage.removeItem("cartItems");
+    return orderInfo;
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_ORDER_CREATE, payload: error });
+    return null;
+  }  
+};
+
+export const requestOrderDetail = async (dispatch, orderId) => {
+  dispatch({ type: BEGIN_ORDER_DETAIL });
+  try {
+    const order = await getOrderById(orderId);
+    dispatch({ 
+      type: SUCCESS_ORDER_DETAIL,
+      payload: order
+    });
+  } catch (error) {
+    dispatch({ 
+      type: FAIL_ORDER_DETAIL, 
+      payload: error 
+    });
+  }
+}
+
+export const resetOrder = (dispatch) => {
+  dispatch({ type: RESET_ORDER });
+}
+

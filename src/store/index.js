@@ -28,6 +28,13 @@ import {
   SET_POST_DETAIL,
   SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
+  BEGIN_ORDER_CREATE,
+  SUCCESS_ORDER_CREATE,
+  FAIL_ORDER_CREATE,
+  RESET_ORDER,
+  BEGIN_ORDER_DETAIL,
+  SUCCESS_ORDER_DETAIL,
+  FAIL_ORDER_DETAIL,
 } from "../utils/constants"
 
 export const StoreContext = createContext();
@@ -35,6 +42,12 @@ let preferItems = Cookie.getJSON("preferItems");
 if(!preferItems) preferItems = []; 
 let cartItems = Cookie.getJSON("cartItems");
 if(!cartItems) cartItems = []; 
+let orderInfo_order;
+try {
+  orderInfo_order = JSON.parse(localStorage.getItem('orderInfo'));
+} catch(e) {
+  orderInfo_order = { id: "" };
+}
 
 const initialState = {
   page: {
@@ -80,6 +93,17 @@ const initialState = {
       ? JSON.parse(localStorage.getItem('shippingAddress'))
       : {},
     paymentMethod: 'Google',
+  },
+  orderInfo: {
+    loading: false,
+    order: orderInfo_order,
+    success: false,
+    error: null,
+  },
+  orderDetail: {
+    loading: true,
+    order: { cartItems: []},
+    error: null,
   },
 };
 
@@ -246,6 +270,73 @@ function reducer(state, action) {
       };
     case SET_POST_DETAIL:
       return { ...state, postDetail: { ...state.postDetail, ...action.payload} };
+      case BEGIN_ORDER_CREATE:
+        return {
+          ...state,
+          orderInfo: {
+            ...state.orderInfo,
+            loading: true,
+            success: false,
+          }
+        };
+      case SUCCESS_ORDER_CREATE:
+        return {
+          ...state,
+          orderInfo: {
+            ...state.orderInfo,
+            loading: false,
+            order: action.payload,
+            success: true,
+            error: null,
+          },
+        };
+      case FAIL_ORDER_CREATE:
+        return {
+          ...state,
+          orderInfo: {
+            ...state.orderInfo,
+            loading: false,
+            order: { id: "" },
+            success: false,
+            error: action.payload,
+          },
+        };
+      case RESET_ORDER:
+        return {
+          ...state,
+          orderInfo: {
+            ...state.orderInfo,
+            loading: false,
+            order: { id: "" },
+            success: false,
+          },
+        };
+      case BEGIN_ORDER_DETAIL:
+        return {
+          ...state,
+          orderDetail: {
+            ...state.orderDetail,
+            loading: true,
+          }
+        };
+      case SUCCESS_ORDER_DETAIL:
+        return {
+          ...state,
+          orderDetail: {
+            ...state.orderDetail,
+            loading: false,
+            order: action.payload,
+          },
+        };
+      case FAIL_ORDER_DETAIL:
+        return {
+          ...state,
+          orderDetail: {
+            ...state.orderDetail,
+            loading: false,
+            error: action.payload,
+          },
+        };
     default:
       return state;
    }

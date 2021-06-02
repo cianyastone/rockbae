@@ -30,6 +30,7 @@ const auth = firebase.auth();
 const post = firebase.firestore().collection("Post");
 const postDocRef = post.doc("postJson");
 const allPostCollectionRef = postDocRef.collection("allPost");
+const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
 
 export const getActivityById = async (activityId) => {
   const doc = await allActivitiesCollectionRef.doc(activityId).get();
@@ -117,6 +118,35 @@ export const updateUserInfoApi = async (email, password, displayName) => {
   return user;
 }
 
+export const createOrderApi = async (order) => {
+  const user = auth.currentUser.uid;
+  const orderRef = await allOrdersCollectionRef.doc();
+  const id = orderRef.id;
+  // Store Data for Aggregation Queries
+  await orderRef.set({
+    ...order,
+    id,
+    user
+  });
+  return { ...order, id };
+}
+
+export const getOrderById = async (orderId) => {
+  const doc = await allOrdersCollectionRef.doc(orderId).get();
+  return doc.data()
+}
+
+export const getOrderByUser = async () => {
+  const user = auth.currentUser.uid;
+  let jsonOrders = [];
+
+  // QUERY Orders
+  const querySnapshot = await allOrdersCollectionRef.where("user", "==", user).get();
+  querySnapshot.forEach((doc) => {
+    jsonOrders.push(doc.data());
+  });
+  return jsonOrders;
+}
 
 export const signOut = () => {
   auth.signOut();
