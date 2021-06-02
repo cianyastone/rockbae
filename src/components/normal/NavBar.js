@@ -2,7 +2,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Drawer, Badge } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useState, useContext } from "react";
-import activity from '../../json/activity.json';
 import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
 import UserInfo from "../user/UserInfo";
@@ -14,6 +13,7 @@ const { SubMenu } = Menu;
 const rootSubmenuKeys = ['sub1'];
 
 export default function NavBar() {
+  const { state: { page: { activities } } } = useContext(StoreContext);
   const { dispatch } = useContext(StoreContext);
   const [isOnTouch, setIsOnTouch] = useState(false);
   const handleCloseDrawer = () => setIsOnTouch(false);
@@ -21,13 +21,13 @@ export default function NavBar() {
 
   const menu = (
     <Menu>
-      {[...Array(activity.length).keys()].map((x) => (
+       {[...Array(activities.length).keys()].map((x) => (
         <Menu.Item value={x}>
-          <Link to={`/activity/${activity[x].id}`}
-              onClick={() => {setActivityDetail(dispatch, activity[x].id, 0, 1);}}
+          <Link to={`/activity/${activities[x].id}`}
+              onClick={() => {setActivityDetail(dispatch, activities[x].id, 0, 1);}}
           >
             <p className="activity-name">
-              {activity[x].name}
+              {activities[x].name}
             </p>
           </Link>
         </Menu.Item>
@@ -92,11 +92,11 @@ export default function NavBar() {
         <UserInfoForMobile />
         <Menu mode="inline" >
           <SubMenu key="sub1" title="煞氣ㄉ音樂祭" openKeys={openKeys} onOpenChange={onOpenChange}>
-            {[...Array(activity.length).keys()].map((x) => (
+          {[...Array(activities.length).keys()].map((x) => (
             <Menu.Item value={x}>
-                <Link to={`/activity/${activity[x].id}`}>
+                <Link to={`/activity/${activities[x].id}`}>
                   <p className="activity-name">
-                    {activity[x].name}
+                    {activities[x].name}
                   </p>
                 </Link>
               </Menu.Item>
