@@ -28,6 +28,8 @@ import {
   SET_POST_DETAIL,
   SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
+  BEGIN_COMMENT,
+  SUCCESS_COMMENT,
 } from "../utils/constants"
 
 export const StoreContext = createContext();
@@ -67,6 +69,9 @@ const initialState = {
     error: "",
   },
   createPost: {
+    loading:false,
+  },
+  createComment:{
     loading:false,
   },
   postDetail: {
@@ -241,6 +246,16 @@ function reducer(state, action) {
         ...state,
         createPost: {
           ...state.createPost,
+          loading: false,
+        },
+      };
+    case BEGIN_COMMENT:
+      return { ...state, createComment: { ...state.createComment, loading: true } };
+    case SUCCESS_COMMENT:
+      return {
+        ...state,
+        createComment: {
+          ...state.createComment,
           loading: false,
         },
       };

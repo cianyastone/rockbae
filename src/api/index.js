@@ -60,14 +60,16 @@ export const feedActivities = () => {
 }
 
 export const createPostApi = async (post) => {
-  const user = auth.currentUser.uid;
+  const user = auth.currentUser.displayName;
   const postRef = await allPostCollectionRef.doc();
+  let date = new Date();
   const id = postRef.id;
   // Store Data for Aggregation Queries
   await postRef.set({
     ...post,
     id,
-    user
+    user,
+    date
   });
   return { ...post, id };
 }
@@ -75,6 +77,9 @@ export const createPostApi = async (post) => {
 export const getPostById = async (postId) => {
   const doc = await allPostCollectionRef.doc(postId).get();
   return doc.data()
+}
+
+export const createCommentApi = async (postId, comment) => {
 }
 
 export const getPosts = async () => {

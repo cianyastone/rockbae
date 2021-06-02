@@ -24,6 +24,8 @@ import {
   FAIL_UPDATE_USERINFO,
   BEGIN_POSTING,
   SUCCESS_POSTING,
+  BEGIN_COMMENT,
+  SUCCESS_COMMENT,
   SET_POST_DETAIL,
   SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
@@ -38,6 +40,7 @@ import {
   signOut,
   updateUserInfoApi,
   createPostApi,
+  createCommentApi,
   getPostById,
 } from "../api";
 
@@ -119,12 +122,14 @@ export const setActivityDetail = async (dispatch, activityId, ticket, qty) => {
 
 export const setPage = async (dispatch) => {
   let activities;
+  let posts;
   dispatch({ type: BEGIN_ACTIVITY_REQUEST });
   try {
     activities = await getActivities();
+    posts = await getPosts();
     dispatch({
       type: SET_PAGE_CONTENT,
-      payload: { activities },
+      payload: { activities, posts },
     });
     dispatch({ type: SUCCESS_ACTIVITY_REQUEST });
   } catch (error) {
@@ -219,6 +224,25 @@ export const createPost = async (dispatch, postData) => {
       payload: postInfo
     });
     return postInfo;
+  } catch (error) {
+    console.log(error);
+    //dispatch({ type: FAIL_POSTING, payload: error });
+    return null;
+  }  
+};
+
+export const createComment = async (dispatch, postId, commentData) => {
+  dispatch({ type: BEGIN_COMMENT });
+  try {
+    const comment = {
+      content: commentData.content,
+    };    
+    const commentInfo = await createCommentApi(postId, comment);
+    dispatch({ 
+      type: SUCCESS_COMMENT, 
+      payload: commentInfo
+    });
+    return commentInfo;
   } catch (error) {
     console.log(error);
     //dispatch({ type: FAIL_POSTING, payload: error });

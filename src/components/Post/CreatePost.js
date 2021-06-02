@@ -2,11 +2,10 @@ import { useContext } from "react";
 import { Form, Select, Input, Button } from 'antd';
 import { createPost } from "../../actions"
 import { StoreContext } from "../../store"
-import activity from '../../json/activity.json';
 
 
 export default function CreatePost({}){
-    const { state:{ createPost: { loading } }, dispatch } = useContext(StoreContext);
+    const { state:{ createPost: { loading }, page: { activities } }, dispatch } = useContext(StoreContext);
     const onFinish = async (postData) => {
         createPost(dispatch, postData);
         console.log('Received values of form: ', postData);
@@ -31,10 +30,10 @@ export default function CreatePost({}){
             rules={[{ required: true }]}
         >
             <Select>
-            {[...Array(activity.length).keys()].map((x) => (
-            <Option value={activity[x].name}>
+            {[...Array(activities.length).keys()].map((x) => (
+            <Option value={activities[x].name}>
                 <p className="activity-name">
-                    {activity[x].name}
+                    {activities[x].name}
                 </p>
             </Option>
             ))}
