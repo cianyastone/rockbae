@@ -14,6 +14,7 @@ import Post from './pages/Post'
 import PlaceOrder from './pages/PlaceOrder'
 import Shipping from './pages/Shipping'
 import Payment from './pages/Payment'
+import Order from './pages/Order'
 
 import { StoreProvider } from "./store";
 
@@ -28,7 +29,6 @@ function App() {
           <Route path="/Prefer" component={Prefer} />
           <Route path="/Cart" component={Cart} />
           <Route exact path="/feeder" component={Feed} />
-          <Route path="/placeorder" component={PlaceOrder} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/profile" component={Profile} />
@@ -37,6 +37,8 @@ function App() {
           <Route exact path="/post/:postId" component={PostDetail} />
           <Route path="/shipping" component={Shipping} />
           <Route path="/payment" component={Payment} />
+          <Route path="/placeorder" component={PlaceOrder} />
+          <Route path="/order/:orderId" component={Order} />
         </Switch>
       </BrowserRouter>
     </StoreProvider>
