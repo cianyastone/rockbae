@@ -31,6 +31,11 @@ export default function UserInfo(props) {
                發布文章
             </NavLink>
          </Menu.Item>
+         <Menu.Item>
+            <NavLink to="/userorder">
+               我的訂單
+            </NavLink>
+         </Menu.Item>
          <Menu.Item onClick={Logout}>
             登出
          </Menu.Item>

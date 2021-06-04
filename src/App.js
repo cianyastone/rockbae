@@ -10,6 +10,7 @@ import RegisterPage from './pages/RegisterPage'
 import Profile from './pages/ProfilePage'
 import PostDetail from './pages/PostDetail'
 import CreatePost from './pages/CreatePost'
+import UserOrder from './pages/UserOrder'
 import Post from './pages/Post'
 import PlaceOrder from './pages/PlaceOrder'
 import Shipping from './pages/Shipping'
@@ -33,6 +34,7 @@ function App() {
           <Route path="/register" component={RegisterPage} />
           <Route path="/profile" component={Profile} />
           <Route path="/createPost" component={CreatePost} />
+          <Route path="/userorder" component={UserOrder} />
           <Route exact path="/post" component={Post} />
           <Route exact path="/post/:postId" component={PostDetail} />
           <Route path="/shipping" component={Shipping} />
