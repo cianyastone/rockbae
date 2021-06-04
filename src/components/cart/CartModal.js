@@ -20,7 +20,7 @@ export default function CartModal() {
       setVisible(false);
     };
 
-    const { state: { cartItems }, dispatch } = useContext(StoreContext);
+    const { state: { cart: { cartItems } }, dispatch } = useContext(StoreContext);
     const history = useHistory();
 
     const checkoutHandler = () => {
@@ -28,7 +28,7 @@ export default function CartModal() {
     }
     
     useEffect(()=>{
-        Cookie.set("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
      }, [cartItems])
 
     const getTotalPrice = () => {

@@ -314,17 +314,17 @@ export const createOrder = async (dispatch, cart) => {
       paymentMethod: cart.paymentMethod,
       itemsPrice: cart.itemsPrice,
       shippingPrice: cart.shippingPrice,
-      taxPrice: cart.taxPrice,
       totalPrice: cart.totalPrice,
     };    
     const orderInfo = await createOrderApi(item);
+    localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
     dispatch({ 
       type: SUCCESS_ORDER_CREATE, 
-      payload: orderInfo 
+      payload: orderInfo
     });
     dispatch({ type: EMPTY_CART,})
-    localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
-    localStorage.removeItem("cartItems");
+    
+    localStorage.removeJSON("cartItems");
     return orderInfo;
   } catch (error) {
     console.log(error);

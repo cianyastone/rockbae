@@ -50,7 +50,7 @@ export default function NavBar() {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
-  const { state: { cartItems } } = useContext(StoreContext);
+  const { state: { cart: { cartItems } } } = useContext(StoreContext);
 
     let count = (cartItems.length > 0) ?
         cartItems.reduce((sum,item) => sum+item.qty, 0)

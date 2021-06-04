@@ -20,7 +20,7 @@ export default function CartModalformobile() {
     }
 
     useEffect(()=>{
-        Cookie.set("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
      }, [cartItems])
 
     const getTotalPrice = () => {

@@ -3,7 +3,7 @@ import { Badge } from "antd";
 import { StoreContext } from "../../store";
 
 export default function CartSummary() {
-    const { state: { cartItems } } = useContext(StoreContext);
+    const { state: { cart: { cartItems } } } = useContext(StoreContext);
 
     let count = (cartItems.length > 0) ?
         cartItems.reduce((sum,item) => sum+item.qty, 0)
