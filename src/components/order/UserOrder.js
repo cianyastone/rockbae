@@ -15,7 +15,7 @@ export default function OrderList() {
 
   return (
     <>
-    <h2 className="orderList-title">Order List</h2>
+    <h2 className="orderList-title">訂單</h2>
     <Row>
       {orderList.length === 0 ?
         (
@@ -24,12 +24,12 @@ export default function OrderList() {
           <>
             {orderList.map( order => (
               <Col
-                xs={{ span: 20 , offset: 2 }}
+                xs={{ span: 20 , offset: 6 }}
                 sm={{ span: 20 , offset: 2 }}
-                lg={{ span: 12 , offset: 6 }}
+                lg={{ span: 12 , offset: 0 }}
               >
               <div className="card card-body">
-                <h2 style={{ color: 'white' }}>{order.id}</h2>
+                <h2 style={{ color: 'black' }}>訂單編號：{order.id}</h2>
                 {order.orderItems.map(item => (
                   <li key={item.id} className="cart-item">
                     <div className="cart-image">
@@ -38,7 +38,7 @@ export default function OrderList() {
                     <div className="cart-item-content">
                       <div className="cart-name">{item.name}</div>
                       <div className="product-qty">
-                        Qty: {item.qty}
+                        數量: {item.qty}
                       </div>
                     </div>
                     <div className="cart-item-end">
@@ -49,24 +49,20 @@ export default function OrderList() {
                   </li>
                 ))}
                 <div className="row">
-                  <div>Items</div>
-                  <div>${order.itemsPrice}</div>
-                </div>
-                <div className="row">
-                  <div>Shipping</div>
-                  <div>${order.shippingPrice}</div>
-                </div>
-                <div className="row">
-                  <div>Tax</div>
-                  <div>${order.taxPrice}</div>
-                </div>
-                <div className="row">
-                  <div>
-                    <strong> Order Total</strong>
+                <div>項目</div>
+                    <div>${order.itemsPrice}</div>
                   </div>
-                  <div>
+                <div className="row">
+                <div>運費</div>
+                <div>${order.shippingPrice}</div>
+                </div>
+                <div className="row">
+                <div>
+                    <strong>總共！</strong>
+                </div>
+                <div>
                     <strong>${order.totalPrice}</strong>
-                  </div>
+                </div>
                 </div>
               </div>
             </Col>
