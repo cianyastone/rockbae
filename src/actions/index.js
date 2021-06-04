@@ -37,6 +37,7 @@ import {
   SUCCESS_ORDER_DETAIL,
   FAIL_ORDER_DETAIL,
   EMPTY_CART,
+  GET_ORDER_LIST,
 } from "../utils/constants"
 
 import {
@@ -52,6 +53,7 @@ import {
   getPostById,
   createOrderApi,
   getOrderById,
+  getOrderByUser,
 } from "../api";
 
 
@@ -353,3 +355,10 @@ export const resetOrder = (dispatch) => {
   dispatch({ type: RESET_ORDER });
 }
 
+export const getUserOrder = async (dispatch) => {
+  const orderList = await getOrderByUser();
+  dispatch({
+    type: GET_ORDER_LIST,
+    payload: orderList,
+  });
+}

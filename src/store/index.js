@@ -38,6 +38,7 @@ import {
   SUCCESS_ORDER_DETAIL,
   FAIL_ORDER_DETAIL,
   EMPTY_CART,
+  GET_ORDER_LIST,
 } from "../utils/constants"
 
 export const StoreContext = createContext();
@@ -120,6 +121,7 @@ const initialState = {
     post: {},
     error: null,
   },
+  orderList: []
 };
 
 function reducer(state, action) {
@@ -364,6 +366,11 @@ function reducer(state, action) {
             loading: false,
             error: action.payload,
           },
+        };
+      case GET_ORDER_LIST:
+        return {
+          ...state,
+          orderList: action.payload,
         };
     default:
       return state;
