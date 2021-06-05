@@ -39,15 +39,30 @@ import {
   BEGIN_ORDER_DETAIL,
   SUCCESS_ORDER_DETAIL,
   FAIL_ORDER_DETAIL,
+  EMPTY_CART,
+  GET_ORDER_LIST,
 } from "../utils/constants"
 
 export const StoreContext = createContext();
 let preferItems = Cookie.getJSON("preferItems");
 if(!preferItems) preferItems = []; 
-let cartItems = Cookie.getJSON("cartItems");
-if(!cartItems) cartItems = []; 
+let cartItems;
+try{
+  cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  if (!cartItems) cartItems = [];
+} catch(e) {
+  cartItems = [];
+}
+
+let shippingAddress;
+try {
+  shippingAddress = JSON.parse(localStorage.getItem('shippingAddress'));
+} catch(e) {
+  shippingAddress = {};
+}
 let favoriteItems = Cookie.getJSON("favoriteItems");
 if(!favoriteItems) favoriteItems = []; 
+
 let orderInfo_order;
 try {
   orderInfo_order = JSON.parse(localStorage.getItem('orderInfo'));
@@ -56,21 +71,37 @@ try {
 }
 
 const initialState = {
+  allActivites: [],
+  preferItems,
   page: {
     title: "Rock Bae",
     activities:[],
     posts:[],
   },
-  preferItems,
-  cartItems,
-  requestActivity: {
-    loading: false,
-    error: null,
-  },
   activityDetail: {
     activity: {},
     ticket: 0,
     qty: 1,
+  },
+  cart: {
+    cartItems,
+    shippingAddress,
+    paymentMethod: 'Google',
+  },
+  orderInfo: {
+    loading: false,
+    order: orderInfo_order,
+    success: false,
+    error: null,
+  },
+  orderDetail: {
+    loading: true,
+    order: { cartItems: []},
+    error: null,
+  },
+  requestActivity: {
+    loading: false,
+    error: null,
   },
   userSignin: {
     loading: false,
@@ -115,6 +146,7 @@ const initialState = {
     order: { cartItems: []},
     error: null,
   },
+  orderList: []
 };
 
 function reducer(state, action) {
@@ -140,18 +172,21 @@ function reducer(state, action) {
       return { ...state, preferItems };
     case CART_ADD_ITEM:
       const item1 = action.payload;
-      const activity1 = state.cartItems.find((x) => x.ticketClass === item1.ticketClass);
+      const activity1 = state.cart.cartItems.find((x) => x.ticketClass === item1.ticketClass);
       if (activity1) {
-          cartItems = state.cartItems.map((x) =>
+          cartItems = state.cart.cartItems.map((x) =>
             x.ticketClass === activity1.ticketClass ? item1 : x
           );
-        return { ...state, cartItems };
+        return { ...state, cart: { ...state.cart, cartItems } };
       }
-      cartItems = [...state.cartItems, item1];
-      return { ...state, cartItems };    
+      cartItems = [...state.cart.cartItems, item1];
+      return { ...state, cart: { ...state.cart, cartItems } };    
     case CART_REMOVE_ITEM:
-      cartItems = state.cartItems.filter((x) => x.ticketClass !== action.payload);
-      return { ...state, cartItems };  
+      cartItems = state.cart.cartItems.filter((x) => x.ticketClass !== action.payload);
+      return { ...state, cart: { ...state.cart, cartItems } };  
+    case EMPTY_CART:
+      cartItems = [];
+      return { ...state, cart: { ...state.cart, cartItems } };
     case SET_ACTIVITY_DETAIL:
       return { ...state, activityDetail: { ...state.activityDetail, ...action.payload} };
     case BEGIN_ACTIVITY_REQUEST:
@@ -370,6 +405,11 @@ function reducer(state, action) {
             loading: false,
             error: action.payload,
           },
+        };
+      case GET_ORDER_LIST:
+        return {
+          ...state,
+          orderList: action.payload,
         };
     default:
       return state;

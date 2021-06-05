@@ -156,5 +156,3 @@ export const getOrderByUser = async () => {
 export const signOut = () => {
   auth.signOut();
 }
-
-

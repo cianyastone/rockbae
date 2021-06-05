@@ -39,6 +39,7 @@ import {
   SUCCESS_ORDER_DETAIL,
   FAIL_ORDER_DETAIL,
   EMPTY_CART,
+  GET_ORDER_LIST,
 } from "../utils/constants"
 
 import {
@@ -54,6 +55,7 @@ import {
   getPostById,
   createOrderApi,
   getOrderById,
+  getOrderByUser,
 } from "../api";
 
 
@@ -335,17 +337,17 @@ export const createOrder = async (dispatch, cart) => {
       paymentMethod: cart.paymentMethod,
       itemsPrice: cart.itemsPrice,
       shippingPrice: cart.shippingPrice,
-      taxPrice: cart.taxPrice,
       totalPrice: cart.totalPrice,
     };    
     const orderInfo = await createOrderApi(item);
+    localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
     dispatch({ 
       type: SUCCESS_ORDER_CREATE, 
-      payload: orderInfo 
+      payload: orderInfo
     });
     dispatch({ type: EMPTY_CART,})
-    localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
-    localStorage.removeItem("cartItems");
+    
+    localStorage.removeJSON("cartItems");
     return orderInfo;
   } catch (error) {
     console.log(error);
@@ -374,3 +376,10 @@ export const resetOrder = (dispatch) => {
   dispatch({ type: RESET_ORDER });
 }
 
+export const getUserOrder = async (dispatch) => {
+  const orderList = await getOrderByUser();
+  dispatch({
+    type: GET_ORDER_LIST,
+    payload: orderList,
+  });
+}

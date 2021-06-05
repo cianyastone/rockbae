@@ -15,7 +15,6 @@ export default function PlaceOrderCard() {
     createOrder(dispatch, cart)
   };
 
-
   const getTotalPrice = () => {
     return (cartItems.length > 0) ?
       cartItems.reduce((sum, item) => sum + item.price * item.qty, 0)

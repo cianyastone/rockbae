@@ -13,7 +13,7 @@ export default function AddToCart({activity, qty,ticket}){
     };
 
     useEffect(()=>{
-      Cookie.set("cartItems", JSON.stringify(cartItems));
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
    }, [cartItems])
 
     return (
