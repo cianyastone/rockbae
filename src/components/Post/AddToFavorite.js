@@ -11,7 +11,7 @@ export default function AddToFavorite({post}){
     const history = useHistory();
 
     const addToFavorite = () => {
-      history.push("/login?redirect=post");
+      history.push("/login?redirect=favoritePost");
       addFavoriteItem(dispatch, post);
     };
 

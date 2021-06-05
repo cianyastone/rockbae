@@ -120,9 +120,10 @@ const initialState = {
     loading:false,
   },
   postDetail: {
-    loading: true,
     post: {},
     like: {},
+    comment: {},
+    loading: true,
     error: null,
   },
   favoriteItems,

@@ -18,11 +18,10 @@ export default function CreateComment({}){
         <>
         <Form name="create-article" onFinish={onFinish} >
         <Form.Item 
-            name={['article']} 
-            label="文章標題" 
+            name={['comment']} 
             rules={[{ required: true }]}
         >
-            <TextArea showCount maxLength={15} autoSize={{ minRows: 1, maxRows: 1 }}/>
+            <TextArea autoSize={{ minRows: 1, maxRows: 1 }}/>
         </Form.Item>
         <Form.Item >
             {loading ? (

@@ -83,6 +83,16 @@ export const getPostById = async (postId) => {
 }
 
 export const createCommentApi = async (postId, comment) => {
+  const doc = await allPostCollectionRef.doc(postId);
+  const user = auth.currentUser.displayName;
+  let date = new Date();
+  const commentDoc = doc.collection("allComment").doc();
+  await commentDoc.set({
+    user,
+    comment,
+    date,
+  });
+  return { ...post };
 }
 
 export const thumbsUpApi = async (postId) => {
@@ -106,6 +116,19 @@ export const getLikesByPost = async (postId) => {
     jsonLikes.push(doc.data());
   });
   return jsonLikes;
+}
+
+export const getCommentsByPost = async (postId) => {
+  const post = await allPostCollectionRef.doc(postId);
+  const commentCollection = await post.collection("allComment");
+  let jsonComment = [];
+
+  let querySnapshot;
+    querySnapshot = await commentCollection.get();
+  querySnapshot.forEach((doc) => {
+    jsonComment.push(doc.data());
+  });
+  return jsonComment;
 }
 
 export const getPosts = async () => {

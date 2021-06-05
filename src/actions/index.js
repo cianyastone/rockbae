@@ -58,6 +58,7 @@ import {
   getPostById,
   thumbsUpApi,
   getLikesByPost,
+  getCommentsByPost,
   createOrderApi,
   getOrderById,
   getOrderByUser,
@@ -250,33 +251,16 @@ export const createPost = async (dispatch, postData) => {
   }  
 };
 
-export const createComment = async (dispatch, postId, commentData) => {
-  dispatch({ type: BEGIN_COMMENT });
-  try {
-    const comment = {
-      content: commentData.content,
-    };    
-    const commentInfo = await createCommentApi(postId, comment);
-    dispatch({ 
-      type: SUCCESS_COMMENT, 
-      payload: commentInfo
-    });
-    return commentInfo;
-  } catch (error) {
-    console.log(error);
-    //dispatch({ type: FAIL_POSTING, payload: error });
-    return null;
-  }  
-};
-
 export const setPostDetail = async (dispatch, postId) => {
   const post = await getPostById(postId);
   const like = await getLikesByPost(postId);
+  const comment = await getCommentsByPost(postId);
   dispatch({
     type: SET_POST_DETAIL,
     payload: {
       post,
       like,
+      comment,
     }
   })
 }
@@ -327,6 +311,22 @@ export const thumbsUp = async (dispatch, postId) => {
     console.log(error);
     dispatch({ type: FAIL_THUMBS_UP, payload: error });
   }
+};
+
+export const createComment = async (dispatch, postId, commentData) => {
+  dispatch({ type: BEGIN_COMMENT });
+  try {
+    const commentInfo = await createCommentApi(postId, commentData);
+    dispatch({ 
+      type: SUCCESS_COMMENT, 
+      payload: commentInfo
+    });
+    return commentInfo;
+  } catch (error) {
+    console.log(error);
+    //dispatch({ type: FAIL_POSTING, payload: error });
+    return null;
+  }  
 };
 
 export const saveShippingAddress = (dispatch, shippingAddress) => {
