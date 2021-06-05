@@ -36,6 +36,11 @@ export default function UserInfo(props) {
                我的訂單
             </NavLink>
          </Menu.Item>
+         <Menu.Item>
+            <NavLink to="/favoritePost">
+               收藏ㄉ文章
+            </NavLink>
+         </Menu.Item>
          <Menu.Item onClick={Logout}>
             登出
          </Menu.Item>

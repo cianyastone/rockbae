@@ -61,16 +61,18 @@ export const feedActivities = () => {
 }
 
 export const createPostApi = async (post) => {
-  const user = auth.currentUser.displayName;
+  const author = auth.currentUser.displayName;
   const postRef = await allPostCollectionRef.doc();
   let date = new Date();
   const id = postRef.id;
+  var like =[];
   // Store Data for Aggregation Queries
   await postRef.set({
     ...post,
     id,
-    user,
-    date
+    author,
+    date,
+    like,
   });
   return { ...post, id };
 }
@@ -83,6 +85,29 @@ export const getPostById = async (postId) => {
 export const createCommentApi = async (postId, comment) => {
 }
 
+export const thumbsUpApi = async (postId) => {
+  const doc = await allPostCollectionRef.doc(postId);
+  const user = auth.currentUser.uid;
+  const userLike = doc.collection("Liked").doc();
+  await userLike.set({
+    user,
+  });
+  return { ...post };
+}
+
+export const getLikesByPost = async (postId) => {
+  const post = await allPostCollectionRef.doc(postId);
+  const likedCollection = await post.collection("Liked");
+  let jsonLikes = [];
+
+  let querySnapshot;
+    querySnapshot = await likedCollection.get();
+  querySnapshot.forEach((doc) => {
+    jsonLikes.push(doc.data());
+  });
+  return jsonLikes;
+}
+
 export const getPosts = async () => {
   let jsonPosts = [];
 
@@ -93,6 +118,8 @@ export const getPosts = async () => {
   });
   return jsonPosts;
 }
+
+
 
 export const authenticateAnonymously = () => {
   return firebase.auth().signInAnonymously();

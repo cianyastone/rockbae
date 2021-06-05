@@ -122,6 +122,7 @@ const initialState = {
   postDetail: {
     loading: true,
     post: {},
+    like: {},
     error: null,
   },
   favoriteItems,

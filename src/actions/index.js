@@ -27,6 +27,9 @@ import {
   BEGIN_COMMENT,
   SUCCESS_COMMENT,
   SET_POST_DETAIL,
+  BEGIN_THUMBS_UP,
+  SUCCESS_THUMBS_UP,
+  FAIL_THUMBS_UP,
   FAVORITE_ADD_ITEM,
   FAVORITE_REMOVE_ITEM,
   SAVE_SHIPPING_ADDRESS,
@@ -53,6 +56,8 @@ import {
   createPostApi,
   createCommentApi,
   getPostById,
+  thumbsUpApi,
+  getLikesByPost,
   createOrderApi,
   getOrderById,
   getOrderByUser,
@@ -266,10 +271,12 @@ export const createComment = async (dispatch, postId, commentData) => {
 
 export const setPostDetail = async (dispatch, postId) => {
   const post = await getPostById(postId);
+  const like = await getLikesByPost(postId);
   dispatch({
     type: SET_POST_DETAIL,
     payload: {
       post,
+      like,
     }
   })
 }
@@ -309,6 +316,17 @@ export const removeFromFavorite = (dispatch, postId) => {
     type: FAVORITE_REMOVE_ITEM, 
     payload: postId,
   });
+};
+
+export const thumbsUp = async (dispatch, postId) => {
+  dispatch({ type: BEGIN_THUMBS_UP });
+  const post= await thumbsUpApi(postId);
+  try {
+    dispatch({ type: SUCCESS_THUMBS_UP, payload: { post }, });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_THUMBS_UP, payload: error });
+  }
 };
 
 export const saveShippingAddress = (dispatch, shippingAddress) => {

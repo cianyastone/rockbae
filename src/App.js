@@ -10,6 +10,7 @@ import RegisterPage from './pages/RegisterPage'
 import Profile from './pages/ProfilePage'
 import PostDetail from './pages/PostDetail'
 import CreatePost from './pages/CreatePost'
+import Favorite from './pages/Favorite'
 import UserOrder from './pages/UserOrder'
 import Post from './pages/Post'
 import PlaceOrder from './pages/PlaceOrder'
@@ -37,6 +38,7 @@ function App() {
           <Route path="/userorder" component={UserOrder} />
           <Route exact path="/post" component={Post} />
           <Route exact path="/post/:postId" component={PostDetail} />
+          <Route path="/favoritePost" component={Favorite} />
           <Route path="/shipping" component={Shipping} />
           <Route path="/payment" component={Payment} />
           <Route path="/placeorder" component={PlaceOrder} />
