@@ -27,6 +27,8 @@ import {
   BEGIN_COMMENT,
   SUCCESS_COMMENT,
   SET_POST_DETAIL,
+  FAVORITE_ADD_ITEM,
+  FAVORITE_REMOVE_ITEM,
   SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
   BEGIN_ORDER_CREATE,
@@ -287,6 +289,25 @@ export const setPostPage = async (dispatch) => {
     dispatch({ type: FAIL_POST_REQUEST, payload: error });
   }
 }
+
+export const addFavoriteItem = (dispatch, post) => {
+  const item = {
+    id: post.id,
+    article: post.article,
+    content: post.content,
+  };
+  dispatch({
+    type: FAVORITE_ADD_ITEM,
+    payload: item,
+  });
+};
+
+export const removeFromFavorite = (dispatch, postId) => {
+  dispatch({
+    type: FAVORITE_REMOVE_ITEM, 
+    payload: postId,
+  });
+};
 
 export const saveShippingAddress = (dispatch, shippingAddress) => {
   console.log('Address: ')

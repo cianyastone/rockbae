@@ -26,6 +26,8 @@ import {
   BEGIN_POSTING,
   SUCCESS_POSTING,
   SET_POST_DETAIL,
+  FAVORITE_ADD_ITEM,
+  FAVORITE_REMOVE_ITEM,
   SAVE_SHIPPING_ADDRESS,
   SAVE_PAYMENT_METHOD,
   BEGIN_COMMENT,
@@ -44,6 +46,8 @@ let preferItems = Cookie.getJSON("preferItems");
 if(!preferItems) preferItems = []; 
 let cartItems = Cookie.getJSON("cartItems");
 if(!cartItems) cartItems = []; 
+let favoriteItems = Cookie.getJSON("favoriteItems");
+if(!favoriteItems) favoriteItems = []; 
 let orderInfo_order;
 try {
   orderInfo_order = JSON.parse(localStorage.getItem('orderInfo'));
@@ -84,13 +88,14 @@ const initialState = {
   createPost: {
     loading:false,
   },
-  createComment:{
-    loading:false,
-  },
   postDetail: {
     loading: true,
     post: {},
     error: null,
+  },
+  favoriteItems,
+  createComment:{
+    loading:false,
   },
   cart: {
     cartItems,
@@ -285,6 +290,20 @@ function reducer(state, action) {
       };
     case SET_POST_DETAIL:
       return { ...state, postDetail: { ...state.postDetail, ...action.payload} };
+    case FAVORITE_ADD_ITEM:
+      const item3 = action.payload;
+      const post = state.favoriteItems.find((x) => x.id === item3.id);
+      if (post) {
+        favoriteItems = state.favoriteItems.map((x) =>
+            x.id === post.id ? item3 : x
+         );
+         return { ...state, favoriteItems };
+      }
+      favoriteItems = [...state.favoriteItems, item3];
+      return { ...state, favoriteItems };  
+    case FAVORITE_REMOVE_ITEM:
+      favoriteItems = state.favoriteItems.filter((x) => x.id !== action.payload);
+      return { ...state, favoriteItems };
       case BEGIN_ORDER_CREATE:
         return {
           ...state,

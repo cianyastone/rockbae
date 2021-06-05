@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { StoreContext } from "../../store"
 import CreateComment from "./CreateComment";
+import AddToFavorite from "./AddToFavorite";
 
 export default function PostDetail(){
    const { state: { postDetail: { post} }, dispatch } = useContext(StoreContext);
@@ -17,6 +18,7 @@ export default function PostDetail(){
          {post.content}
       </p>
       <CreateComment/>
+      <AddToFavorite post={post}/>
       </>
    );
 }
