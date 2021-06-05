@@ -70,9 +70,6 @@ export default function NavBar() {
       <NavLink to="/Prefer" activeClassName="nav-item--active">
         <PreferSummary preference={'想去ㄉ活動'} />
       </NavLink>
-      <NavLink to="/feeder" className="nav-item" activeClassName="nav-item--active">
-        JSON Feeder
-      </NavLink>
       <CartModal/>
       <NavLink to="/post" className="nav-item" activeClassName="nav-item--active">
         文章
