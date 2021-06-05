@@ -99,10 +99,40 @@ export const thumbsUpApi = async (postId) => {
   const doc = await allPostCollectionRef.doc(postId);
   const user = auth.currentUser.uid;
   const userLike = doc.collection("Liked").doc();
+  const id = userLike.id;
   await userLike.set({
     user,
+    id,
   });
   return { ...post };
+}
+
+export const checkLike = async (postId) => {
+  const doc = await allPostCollectionRef.doc(postId);
+  const userLike = doc.collection("Liked");
+  const user = auth.currentUser.uid;
+  let jsonLikes = [];
+  let ifIsLiked = "false";
+  const querySnapshot = await userLike.where("user", "==", user).get();
+  querySnapshot.forEach((doc) => {
+    jsonLikes.push(doc.data());
+  });
+  if (jsonLikes.length!=0){
+    ifIsLiked = "true";
+  }
+  return ifIsLiked;
+}
+
+export const thumbsDownApi = async (postId) => {
+  const doc = await allPostCollectionRef.doc(postId);
+  const userLike = doc.collection("Liked");
+  const user = auth.currentUser.uid;
+  let jsonLikes = [];
+  const querySnapshot = await userLike.where("user", "==", user).get();
+  querySnapshot.forEach((doc) => {
+    jsonLikes.push(doc.data());
+  });
+  await userLike.doc(jsonLikes[0].id).delete();
 }
 
 export const getLikesByPost = async (postId) => {

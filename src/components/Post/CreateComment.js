@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Form, Select, Input, Button } from 'antd';
-import { createComment } from "../../actions"
+import { createComment, setPostDetail } from "../../actions"
 import { StoreContext } from "../../store"
 
 
@@ -8,7 +8,7 @@ export default function CreateComment({}){
     const { state:{ createComment: { loading }, postDetail: { post } }, dispatch } = useContext(StoreContext);
     const onFinish = async (commentData) => {
         createComment(dispatch, post.id, commentData);
-        console.log('Received values of form: ', commentData);
+        setPostDetail(dispatch, post.id);
     };
 
     const { Option } = Select;

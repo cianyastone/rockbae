@@ -123,6 +123,7 @@ const initialState = {
     post: {},
     like: {},
     comment: {},
+    checkIfLiked: {},
     loading: true,
     error: null,
   },

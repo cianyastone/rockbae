@@ -30,6 +30,9 @@ import {
   BEGIN_THUMBS_UP,
   SUCCESS_THUMBS_UP,
   FAIL_THUMBS_UP,
+  BEGIN_THUMBS_DOWN,
+  SUCCESS_THUMBS_DOWN,
+  FAIL_THUMBS_DOWN,
   FAVORITE_ADD_ITEM,
   FAVORITE_REMOVE_ITEM,
   SAVE_SHIPPING_ADDRESS,
@@ -57,8 +60,10 @@ import {
   createCommentApi,
   getPostById,
   thumbsUpApi,
+  thumbsDownApi,
   getLikesByPost,
   getCommentsByPost,
+  checkLike,
   createOrderApi,
   getOrderById,
   getOrderByUser,
@@ -255,12 +260,14 @@ export const setPostDetail = async (dispatch, postId) => {
   const post = await getPostById(postId);
   const like = await getLikesByPost(postId);
   const comment = await getCommentsByPost(postId);
+  const checkIfLiked = await checkLike(postId);
   dispatch({
     type: SET_POST_DETAIL,
     payload: {
       post,
       like,
       comment,
+      checkIfLiked,
     }
   })
 }
@@ -303,13 +310,24 @@ export const removeFromFavorite = (dispatch, postId) => {
 };
 
 export const thumbsUp = async (dispatch, postId) => {
-  dispatch({ type: BEGIN_THUMBS_UP });
+  dispatch({ type: BEGIN_THUMBS_DOWN });
   const post= await thumbsUpApi(postId);
   try {
-    dispatch({ type: SUCCESS_THUMBS_UP, payload: { post }, });
+    dispatch({ type: SUCCESS_THUMBS_DOWN, payload: { post }, });
   } catch (error) {
     console.log(error);
-    dispatch({ type: FAIL_THUMBS_UP, payload: error });
+    dispatch({ type: FAIL_THUMBS_DOWN, payload: error });
+  }
+};
+
+export const thumbsDown = async (dispatch, postId) => {
+  dispatch({ type: BEGIN_THUMBS_DOWN });
+  const post= await thumbsDownApi(postId);
+  try {
+    dispatch({ type: SUCCESS_THUMBS_DOWN, payload: { post }, });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FAIL_THUMBS_DOWN, payload: error });
   }
 };
 

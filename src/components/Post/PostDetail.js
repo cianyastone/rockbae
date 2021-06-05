@@ -1,20 +1,24 @@
 import { useEffect, useContext } from "react";
 import React, { createElement, useState } from 'react';
-import { Comment, Tooltip, Avatar } from 'antd';
 import { Button } from "antd";
 import { StoreContext } from "../../store"
 import CreateComment from "./CreateComment";
+import AllComment from "./AllComment";
 import AddToFavorite from "./AddToFavorite";
-import { thumbsUp, setPostDetail } from "../../actions"
+import { thumbsUp, thumbsDown, setPostDetail } from "../../actions"
 
 export default function PostDetail(){
-   const { state: { postDetail: { post, like, comment } }, dispatch } = useContext(StoreContext);
-   const ThumbsUp = () => {
+    const { state: { postDetail: { post, like, comment, checkIfLiked } }, dispatch } = useContext(StoreContext);
+    const ThumbsUp = () => {
       thumbsUp(dispatch, post.id);
       setPostDetail(dispatch, post.id);
     };
+    const ThumbsDown = () => {
+      thumbsDown(dispatch, post.id);
+      setPostDetail(dispatch, post.id);
+    };
 
-   return (
+    return (
       <>
       <h2 className="product-category">
          {post.article}
@@ -28,29 +32,20 @@ export default function PostDetail(){
       <p>
          有{like.length}個朋朋覺得這則文章有幫助
       </p>
+      {checkIfLiked == "false"
+        ? <Button type="primary" className="btn-tocar" onClick={ThumbsUp}>
+            讚
+          </Button>
+        : <Button type="primary" className="btn-tocar" onClick={ThumbsDown}>
+            收回讚
+          </Button>
+      }
+      <p>留言</p>
       {[...Array(comment.length).keys()].map((x) => (
-        <Comment
-        author={<a>Han Solo</a>}
-        avatar={
-          <Avatar
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            alt="Han Solo"
-          />
-        }
-        content={
-          <p>
-            We supply a series of design principles, practical patterns and high quality design
-            resources (Sketch and Axure), to help people create their product prototypes beautifully
-            and efficiently.
-          </p>
-        }
-        />
+        <AllComment comment={comment[x]}/>
       ))}
       <CreateComment/>
       <AddToFavorite post={post}/>
-      <Button type="primary" className="btn-tocar" onClick={ThumbsUp}>
-        讚
-      </Button>
       </>
-   );
+    );
 }
