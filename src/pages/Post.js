@@ -11,7 +11,8 @@ const { Header, Content, Footer } = Layout;
 function Post() {
     const { dispatch } = useContext(StoreContext);
     useEffect(() => {
-        setPostPage(dispatch)
+        const url = window.location.pathname;
+        setPostPage(dispatch, url)
     }, []);
 
     return (

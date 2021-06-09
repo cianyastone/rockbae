@@ -10,7 +10,7 @@ export default function PostItem({ post }) {
         <Card
             hoverable
             className="bg-gray activity">
-            <Link to={`/post/${post.id}`}
+            <Link to={`/post/${post.activity}/${post.id}`}
                 onClick={() => {
                     setPostDetail(dispatch, post.id);
                 }}
