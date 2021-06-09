@@ -6,7 +6,7 @@ import BreadcrumbItem from "../normal/BreadcrumbItem";
 import Cookie from "js-cookie";
 
 export default function PreferModal() {
-   const { state: { preferItems } } = useContext(StoreContext);
+   const { state: { preferItems }, dispatch } = useContext(StoreContext);
 
    useEffect(()=>{
       Cookie.set("preferItems", JSON.stringify(preferItems));
@@ -20,15 +20,15 @@ export default function PreferModal() {
          ) : (
             <Row gutter={[32,32]}>
                {preferItems.map(item => (
-                  <Col 
-                     key={item.id} 
-                     sm={{ span: 12 }} 
-                     lg={{ span: 8 }}
-                     xl={{ span: 6 }}
-                     xxl={{ span: 4 }}
-                  >
-                  <PreferItem item={item}/>
-                  </Col>
+                     <Col 
+                        key={item.id} 
+                        sm={{ span: 12 }} 
+                        lg={{ span: 8 }}
+                        xl={{ span: 6 }}
+                        xxl={{ span: 4 }}
+                     >
+                     <PreferItem item={item}/>
+                     </Col>
                ))}
             </Row> 
          )}

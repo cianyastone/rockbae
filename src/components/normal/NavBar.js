@@ -52,9 +52,9 @@ export default function NavBar() {
   };
   const { state: { cart: { cartItems } } } = useContext(StoreContext);
 
-  let count = (cartItems.length > 0) ?
-    cartItems.reduce((sum,item) => sum+item.qty, 0)
-    : 0;
+    let count = (cartItems.length > 0) ?
+        cartItems.reduce((sum,item) => sum+item.qty, 0)
+        : 0;
 
   return (
     <>

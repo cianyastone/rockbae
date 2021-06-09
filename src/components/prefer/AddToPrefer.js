@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { notification } from "antd"
 import { Link } from 'react-router-dom';
 import { StoreContext } from "../../store"
-import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { HeartTwoTone, HeartFilled } from '@ant-design/icons';
 import Cookie from "js-cookie";
 import {addPreferItem} from "../../actions"
 
@@ -25,7 +25,7 @@ export default function AddToPrefer({activity}){
         message: '嘿 朋朋！',
         description:
             ` ${activity.name}  已加入想去ㄉ活動`,
-            icon: <HeartOutlined style={{ color: '#000' }} />,
+            icon: <HeartTwoTone style={{ color: '#000' }} />,
         onClick: () => {
             console.log('Notification Clicked!');
         },
@@ -52,7 +52,7 @@ export default function AddToPrefer({activity}){
     return (
         <>
         <Link className="btn-toprefer" onClick={addToPrefer}>
-            <HeartOutlined />
+            <HeartTwoTone twoToneColor="#eb2f96" />
         </Link>
         {/* <Button type="link" className="btn-toprefer" onClick={addToPrefer}>
             <HeartTwoTone style={{color:'#eb2f96'}} onClick={setColor('#eb2f96')} />

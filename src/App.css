@@ -33,6 +33,7 @@ body {
 
 .layout-content {
   background-color: #FFFFFF;
+  margin-top: 20px;
 }
 
 .bg-gray {
@@ -144,34 +145,7 @@ body {
 }
 
 .activityItem-img{
-  width: 100%;
-  height: 31rem;
-  object-fit: cover;
-  object-position: top;
-}
-
-.activityItem-container {
-  width: 100%;
-  height: 26rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  cursor: pointer;
-  position: relative; 
-  background-color: #000;
-}
-
-.activityItem-mouseIn { 
-  position: absolute; 
-  top: 10rem;
-  width: 100%;
-}
-
-.activityItem-text {
-  color: white;
-  display: flex;
-  justify-content:center;
+  border-radius: 1%;
 }
 
 .ant-card-body{
@@ -283,17 +257,14 @@ body {
 }
 
 .btn-toprefer {
-  color: white;
+  color: #9014FF;
   height: auto;
   font-size: 1.4rem;
-  display:flex;
-  justify-content:center;
   /* padding: 0.5rem 2rem; */
 }
 
 .btn-toprefer:hover{
   font-size: 1.6rem;
-  color: white;
 }
 
 .btn-tocar {
@@ -304,6 +275,8 @@ body {
 
 /* Header */
 .header {
+  margin-top:1rem;
+  margin-bottom:2rem;
   text-align: center;
 }
 
@@ -483,6 +456,9 @@ body {
     width: 340px;
     align-self: center;
   }
+  .content-one{
+    margin-left: 29px;
+  }
   .breadcrumb{
     margin-left: 0px;
   }
@@ -520,6 +496,9 @@ body {
 @media (min-width: 576px) { 
   .container {
     width: 540px;
+  }
+  .content-one{
+    margin-left: 50px;
   }
   .Slide{
     height: 210px;
@@ -560,6 +539,9 @@ body {
   }
   .layout-content{
     margin-left: 0px;
+  }
+  .content-one{
+    margin-left: 60px;
   }
   .breadcrumb{
     margin-left: 0px;
@@ -639,6 +621,9 @@ body {
   .layout-content{
     margin-left: 0px;
   }
+  .content-one{
+    margin-left: 30px;
+  }
   .Slide{
     height: 435px;
   }
@@ -671,5 +656,3 @@ body {
     display: none;
   }
 } 
-
-
