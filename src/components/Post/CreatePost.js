@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Form, Select, Input, Button, Rate } from 'antd';
+import { Form, Select, Input, Button } from 'antd';
 import { createPost } from "../../actions"
 import { StoreContext } from "../../store"
 
@@ -45,13 +45,6 @@ export default function CreatePost({}){
             rules={[{ required: true }]}
         >
             <TextArea showCount maxLength={500} autoSize={{ minRows: 5, maxRows: 10 }}/>
-        </Form.Item>
-        <Form.Item
-            name={['recommend']} 
-            label="推薦程度" 
-            rules={[{ required: true }]}
-        >
-            <Rate allowHalf character="推" />
         </Form.Item>
         <Form.Item >
             {loading ? (

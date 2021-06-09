@@ -37,8 +37,7 @@ function App() {
           <Route path="/createPost" component={CreatePost} />
           <Route path="/userorder" component={UserOrder} />
           <Route exact path="/post" component={Post} />
-          <Route exact path="/post/:activity" component={Post} />
-          <Route exact path="/post/:activity/:postId" component={PostDetail} />
+          <Route exact path="/post/:postId" component={PostDetail} />
           <Route path="/favoritePost" component={Favorite} />
           <Route path="/shipping" component={Shipping} />
           <Route path="/payment" component={Payment} />

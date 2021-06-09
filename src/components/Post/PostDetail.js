@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import React from 'react';
-import { Button, Rate } from "antd";
+import { useEffect, useContext } from "react";
+import React, { createElement, useState } from 'react';
+import { Button } from "antd";
 import { StoreContext } from "../../store"
 import CreateComment from "./CreateComment";
 import AllComment from "./AllComment";
@@ -20,17 +20,14 @@ export default function PostDetail(){
 
     return (
       <>
-      <h1 className="product-category">
+      <h2 className="product-category">
          {post.article}
-      </h1>
-      <p className="product-category">
+      </h2>
+      <h2 className="product-category">
          活動：{post.activity}
-      </p>
+      </h2>
       <p className="product-category">
          {post.content}
-      </p>
-      <p>
-        推薦指數：<Rate disabled defaultValue={post.recommend} allowHalf/>
       </p>
       <p>
          有{like.length}個朋朋覺得這則文章有幫助
@@ -43,12 +40,12 @@ export default function PostDetail(){
             收回讚
           </Button>
       }
-      <AddToFavorite post={post}/>
-      </>
-      /*<p>留言</p>
+      <p>留言</p>
       {[...Array(comment.length).keys()].map((x) => (
         <AllComment comment={comment[x]}/>
       ))}
-      <CreateComment/>*/
+      <CreateComment/>
+      <AddToFavorite post={post}/>
+      </>
     );
 }
