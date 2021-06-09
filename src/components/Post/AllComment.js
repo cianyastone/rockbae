@@ -2,9 +2,6 @@ import { Comment, Avatar } from 'antd';
 import { Button } from "antd";
 
 export default function AllComment({comment}){
-  const click = () => {
-    console.log(comment.user);
-  }
   return(
     <>
     <Comment
@@ -23,9 +20,6 @@ export default function AllComment({comment}){
         </p>
       }
     />
-    <Button type="primary" className="btn-tocar" onClick={click}>
-      資訊
-    </Button>
     </>
   );
 }
