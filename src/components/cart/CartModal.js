@@ -5,7 +5,7 @@ import CartSummary from "./CartSummary";
 import { useContext } from "react";
 import { StoreContext } from "../../store"
 import Cookie from "js-cookie";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, NavLink } from 'react-router-dom';
 import {removeFromCart, addCartItemforModal} from "../../actions/index"
 
 const { Option } = Select;
@@ -39,9 +39,9 @@ export default function CartModal() {
   
     return (
         <>
-        <p className="nav-item" activeClassName="nav-item--active" type="primary" onClick={showDrawer}>
+        <div className="nav-item" activeClassName="nav-item--active" type="primary" onClick={showDrawer}>
             <CartSummary/>
-        </p>
+        </div>
         <Drawer
           closable={false}
           onClose={onClose}

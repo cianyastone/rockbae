@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 // import * as firebase from "firebase/app"
 import "firebase/firestore";
 import "firebase/auth";
-
+import jsonInfo from "../json/jsonInfo.json";
 import activities from "../json/activity.json";
 
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
@@ -161,7 +161,23 @@ export const getCommentsByPost = async (postId) => {
   return jsonComment;
 }
 
-export const getPosts = async () => {
+export const getPosts = async (url) => {
+  const collection = jsonInfo.find(element => element.url === url);
+  const collectionName = collection.name || "allPost";
+  let jsonPosts = [];
+
+  let querySnapshot;
+  if (collectionName === "allPost")
+    querySnapshot = await allPostCollectionRef.get();
+  else
+    querySnapshot = await allPostCollectionRef.where("activity", "==", collectionName).get();
+  querySnapshot.forEach((doc) => {
+    jsonPosts.push(doc.data());
+  });
+  return jsonPosts;
+}
+
+export const getPostsForActivity = async () => {
   let jsonPosts = [];
 
   let querySnapshot;
@@ -171,8 +187,6 @@ export const getPosts = async () => {
   });
   return jsonPosts;
 }
-
-
 
 export const authenticateAnonymously = () => {
   return firebase.auth().signInAnonymously();

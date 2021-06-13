@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Badge } from "antd";
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import { StoreContext } from "../../store";
 
 export default function CartSummary() {
@@ -11,8 +12,8 @@ export default function CartSummary() {
         
     return (
         <>
-        <Badge className="nav-item nav-prefer" count={count} size={"small"} style={{ color: 'white', backgroundColor: '#6366F2' }}>
-            <p>婐ㄉ購物車</p>
+        <Badge className="nav-item" count={count} size={"small"} style={{ color: 'white', backgroundColor: '#6366F2' }}>
+            <ShoppingCartOutlined />
         </Badge>
         </>
     );

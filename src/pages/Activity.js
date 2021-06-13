@@ -16,17 +16,17 @@ function Home() {
 
   return (
     <>
-    <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
-        <AppHeader title="Rock Bae"/>
-    </Header>
-    <Layout className="">
-    <Header className="layout-header">
+    <Layout>
+      <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header activity-header">
+          <AppHeader title="Rock Bae"/>
+      </Header>
+      <Header className="layout-header activity-header">
         <AppHeader title="Rock Bae"/>
       </Header>
-      <Content className="layout-content">
+      <Content className="layout-content activity-content">
         <ActivityList />
       </Content>   
-      <Footer className="layout-footer">
+      <Footer className="layout-footer activity-footer">
         <AppFooter/>  
       </Footer>  
     </Layout>

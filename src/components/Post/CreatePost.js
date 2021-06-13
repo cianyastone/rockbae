@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Form, Select, Input, Button } from 'antd';
+import { Form, Select, Input, Button, Rate } from 'antd';
 import { createPost } from "../../actions"
 import { StoreContext } from "../../store"
 
@@ -22,7 +22,7 @@ export default function CreatePost({}){
             label="文章標題" 
             rules={[{ required: true }]}
         >
-            <TextArea showCount maxLength={15} autoSize={{ minRows: 1, maxRows: 1 }}/>
+            <TextArea showCount maxLength={20} autoSize={{ minRows: 1, maxRows: 1 }}/>
         </Form.Item>
         <Form.Item
             name={['activity']} 
@@ -44,7 +44,14 @@ export default function CreatePost({}){
             label="內容" 
             rules={[{ required: true }]}
         >
-            <TextArea showCount maxLength={500} autoSize={{ minRows: 5, maxRows: 10 }}/>
+            <TextArea showCount maxLength={1000} autoSize={{ minRows: 5, maxRows: 10 }}/>
+        </Form.Item>
+        <Form.Item 
+            name={['recommend']} 
+            label="推薦指數" 
+            rules={[{ required: true }]}
+        >
+            <Rate allowHalf character="推"/>
         </Form.Item>
         <Form.Item >
             {loading ? (

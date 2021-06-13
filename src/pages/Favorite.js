@@ -12,7 +12,7 @@ function Cart() {
     const { state: { page: { title } } } = useContext(StoreContext);
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header"/>
+        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header"/>
         <Layout className="container main-layout">
             <Layout className="bg-gray">
                 <Header className="layout-header">

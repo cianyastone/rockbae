@@ -8,7 +8,7 @@ import { StoreContext } from "../../store"
 
 
 
-export default function UserInfo(props) {
+export default function UserInfo() {
    const { state: { userSignin: { userInfo } },dispatch } = useContext(StoreContext);
    const history = useHistory();
    const goToProfile = () => {
@@ -55,14 +55,10 @@ export default function UserInfo(props) {
       <>
       {userInfo
          ? <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
-               <nav style={{ ...props.style }} className="header-cart-summary" >
-                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                  <p className="cart-summary-text">
-                     {userInfo
-                        ? `${userInfo.displayName}'s`
-                        : `請登入`
-                     }
-                  </p>
+               <nav>
+                  <Avatar>
+                  {userInfo.displayName}
+                  </Avatar>
                </nav>
             </Dropdown>
          : <Avatar onClick={goToProfile} icon={<UserOutlined />} />

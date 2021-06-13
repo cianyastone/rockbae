@@ -52,6 +52,7 @@ import {
   getActivityById,
   getActivities,
   getPosts,
+  getPostsForActivity,
   signInWithEmailPassword,
   registerWithEmailPassword,
   signOut,
@@ -151,7 +152,7 @@ export const setPage = async (dispatch) => {
   dispatch({ type: BEGIN_ACTIVITY_REQUEST });
   try {
     activities = await getActivities();
-    posts = await getPosts();
+    posts = await getPostsForActivity();
     dispatch({
       type: SET_PAGE_CONTENT,
       payload: { activities, posts },
@@ -242,6 +243,7 @@ export const createPost = async (dispatch, postData) => {
       article: postData.article,
       activity: postData.activity,
       content: postData.content,
+      recommend: postData.recommend,
     };    
     const postInfo = await createPostApi(post);
     dispatch({ 
@@ -272,12 +274,12 @@ export const setPostDetail = async (dispatch, postId) => {
   })
 }
 
-export const setPostPage = async (dispatch) => {
+export const setPostPage = async (dispatch, url) => {
   let posts;
   let activities;
   dispatch({ type: BEGIN_POST_REQUEST });
   try {
-    posts = await getPosts();
+    posts = await getPosts(url);
     activities = await getActivities();
     dispatch({
       type: SET_PAGE_CONTENT,

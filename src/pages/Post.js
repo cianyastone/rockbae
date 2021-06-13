@@ -11,26 +11,25 @@ const { Header, Content, Footer } = Layout;
 function Post() {
     const { dispatch } = useContext(StoreContext);
     useEffect(() => {
-        setPostPage(dispatch)
+        const url = window.location.pathname;
+        setPostPage(dispatch, url)
     }, []);
 
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header new-header">
-            <AppHeader title="Rock Bae"/>
-        </Header>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
-                    <AppHeader />
-                </Header>
-                <Content className="layout-content content-activity">
-                    <PostList />
-                </Content>
-                <Footer className="layout-footer">
-                    <AppFooter />
-                </Footer>
-            </Layout>
+        <Layout>
+            <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header postList-header">
+                <AppHeader title="Rock Bae"/>
+            </Header>
+            <Header className="layout-header postList-header">
+                <AppHeader title="Rock Bae"/>
+            </Header>
+            <Content className="layout-content">
+                <PostList />
+            </Content>
+            <Footer className="layout-footer postList-footer">
+                <AppFooter />
+            </Footer>
         </Layout>
         </>
     );

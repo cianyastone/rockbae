@@ -7,7 +7,7 @@ import CartModal from "../cart/CartModal";
 import UserInfo from "../user/UserInfo";
 import UserInfoForMobile from "../user/UserInfoForMobile";
 import { StoreContext } from "../../store"
-import { setActivityDetail } from "../../actions";
+import { setActivityDetail, setPostPage } from "../../actions";
 
 const { SubMenu } = Menu;
 const rootSubmenuKeys = ['sub1'];
@@ -67,14 +67,14 @@ export default function NavBar() {
           煞氣ㄉ音樂祭 <DownOutlined/>
         </NavLink>
       </Dropdown>
-      <NavLink to="/Prefer" activeClassName="nav-item--active">
-        <PreferSummary preference={'想去ㄉ活動'} />
+      <NavLink to="/Prefer" className="nav-item" activeClassName="nav-item--active">
+        <PreferSummary />
       </NavLink>
-      <CartModal/>
-      <NavLink to="/post" className="nav-item" activeClassName="nav-item--active">
+      <NavLink to="/post" className="nav-item" onClick={() => {setPostPage(dispatch, `/post`);}} activeClassName="nav-item--active">
         文章
       </NavLink>
-      <UserInfo style={{marginRight: '20px'}} />
+      <CartModal className="nav-item"/>
+      <UserInfo className="nav-item" style={{marginRight: '20px'}} />
     </div>
     <Drawer
       closable={false}
@@ -114,6 +114,7 @@ export default function NavBar() {
         </Menu>
     </Drawer>
     </>
+    /**/
   );
 }
 

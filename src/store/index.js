@@ -25,6 +25,9 @@ import {
   FAIL_UPDATE_USERINFO,
   BEGIN_POSTING,
   SUCCESS_POSTING,
+  BEGIN_POST_REQUEST,
+  SUCCESS_POST_REQUEST,
+  FAIL_POST_REQUEST,
   SET_POST_DETAIL,
   FAVORITE_ADD_ITEM,
   FAVORITE_REMOVE_ITEM,
@@ -100,6 +103,10 @@ const initialState = {
     error: null,
   },
   requestActivity: {
+    loading: false,
+    error: null,
+  },
+  requestPost: {
     loading: false,
     error: null,
   },
@@ -314,6 +321,25 @@ function reducer(state, action) {
         createPost: {
           ...state.createPost,
           loading: false,
+        },
+      };
+    case BEGIN_POST_REQUEST:
+      return {
+        ...state,
+        requestPost: { ...state.requestPost, loading: true },
+      };
+    case SUCCESS_POST_REQUEST:
+      return {
+        ...state,
+        requestPost: { ...state.requestPost, loading: false },
+      };
+    case FAIL_POST_REQUEST:
+      return {
+        ...state,
+        requestPost: {
+          ...state.requestPost,
+          loading: false,
+          error: action.payload,
         },
       };
     case BEGIN_COMMENT:

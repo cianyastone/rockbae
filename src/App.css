@@ -7,6 +7,7 @@
   min-height: 100vh;
   background-color: #FFFFFF;
   margin:auto;
+  max-width: 1200px;
 }
 
 /* general */
@@ -37,6 +38,17 @@ body {
 
 .bg-gray {
   background-color: #FFFFFF;
+}
+
+/* spinner */
+.spinner-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.spinner {
+  margin: 18vh 0;
 }
 
 /* Cart */
@@ -137,10 +149,16 @@ body {
 }
 
 /* activity Item */
+.activity-header,
+.activity-footer,
+.activity-content{
+  background-color: #827BCC;
+}
+
 .activity {
   border-radius: 1%;
   border: solid #808080 1px;
-  width: 90%;
+  width: 100%;
 }
 
 .activityItem-img{
@@ -305,6 +323,8 @@ body {
 /* Header */
 .header {
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .header-slogan {
@@ -317,14 +337,14 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 1.7rem;
+  align-items: center;
 }
 
 .nav-item {
   font-size: 1.1rem;
-  font-style: italic;
+  font-weight: bold;
   text-align: center;
-  color: #9014FF;
+  color: #fff;
   transition: opacity .25s linear;
   cursor: pointer; 
 }
@@ -335,14 +355,14 @@ body {
 }
 
 .nav-item:hover {
-  color: #2bff47;
+  color: #9014FF;
   font-weight: bold;
   opacity: 1;
-  transform: scale(1.2)!important;
+  transform: scale(1.1);
 }
 
 .nav-item:active {
-  transform: scale(1.1)!important;
+  transform: scale(1);
 }
 
 /* Hamburger Menu */
@@ -385,6 +405,93 @@ body {
   color:#424242;
 }
 
+/*Post*/
+.postList-header,
+.postList-footer,
+.postList-container{
+  background-color: #F8B93A;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.postList-scroll {
+  padding-top: 15px;
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+}
+
+.postList-card {
+  flex-shrink: 0;
+  width: 130px;
+  height: 130px;
+  border-radius: 50px;
+  margin:0 10px;
+  object-fit: cover;
+  object-position: top;
+  background-color: #8A5E05;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postList-card p{
+  color:#fff;
+  text-align: center;
+}
+
+.postList-content{
+  max-width: 1150px;
+  margin:auto;
+}
+
+.postList-topic{
+  background-color: #F6AB13;
+  padding: 0px 10px;
+}
+
+.postList-item{
+  padding: 0px 10px;
+}
+
+.postList-topic p,
+.postList-content h3,
+.postList-content,
+.postList-content h1,
+.postList-container h1,
+.postList-item p{
+  color:#fff;
+  font-weight: bold;
+}
+
+.postItem h3:hover,
+.postItem p:hover{
+  text-shadow: 2px 2px 0px #961FFF;
+}
+
+/*Post-Detail*/
+.post-detail{
+  background-color:#F87666;
+}
+
+.post-detail-content{
+  min-height: 47vh;
+  width: 1150px;
+  margin: auto;
+  margin-top: 30px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 2.3;
+}
+
+.post-detail-article h1{
+  color:white;
+  font-weight: bold;
+}
+
 /* Preference */
 .nopreference{
   color:#424242;
@@ -396,7 +503,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: .1rem #c7c7c7 solid;
@@ -441,15 +547,18 @@ body {
 .footer-title{
   font-size: 1.5rem;
   font-weight: bold;
-  color: #424242;
   opacity: 0.8;
 }
 
 .footer-item {
   font-size: 1rem;
   line-height: 2.5rem;
-  color: #424242;
   opacity: 0.6;
+}
+
+.footer-item,
+.footer-title{
+  color:#424242;
 }
 
 .footer-icon{
@@ -481,7 +590,6 @@ body {
 @media (min-width: 375px) { 
   .container {
     width: 340px;
-    align-self: center;
   }
   .breadcrumb{
     margin-left: 0px;
@@ -527,9 +635,6 @@ body {
   .breadcrumb{
     margin-left: 0px;
   }
-  .layout-content{
-    margin-left: 25px;
-  }
   .header {
     text-align: center;
     margin-top:2rem;
@@ -558,9 +663,6 @@ body {
   .container {
     width: 720px;
   }
-  .layout-content{
-    margin-left: 0px;
-  }
   .breadcrumb{
     margin-left: 0px;
   }
@@ -580,9 +682,9 @@ body {
   .nav-item{
     font-size: 0.8rem;
   }
-  .nav-prefer{
+  /*.nav-prefer{
     margin-top: 7.5px;
-  }
+  }*/
   .nav-position{
     display: flex;
     justify-content: flex-end;
@@ -613,9 +715,9 @@ body {
   .Slide{
     height: 370px;
   }
-  .nav-prefer{
+  /*.nav-prefer{
     margin-top: 5px;
-  }
+  }*/
   .new-header{
     padding:0 3rem;
   }
@@ -629,15 +731,13 @@ body {
 
 /* xl */
 @media (min-width: 1200px) {
-  .container {
-    width: 1140px;
-  }
   .header-slogan {
-    width: 100%;
+    width: 65%;
     margin-left: 0px;
+    margin-top:0rem;
   }
-  .layout-content{
-    margin-left: 0px;
+  .header{
+    margin: 0.5rem 0;
   }
   .Slide{
     height: 435px;
@@ -649,9 +749,6 @@ body {
 
 /* xxl */
 @media (min-width: 1600px) {
-  .container {
-    width: 1500px;
-  }
   .Slide{
     height: 580px;
   }
