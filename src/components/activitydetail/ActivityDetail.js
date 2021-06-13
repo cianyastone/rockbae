@@ -5,6 +5,7 @@ import AddToCart from "../cart/AddToCart"
 import BreadcrumbItem from "../normal/BreadcrumbItem";
 import { StoreContext } from "../../store"
 import { setActivityDetail } from "../../actions";
+import { useSpring, animated } from 'react-spring'
 
 const { TabPane } = Tabs;
 function ActivityDetail({activity}) {
@@ -23,19 +24,78 @@ function ActivityDetail({activity}) {
          ))}
       </Radio.Group>
    );
+   const STATUS = {
+      STILL: "still",
+      GOING_UP: "up",
+      GOING_DOWN: "down"
+    };
+
+   const trans = status =>
+   status === STATUS.STILL ? 0 : status === STATUS.GOING_UP ? 1000 : 100;
+
+   const useHover = () => {
+      const [props, set] = useSpring(() => ({
+        scale: 1,
+        status: STATUS.STILL,
+        boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.62)",
+        config: { mass: 2, tension: 170, friction: 12 }
+      }));
+      const onMouseLeave = () =>
+      set({
+        to: [
+          {
+            scale: 1,
+            boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.62)",
+            status: STATUS.GOING_DOWN,
+            
+          },
+          { status: STATUS.STILL }
+        ]
+      }); 
+      const onMouseEnter = () =>
+      set({
+         to: [
+         { status: STATUS.GOING_UP },
+         {
+            scale: 1.1,
+            boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.42)",
+            transform: 'translate3d(0px,0,1)',
+         }
+         ]
+      });
+  return [props, onMouseEnter, onMouseLeave];
+};
+   const [leftIconProps, onLeftIconEnter, onLeftIconLeave] = useHover();
+   const [midIconProps, onMidIconEnter, onMidIconLeave] = useHover();
+   const [rightIconProps, onRightIconEnter, onRightIconLeave] = useHover();
+   
    return (
       <>
       <BreadcrumbItem link={`activity/${activity.id}`} name={activity.name} />
       <Row gutter={[4, 32]}>
          <Col lg={{ span: 8 }}>
-         <img
+         <animated.img
             alt={activity.name}
             className="activity-image"
             src={activity.image}
-         />           
+            style={
+            {scale: leftIconProps.scale,
+            boxShadow: leftIconProps.boxShadow,
+            zIndex: leftIconProps.status.to(trans)}}
+            onMouseEnter={onLeftIconEnter}
+            onMouseLeave={onLeftIconLeave}
+         />            
          </Col>
-         <Col lg={{ span: 16 }} >
-         <div className="activity-info--detail">
+         <Col lg={{ span: 8 }} >
+         <animated.div 
+         className="activity-info--detail"
+         style={
+            {scale: midIconProps.scale,
+            boxShadow: midIconProps.boxShadow,
+            zIndex: midIconProps.status.to(trans)}}
+            onMouseEnter={onMidIconEnter}
+            onMouseLeave={onMidIconLeave}
+         >
             <h1 className="activity-name activity-name--large">
                {activity.name}
             </h1>
@@ -92,9 +152,18 @@ function ActivityDetail({activity}) {
             </div>
             <br/><br/>
             <AddToCart activity={activity} qty={qty} ticket={ticket}/>
-         </div>           
+         </animated.div>           
          </Col>
-         <Col span={24}>
+         <Col span={8}>
+               <animated.div
+               style={
+                  {scale: rightIconProps.scale,
+                  boxShadow: rightIconProps.boxShadow,
+                  zIndex: rightIconProps.status.to(trans)}}
+                  onMouseEnter={onRightIconEnter}
+                  onMouseLeave={onRightIconLeave}
+               className="activity-info--detail"
+               >
                <Tabs defaultActiveKey="1">
                   <TabPane tab="簡介" key="1">
                   <p>
@@ -114,6 +183,7 @@ function ActivityDetail({activity}) {
                   </p>
                   </TabPane>
                </Tabs>
+               </animated.div>
          </Col>
       </Row>
       </>
