@@ -23,7 +23,7 @@ function Home() {
       <Header className="layout-header activity-header">
         <AppHeader title="Rock Bae"/>
       </Header>
-      <Content className="layout-content activity-content">
+      <Content className="activity-content">
         <ActivityList />
       </Content>   
       <Footer className="layout-footer activity-footer">
