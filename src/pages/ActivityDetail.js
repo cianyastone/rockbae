@@ -12,20 +12,19 @@ function Activity({ match }) {
    );
    return (
       <>
-      <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header">
+      <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header activityDetail-header">
         <AppHeader title="Rock Bae"/>
       </Header>
-      <Layout className="container main-layout">
-         <Header className="layout-header">
-            <AppHeader title="Activity Detail"/>
-         </Header>
-         <Content className="layout-content">
+      <div className="activityDetail-content">
+      <Content className="container">
+         <Content className="layout-content activityDetail-content">
             <ActivityDetail activity = {activity} />
          </Content>
-         <Footer className="layout-footer">
+      </Content>
+      </div>
+      <Footer className="layout-footer activityDetail-footer">
             <AppFooter />
-         </Footer>
-      </Layout>
+      </Footer>
       </>
    );
 }
