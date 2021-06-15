@@ -8,28 +8,25 @@ import { StoreContext } from "../store"
 
 const { Header, Content, Footer } = Layout;
 
-function Cart() {
+function Prefer() {
     const { state: { page: { title } } } = useContext(StoreContext);
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header">
+        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header prefer-header">
             <AppHeader title="Rock Bae"/>
         </Header>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
-                    <AppHeader title={title} />
-                </Header>
-                <Content className="layout-content content-activity">
-                    <PreferModal />
+        <div className="prefer-content">
+            <Content className="container">
+                <Content className="layout-content prefer-content">
+                <PreferModal />
                 </Content>
-                <Footer className="layout-footer">
-                    <AppFooter />
-                </Footer>
-            </Layout>
-        </Layout>
+            </Content>
+        </div>
+        <Footer className="prefer-footer">
+            <AppFooter />
+        </Footer>
         </>
     );
 }
 
-export default Cart;
+export default Prefer;

@@ -10,7 +10,7 @@ export default function PerferItem({ item }) {
     return (
         <Card
             hoverable
-            className="bg-gray activity">
+            className="activity">
             <Link to={`/activity/${item.id}`}>
                 <img
                     style={{ width: '100%' }}
