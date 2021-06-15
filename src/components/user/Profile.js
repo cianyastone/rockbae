@@ -20,7 +20,8 @@ const ProfileCard = () => {
     history.push("/");
   };
   return (
-    <Form
+    <div className="user-container">
+      <Form
       onFinish={handleUpdate}
       name="normal_login"
       className="login-form"
@@ -100,6 +101,7 @@ const ProfileCard = () => {
         </Button>
       </Form.Item>
     </Form>
+    </div>
   );
 };
 export default ProfileCard;

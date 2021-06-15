@@ -344,6 +344,18 @@ body {
   padding: 0.3rem 2rem;
 }
 
+/*Profile*/
+.profile{
+  background-color: #07BEB8;
+}
+
+.user-container{
+  max-width:1200px;
+  margin:auto;
+  margin-top: 50px;
+  min-height:47vh;
+}
+
 /* Header */
 .header {
   text-align: center;
@@ -475,6 +487,12 @@ body {
 
 .postList-Top{
   display: flex;
+  justify-content: space-around;
+  max-width:100%;
+}
+
+.postList-Top-item{
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -535,6 +553,10 @@ body {
   font-weight: bold;
 }
 
+.post-detail-article--large{
+  font-size: 2rem;
+}
+
 .post-image{
   width:300px;
   height: 300px;
@@ -546,12 +568,36 @@ body {
   justify-content:space-between;
 }
 
-.post-detail-btn{
+.post-detail-btn-area{
   display: flex;
   align-items: center;
-  line-height:2.3;
 }
 
+.post-detail-btn{
+  margin-left: 1rem;
+}
+
+.post-detail-right{
+  background-color:rgba(255, 255, 255, 0.1);
+}
+
+.post-detail-link p{
+  color: #fff;
+  line-height:1;
+}
+
+.post-detail-link:hover{
+  text-shadow: 3px 3px 5px #961FFF;
+}
+
+.post-detail-link--none{
+  color: #fff;
+  line-height:1;
+}
+
+.post-detail-link--none:hover{
+  color: #c7c7c7;
+}
 
 /* Preference */
 .prefer-header,

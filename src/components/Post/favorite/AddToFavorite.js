@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { StarOutlined, StarFilled } from '@ant-design/icons';
-import { notification } from "antd";
+import { notification, Popover } from "antd";
 import { StoreContext } from "../../../store"
 import Cookie from "js-cookie";
 import { addFavoriteItem, removeFromFavorite } from "../../../actions"
@@ -54,10 +54,12 @@ export default function AddToFavorite({post}){
 
     return (
       <>
+      <Popover content={"收藏"}>
       {InFavorite
         ? <StarFilled className="post-detail-btn" onClick={removeFavorite}/>
         : <StarOutlined className="post-detail-btn" onClick={addToFavorite}/>
       }
+      </Popover>
       </>
     );
 }

@@ -24,7 +24,7 @@ function Post() {
             <Header className="layout-header postList-header">
                 <AppHeader title="Rock Bae"/>
             </Header>
-            <Content className="">
+            <Content>
                 <PostList />
             </Content>
             <Footer className="layout-footer postList-footer">

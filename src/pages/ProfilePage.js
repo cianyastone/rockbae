@@ -12,21 +12,19 @@ function ProfilePage() {
     const { state: { page: { title } } } = useContext(StoreContext);
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header">
-            <AppHeader title="Rock Bae"/>
-        </Header>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
-                    <AppHeader title={title} />
-                </Header>
-                <Content className="layout-content content-activity">
-                    <Profile />
-                </Content>
-                <Footer className="layout-footer">
-                    <AppFooter />
-                </Footer>
-            </Layout>
+        <Layout>
+            <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header profile">
+                <AppHeader title="Rock Bae"/>
+            </Header>
+            <Header className="layout-header profile">
+                <AppHeader title={title} />
+            </Header>
+            <Content className="profile">
+                <Profile />
+            </Content>
+            <Footer className="layout-footer profile">
+                <AppFooter />
+            </Footer>
         </Layout>
         </>
     );

@@ -1,13 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
-import { Button, Rate, Spin, Row, Col, Breadcrumb,  } from "antd";
-import { LoadingOutlined, LikeOutlined, LikeFilled } from '@ant-design/icons';
+import { Rate, Spin, Row, Col, Breadcrumb, Popover  } from "antd";
+import { animated, useSpring } from "react-spring";
+import { LoadingOutlined, LikeOutlined, LikeFilled, PlusOutlined } from '@ant-design/icons';
 import { StoreContext } from "../../store"
 import CreateComment from "./postdetail/CreateComment";
 import AllComment from "./postdetail/AllComment";
 import AddToFavorite from "./favorite/AddToFavorite";
 import LinkToOther from "./postdetail/LinkToOther";
-import BreadcrumbItem from "../normal/BreadcrumbItem";
 import { thumbsUp, thumbsDown, setPostDetail } from "../../actions"
 
 export default function PostDetail(){
@@ -31,9 +31,7 @@ export default function PostDetail(){
           </div>
         ) : (
         <div className="post-detail-content">
-          <Row gutter={[48, 8]}>
-            <Col span={16}>
-            <Breadcrumb className="breadcrumb--1">
+          <Breadcrumb className="breadcrumb--1">
               <Breadcrumb.Item className="breadcrumb">
                 <Link to={`/Home`}>
                   首頁
@@ -50,32 +48,49 @@ export default function PostDetail(){
                 </Link>
               </Breadcrumb.Item>
             </Breadcrumb>
+          <Row gutter={[48, 48]}>
+            <Col span={16} >
               <Row gutter={[48, 8]}>
                 <Col span={13}>
-                  <h1 className="post-detail-article">{post.article}</h1>
+                  <h1 className="post-detail-article post-detail-article--large">{post.article}</h1>
                   <p>By {post.author}</p>
                   <p>推薦指數：<Rate disabled allowHalf defaultValue={post.recommend}/></p>
                   <div className="post-detail-like">
                     <p>有{like.length}個朋朋說這則文章很讚</p>
-                    {checkIfLiked == "false"
-                      ? <LikeOutlined className="post-detail-btn" onClick={ThumbsUp}/>
-                      : <LikeFilled className="post-detail-btn" onClick={ThumbsDown}/>
-                    }
-                    <AddToFavorite post={post}/>
+                    <div className="post-detail-btn-area">
+                      <Popover content={"讚"}>
+                        {checkIfLiked == "false"
+                          ? <LikeOutlined className="post-detail-btn" onClick={ThumbsUp}/>
+                          : <LikeFilled className="post-detail-btn" onClick={ThumbsDown}/>
+                        }
+                      </Popover> 
+                      <AddToFavorite post={post}/>
+                    </div>
                   </div>
                 </Col>
                 <Col span={10}>
-                <img className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.png"/> 
+                <img className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/> 
                 </Col>
               </Row>
-              <p>{post.content}</p>
+              <Row>
+                <p>{post.content}</p>
+              </Row>
             </Col>
-            <Col span={8}>
-              <p>看看其他{post.activity}的文章</p>
+            <Col span={8} className="post-detail-right">
+              <h3 className="post-detail-article">看看其他{post.activity}的文章</h3>
               <p>
-                {posts.map(post => (
+                {posts.length==1
+                  ?<>
+                  <p>目前只有這篇文章耶...</p>
+                  <Link to ="/createPost" className="post-detail-link--none">
+                    <p>趕快去發佈一篇吧<PlusOutlined /></p>
+                  </Link>
+                  </>
+                  :posts.map(post => (
                   <LinkToOther post={post}/>
-                ))}
+                ))
+                }
+                
               </p>
             </Col>
           </Row>
