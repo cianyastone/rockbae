@@ -12,14 +12,15 @@ function ActivityDetail({activity}) {
    const { state: { activityDetail: { ticket, qty} }, dispatch } = useContext(StoreContext);
 
    function onChange(e){
-      setActivityDetail(dispatch, activity.id, e.target.value, qty);
+      var result = (activity.ticketClass).indexOf(e.target.value);
+      setActivityDetail(dispatch, activity.id, result, qty);
    };
    
    const App = () => (
       <Radio.Group value={ticket} onChange={onChange}>
-         {[...Array(activity.ticketClass.length).keys()].map((x) => (
+         {(activity.ticketClass).map(x => (
             <Radio.Button value={x} className="radio-style ">
-               {activity.ticketClass[x]}
+               {x}
             </Radio.Button>
          ))}
       </Radio.Group>
