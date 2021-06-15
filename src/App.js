@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import './App.css';
+import './App.less';
 import Activity from './pages/Activity'
 import ActivityDetail from './pages/ActivityDetail'
 import Prefer from './pages/Prefer'
