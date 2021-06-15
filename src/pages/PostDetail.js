@@ -20,7 +20,7 @@ function Post({ match }) {
          <Header className="layout-header post-detail">
             <AppHeader />
          </Header>
-         <Content className="layout-content post-detail">
+         <Content className="post-detail">
             <PostDetail />
          </Content>
          <Footer className="layout-footer post-detail">

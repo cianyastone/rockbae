@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 // import NavBar from "../components/NavBar";
 import AppHeader from '../components/normal/Header';
 import AppFooter from '../components/normal/Footer';
-import FavoriteModal from '../components/Post/FavoriteModal';
+import FavoriteModal from '../components/Post/favorite/FavoriteModal';
 import { StoreContext } from "../store"
 
 const { Header, Content, Footer } = Layout;

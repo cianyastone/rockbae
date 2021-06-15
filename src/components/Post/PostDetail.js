@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
-import { Button, Rate, Spin, Row, Col } from "antd";
-import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Rate, Spin, Row, Col, Breadcrumb,  } from "antd";
+import { LoadingOutlined, LikeOutlined, LikeFilled } from '@ant-design/icons';
 import { StoreContext } from "../../store"
-import CreateComment from "./CreateComment";
-import AllComment from "./AllComment";
-import AddToFavorite from "./AddToFavorite";
+import CreateComment from "./postdetail/CreateComment";
+import AllComment from "./postdetail/AllComment";
+import AddToFavorite from "./favorite/AddToFavorite";
+import LinkToOther from "./postdetail/LinkToOther";
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 import { thumbsUp, thumbsDown, setPostDetail } from "../../actions"
 
 export default function PostDetail(){
@@ -29,30 +31,50 @@ export default function PostDetail(){
           </div>
         ) : (
         <div className="post-detail-content">
-          <Row>
-            <Col span={18}>
-              <div className="post-detail-article">
-                <h1>{post.article}</h1>
-              </div>
-              <p>活動分類：{post.activity}</p>
+          <Row gutter={[48, 8]}>
+            <Col span={16}>
+            <Breadcrumb className="breadcrumb--1">
+              <Breadcrumb.Item className="breadcrumb">
+                <Link to={`/Home`}>
+                  首頁
+                </Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to={`/post/${post.activity}`} className="breadcrumb-item">
+                  {post.activity}
+                </Link>
+              </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <Link to={`/post/${post.activity}/${post.id}`} className="breadcrumb-item">
+                  {post.article}
+                </Link>
+              </Breadcrumb.Item>
+            </Breadcrumb>
+              <Row gutter={[48, 8]}>
+                <Col span={13}>
+                  <h1 className="post-detail-article">{post.article}</h1>
+                  <p>By {post.author}</p>
+                  <p>推薦指數：<Rate disabled allowHalf defaultValue={post.recommend}/></p>
+                  <div className="post-detail-like">
+                    <p>有{like.length}個朋朋說這則文章很讚</p>
+                    {checkIfLiked == "false"
+                      ? <LikeOutlined className="post-detail-btn" onClick={ThumbsUp}/>
+                      : <LikeFilled className="post-detail-btn" onClick={ThumbsDown}/>
+                    }
+                    <AddToFavorite post={post}/>
+                  </div>
+                </Col>
+                <Col span={10}>
+                <img className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.png"/> 
+                </Col>
+              </Row>
               <p>{post.content}</p>
-              <p>推薦指數：<Rate disabled allowHalf defaultValue={post.recommend}/></p>
-              <p>有{like.length}個朋朋說這則文章很讚</p>
-              {checkIfLiked == "false"
-                ? <Button type="primary" className="btn-tocar" onClick={ThumbsUp}>
-                    讚
-                  </Button>
-                : <Button type="primary" className="btn-tocar" onClick={ThumbsDown}>
-                    收回
-                  </Button>
-              }
-              <AddToFavorite post={post}/>
             </Col>
-            <Col span={6}>
+            <Col span={8}>
               <p>看看其他{post.activity}的文章</p>
               <p>
-                {posts.map((x) => (
-                  <p>hi</p>
+                {posts.map(post => (
+                  <LinkToOther post={post}/>
                 ))}
               </p>
             </Col>

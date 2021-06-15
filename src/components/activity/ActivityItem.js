@@ -48,9 +48,12 @@ export default function ActivityItem({ activity }) {
             />
             <animated.div style={{ ...styles, ...hover }} className="activityItem-mouseIn">
                 <h2 className="activityItem-text">{activity.name}</h2> 
-                <AddToPrefer activity={activity}/>
             </animated.div>
         </Link>
+        <animated.div style={{ ...styles, ...hover }} className="activityItem-mouseIn">
+                <h2 className="activityItem-text">{activity.name}</h2> 
+                <AddToPrefer activity={activity}/>
+        </animated.div>
         </div>
         </>
     );

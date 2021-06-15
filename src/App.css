@@ -257,6 +257,7 @@ body {
   margin-top: 10px;
   color: #f5f5f5;
 }
+
 .breadcrumb-item{
   color:#f5f5f5;
 }
@@ -466,7 +467,26 @@ body {
 .postList-content{
   max-width: 1150px;
   margin:auto;
+  min-height: 47vh;
 }
+
+.postList-Top{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postList-Top h2{
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.postList-image{
+  width: 250px;
+  height: 250px;
+  background-color: #000;
+}
+
 
 .postList-topic{
   background-color: #F6AB13;
@@ -507,10 +527,28 @@ body {
   line-height: 2.3;
 }
 
-.post-detail-article h1{
+.post-detail-article{
   color:white;
   font-weight: bold;
 }
+
+.post-image{
+  width:300px;
+  height: 300px;
+}
+
+.post-detail-like{
+  display: flex;
+  height: 2.3rem;
+  justify-content:space-between;
+}
+
+.post-detail-btn{
+  display: flex;
+  align-items: center;
+  line-height:2.3;
+}
+
 
 /* Preference */
 .prefer-header,

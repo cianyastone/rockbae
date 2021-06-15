@@ -6,7 +6,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Row, Col, Spin } from "antd";
 import PostItem from "./PostItem";
 import { StoreContext } from "../../store";
-import { setPostPage } from "../../actions"
+import { setPostPage, setPostDetail } from "../../actions"
 
 
 export default function Post() {
@@ -77,6 +77,44 @@ export default function Post() {
                 </animated.div>
             </div>
             <div className="postList-content">
+            <Row className="postList-Top">
+                <h1>人氣貼文</h1>
+            </Row>
+            <Row>
+                <Col span="8" >
+                    <Link to={`/post/${posts[0].activity}/${posts[0].id}`}
+                        onClick={() => {
+                            setPostDetail(dispatch, posts[0].id);
+                        }}
+                        className="postList-Top"
+                    >
+                        <img className="postList-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.png"/> 
+                        <h2>{posts[0].article}</h2>
+                    </Link>
+                </Col>
+                <Col span="8">
+                    <Link to={`/post/${posts[1].activity}/${posts[1].id}`}
+                        onClick={() => {
+                            setPostDetail(dispatch, posts[1].id);
+                        }}
+                        className="postList-Top"
+                    >
+                        <img className="postList-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.png"/> 
+                        <h2>{posts[1].article}</h2>
+                    </Link>
+                </Col>
+                <Col span="8">
+                    <Link to={`/post/${posts[2].activity}/${posts[2].id}`}
+                        onClick={() => {
+                            setPostDetail(dispatch, posts[2].id);
+                        }}
+                        className="postList-Top"
+                    >
+                        <img className="postList-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.png"/> 
+                        <h2>{posts[2].article}</h2>
+                    </Link>
+                </Col>
+            </Row>
             <Row className="postList-topic">
                 <Col span={13}>
                     <p>標題</p>

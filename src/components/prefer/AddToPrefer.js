@@ -4,22 +4,14 @@ import { Link } from 'react-router-dom';
 import { StoreContext } from "../../store"
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import Cookie from "js-cookie";
-import {addPreferItem} from "../../actions"
+import { addPreferItem, removeFromPrefer } from "../../actions"
 
 export default function AddToPrefer({activity}){
     const { state: { preferItems }, dispatch } = useContext(StoreContext);
+    var InPrefer = preferItems.map(function(item) {
+        return item.name;
+    }).includes(activity.name);
 
-    var count = 1; 
-    function setColor(color) {
-        if (count === 0) { 
-         color = "#FFFFFF" 
-         count = 1;   
-        } 
-        else { 
-         color = "#7FFF00" 
-         count = 0; 
-        } 
-    } 
     const openNotification = () => {
         notification.open({
         message: '嘿 朋朋！',
@@ -32,17 +24,26 @@ export default function AddToPrefer({activity}){
         placement: 'bottomRight'
         });
     };
+    const openNotification2 = () => {
+        notification.open({
+        message: '嘿 朋朋！',
+        description:
+            ` ${activity.name}  已從想去ㄉ活動中移除`,
+            icon: <HeartOutlined style={{ color: '#000' }} />,
+        onClick: () => {
+            console.log('Notification Clicked!');
+        },
+        placement: 'bottomRight'
+        });
+    };
 
     const addToPrefer = () => {
         openNotification();
         addPreferItem(dispatch, activity);
-        // if (count === 0) {  
-        //     count = 1;  
-        //    } 
-        //    else { 
-        //     color = "#7FFF00" 
-        //     count = 0; 
-        // };
+    };
+    const removePrefer = () => {
+        openNotification2();
+        removeFromPrefer(dispatch, activity.id)
     };
 
     useEffect(()=>{
@@ -51,12 +52,10 @@ export default function AddToPrefer({activity}){
 
     return (
         <>
-        <Link className="btn-toprefer" onClick={addToPrefer}>
-            <HeartOutlined />
-        </Link>
-        {/* <Button type="link" className="btn-toprefer" onClick={addToPrefer}>
-            <HeartTwoTone style={{color:'#eb2f96'}} onClick={setColor('#eb2f96')} />
-        </Button> */}
+        {InPrefer
+            ? <HeartFilled className="btn-toprefer" onClick={removePrefer}/>
+            : <HeartOutlined className="btn-toprefer" onClick={addToPrefer}/>
+        }
         </>
     );
 }

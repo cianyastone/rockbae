@@ -117,7 +117,7 @@ export const checkLike = async (postId) => {
   querySnapshot.forEach((doc) => {
     jsonLikes.push(doc.data());
   });
-  if (jsonLikes.length!=0){
+  if (jsonLikes.length!==0){
     ifIsLiked = "true";
   }
   return ifIsLiked;

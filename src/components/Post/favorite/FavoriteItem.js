@@ -1,9 +1,9 @@
 import { Card } from "antd"
 import { useContext } from "react";
-import { StoreContext } from "../../store"
+import { StoreContext } from "../../../store"
 import { Link } from 'react-router-dom';
 import { HeartTwoTone } from '@ant-design/icons';
-import { removeFromFavorite } from "../../actions"
+import { removeFromFavorite } from "../../../actions"
 
 export default function FavoriteItem({ item }) {
     const { dispatch } = useContext(StoreContext);

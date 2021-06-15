@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Form, Select, Input, Button } from 'antd';
-import { createComment, setPostDetail } from "../../actions"
-import { StoreContext } from "../../store"
+import { createComment, setPostDetail } from "../../../actions"
+import { StoreContext } from "../../../store"
 
 
 export default function CreateComment({}){
