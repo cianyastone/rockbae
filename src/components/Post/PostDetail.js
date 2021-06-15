@@ -65,7 +65,7 @@ export default function PostDetail(){
                   </div>
                 </Col>
                 <Col span={10}>
-                <img className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/> 
+                <img className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.png"/> 
                 </Col>
               </Row>
               <p>{post.content}</p>

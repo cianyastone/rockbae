@@ -8,26 +8,20 @@ import { setActivityDetail } from "../../actions";
 import { useSpring, animated } from 'react-spring'
 
 const { TabPane } = Tabs;
-function ActivityDetail() {
-   const { state: { activityDetail: { activity, ticket, qty} }, dispatch } = useContext(StoreContext);
+function ActivityDetail({activity}) {
+   const { state: { activityDetail: { ticket, qty} }, dispatch } = useContext(StoreContext);
 
    function onChange(e){
-      var result = (activity.ticketClass).indexOf(e.target.value);
-      setActivityDetail(dispatch, activity.id, result, qty);
+      setActivityDetail(dispatch, activity.id, e.target.value, qty);
    };
    
    const App = () => (
       <Radio.Group value={ticket} onChange={onChange}>
-         {activity.ticketClass.length >0
-         ?(activity.ticketClass).map(x => (
+         {[...Array(activity.ticketClass.length).keys()].map((x) => (
             <Radio.Button value={x} className="radio-style ">
-               {x}
+               {activity.ticketClass[x]}
             </Radio.Button>
-         ))
-         :<Radio.Button value={ticket} className="radio-style ">
-            {ticket}
-         </Radio.Button>
-         }
+         ))}
       </Radio.Group>
    );
    const STATUS = {
