@@ -1,17 +1,17 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button } from "antd";
-import { saveShippingAddress } from "../../actions"
+import { Form, Input, Button,Radio } from "antd";
+import { saveShippingAddress, savePaymentMethod } from "../../actions"
 import { StoreContext } from "../../store";
 
 export default function ShippingAddressCard() {
-  const { state: { cart: { shippingAddress } }, dispatch } = useContext(StoreContext);
+  const { state: { cart: { shippingAddress,paymentMethod } }, dispatch } = useContext(StoreContext);
   const history = useHistory()
   const [form] = Form.useForm();
 
   const handleSubmit = (values) => {
     saveShippingAddress(dispatch, values)
-    history.push('/payment');
+    history.push('/placeorder');
   };
 
   return (
@@ -26,6 +26,7 @@ export default function ShippingAddressCard() {
       <Form.Item
         label="全名: "
         name="fullName"
+        className="shipping-form-item"
         rules={[
           {
             type: "string",
@@ -96,7 +97,20 @@ export default function ShippingAddressCard() {
       >
         <Input placeholder="請輸入國家" />
       </Form.Item>
-
+      <Form.Item 
+          name="paymentMethod" 
+          label="付款方式: "
+          rules={[
+          {
+            required: true,
+          },
+        ]}>
+            <Radio.Group>
+               <Radio value="Google">Google</Radio>
+               <Radio value="PayPal">PayPal</Radio>
+               <Radio value="Line">Line</Radio>
+            </Radio.Group>
+      </Form.Item>
       <Form.Item>
         <Button
           type="primary"
@@ -106,6 +120,7 @@ export default function ShippingAddressCard() {
           Continue
         </Button>
       </Form.Item>
+
     </Form>
   );
 }

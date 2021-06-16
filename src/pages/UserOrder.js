@@ -8,22 +8,22 @@ const { Header, Content, Footer } = Layout;
 function UserOrder() {
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header">
+        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header userOrder-header">
             <AppHeader title="Rock Bae"/>
         </Header>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
-                    <AppHeader />
-                </Header>
-                <Content className="layout-content content-activity">
-                    <UserOrderPage />
-                </Content>
-                <Footer className="layout-footer">
-                    <AppFooter />
-                </Footer>
-            </Layout>
-        </Layout>
+        <div className="userOrder-content">
+        {/* <Header className="layout-header">
+                <AppHeader />
+        </Header> */}
+        <Content className="container">
+            <Content className="layout-content userOrder-content">
+                <UserOrderPage />
+            </Content>
+        </Content>
+        </div>
+        <Footer className="layout-footer userOrder-footer">
+            <AppFooter />
+        </Footer>
         </>
     );
 }

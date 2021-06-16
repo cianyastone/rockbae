@@ -76,7 +76,7 @@ export default function OrderCard({ orderId }) {
                      <div className="card card-body">
                         <h2 style={{ color: 'black' }}>泥ㄉ付款資訊</h2>
                         <p>
-                           <strong>付款方式：</strong> {order.paymentMethod}
+                           <strong>付款方式：</strong> {order.shippingAddress.paymentMethod}
                         </p>
                      </div>
                      <div className="card card-body">

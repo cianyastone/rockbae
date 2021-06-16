@@ -61,7 +61,7 @@ export default function PlaceOrderCard() {
               <div className="card card-body">
                 <h2 style={{ color: 'black' }}>泥ㄉ付款資訊</h2>
                 <p>
-                  <strong>付款方式：</strong> {cart.paymentMethod}
+                  <strong>付款方式：</strong> {cart.shippingAddress.paymentMethod}
                 </p>
               </div>
               <div className="card card-body">

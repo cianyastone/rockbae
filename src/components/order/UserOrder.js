@@ -1,9 +1,8 @@
 import { useEffect, useContext } from "react";
-// import { Link, useHistory } from "react-router-dom";
 import { Row, Col } from "antd";
-// import { LoadingOutlined } from '@ant-design/icons';
 import { getUserOrder } from "../../actions"
 import { StoreContext } from "../../store";
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 
 export default function OrderList() {
   const { state: { userInfo, orderList }, dispatch } = useContext(StoreContext);
@@ -15,7 +14,7 @@ export default function OrderList() {
 
   return (
     <>
-    <h2 className="orderList-title">訂單</h2>
+    <BreadcrumbItem  name='我的訂單' />
     <Row>
       {orderList.length === 0 ?
         (
@@ -24,43 +23,48 @@ export default function OrderList() {
           <>
             {orderList.map( order => (
               <Col
-                xs={{ span: 20 , offset: 6 }}
-                sm={{ span: 20 , offset: 2 }}
+                xs={{ span: 24 , offset: 6 }}
+                sm={{ span: 18 , offset: 2 }}
                 lg={{ span: 12 , offset: 0 }}
               >
-              <div className="card card-body">
-                <h2 style={{ color: 'black' }}>訂單編號：{order.id}</h2>
+              <div className="userOrder-card">
+                <span className="dot dot-rd"></span>
+                <span className="dot dot-y"></span>
+                <span className="dot dot-g"></span>
+                <hr className="hr"></hr>
+                <h4 className="orderCard-title">訂單編號：{order.id}</h4>
                 {order.orderItems.map(item => (
                   <li key={item.id} className="cart-item">
-                    <div className="cart-image">
+                    <div className="orderCard-image cart-image">
                       <img src={item.image} alt={item.name} />
                     </div>
-                    <div className="cart-item-content">
+                    <div className="orderCard-content cart-item-content">
                       <div className="cart-name">{item.name}</div>
-                      <div className="product-qty">
+                      <div className="orderCard-text">{item.ticketClass}</div>
+                      <div className="orderCard-qty">
                         數量: {item.qty}
                       </div>
                     </div>
-                    <div className="cart-item-end">
-                      <div className="cart-price">
+                    <div>
+                      <div className="orderCard-price">
                         ${item.price * item.qty}
                       </div>
                     </div>
                   </li>
                 ))}
-                <div className="row">
+                <div className="row orderCard-row">
                 <div>項目</div>
-                    <div>${order.itemsPrice}</div>
+                    <div className="orderCard-price">${order.itemsPrice}</div>
                   </div>
-                <div className="row">
+                <div className="row orderCard-row">
                 <div>運費</div>
-                <div>${order.shippingPrice}</div>
+                <div className="orderCard-price">${order.shippingPrice}</div>
                 </div>
-                <div className="row">
+                <div className="row orderCard-row">
                 <div>
                     <strong>總共！</strong>
                 </div>
-                <div>
+                <div className="orderCard-price">
                     <strong>${order.totalPrice}</strong>
                 </div>
                 </div>
