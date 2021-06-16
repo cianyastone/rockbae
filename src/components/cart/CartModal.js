@@ -7,25 +7,27 @@ import { StoreContext } from "../../store"
 import Cookie from "js-cookie";
 import { Link, useHistory, NavLink } from 'react-router-dom';
 import {removeFromCart, addCartItemforModal} from "../../actions/index"
+import UserModal from "../user/UserModal";
 
 const { Option } = Select;
 
 export default function CartModal() {
     const [visible, setVisible] = useState(false);
+    const { state: { cart: { cartItems }, userSignin: { userInfo } }, dispatch } = useContext(StoreContext);
 
-    const showDrawer = () => {
-      setVisible(true);
-    };
-    const onClose = () => {
-      setVisible(false);
-    };
+    const showDrawer = () => {setVisible(true);};
+    const onClose = () => {setVisible(false);};
 
-    const { state: { cart: { cartItems } }, dispatch } = useContext(StoreContext);
     const history = useHistory();
-
     const checkoutHandler = () => {
-        history.push("/login?redirect=shipping");
+        history.push("/shipping");
     }
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const toggleModal = () => {
+        onClose();
+        setIsModalVisible(!isModalVisible);
+    };
     
     useEffect(()=>{
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -39,7 +41,7 @@ export default function CartModal() {
   
     return (
         <>
-        <div className="nav-item" activeClassName="nav-item--active" type="primary" onClick={showDrawer}>
+        <div onClick={showDrawer}>
             <CartSummary/>
         </div>
         <Drawer
@@ -103,13 +105,23 @@ export default function CartModal() {
             Total
             <div className="cart-total-price">${getTotalPrice()}</div>
         </div>
-        <Button
+        {userInfo
+        ?<Button
             className="cart-modal-btn"
             type="primary"
             onClick={checkoutHandler}
-            >
+        >
             <span>結帳去</span>
-            </Button>
+        </Button>
+        :<Button
+            className="cart-modal-btn"
+            type="primary"
+            onClick={toggleModal}
+        >  
+            <span>結帳去</span>
+            <UserModal isModalVisible={isModalVisible} toggleModal={toggleModal}/>
+        </Button>
+        }
     </Drawer>
     </>
 );}

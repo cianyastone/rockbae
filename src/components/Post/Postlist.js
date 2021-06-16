@@ -78,8 +78,8 @@ export default function Post() {
                 </animated.div>
             </div>
             <div className="postList-content">
-            <Row className="postList-Top-item">
-                <h1>人氣貼文</h1>
+            <Row className="postList-Top-item ">
+                <h1 className="post-detail-article--large">人氣貼文</h1>
             </Row>
             <div className="postList-Top">
                 {posts.length > 3

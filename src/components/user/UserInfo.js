@@ -1,8 +1,10 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Menu, Avatar, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { logoutFromFirebase } from "../../actions";
+import Profile from "./Profile";
+import UserModal from "./UserModal";
 
 import { StoreContext } from "../../store"
 
@@ -11,20 +13,22 @@ import { StoreContext } from "../../store"
 export default function UserInfo() {
    const { state: { userSignin: { userInfo } },dispatch } = useContext(StoreContext);
    const history = useHistory();
-   const goToProfile = () => {
-      history.push("/login?redirect=profile");
-   };
    const Logout = () => {
       logoutFromFirebase(dispatch);
       history.push("/");
     };
+   const [isModalVisible, setIsModalVisible] = useState(false);
+   const toggleModal = () => setIsModalVisible(!isModalVisible);
+   const [isModalVisible2, setIsModalVisible2] = useState(false);
+   const toggleModal2 = () => setIsModalVisible2(!isModalVisible2);
 
    const menu = (
       <Menu>
          <Menu.Item>
-            <NavLink to="/profile">
+            <nav onClick={toggleModal2}>
                個人檔案
-            </NavLink>
+               <Profile isModalVisible={isModalVisible2} toggleModal={toggleModal2}/>
+            </nav>
          </Menu.Item>
          <Menu.Item>
             <NavLink to="/createpost">
@@ -61,7 +65,10 @@ export default function UserInfo() {
                   </Avatar>
                </nav>
             </Dropdown>
-         : <Avatar onClick={goToProfile} icon={<UserOutlined />} />
+         : <>
+         <Avatar onClick={toggleModal} icon={<UserOutlined />} />
+         <UserModal isModalVisible={isModalVisible} toggleModal={toggleModal}/>
+         </>
       }
       </>
    );

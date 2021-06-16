@@ -5,9 +5,7 @@ import ActivityDetail from './pages/ActivityDetail'
 import Prefer from './pages/Prefer'
 import Cart from './pages/Cart'
 import Feed from './pages/Feed'
-import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
-import Profile from './pages/ProfilePage'
 import PostDetail from './pages/PostDetail'
 import CreatePost from './pages/CreatePost'
 import Favorite from './pages/Favorite'
@@ -31,9 +29,7 @@ function App() {
           <Route path="/Prefer" component={Prefer} />
           <Route path="/Cart" component={Cart} />
           <Route exact path="/feeder" component={Feed} />
-          <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
-          <Route path="/profile" component={Profile} />
           <Route path="/createPost" component={CreatePost} />
           <Route path="/userorder" component={UserOrder} />
           <Route exact path="/post" component={Post} />

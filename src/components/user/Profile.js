@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button } from "antd";
+import { Modal, Form, Input, Button } from "antd";
 import { logoutFromFirebase, updateUserInfo } from "../../actions";
 import { StoreContext } from "../../store";
 
-const ProfileCard = () => {
+const ProfileCard = ({ isModalVisible, toggleModal }) => {
   const { state: { userSignin: { userInfo } },dispatch } = useContext(StoreContext);
   const { displayName, email } = userInfo;
   const history = useHistory();
   const [form] = Form.useForm();
+  const handleCancel = () => toggleModal(!isModalVisible);
 
   const handleUpdate = (values) => {
     console.log(values)
@@ -20,88 +21,89 @@ const ProfileCard = () => {
     history.push("/");
   };
   return (
-    <div className="user-container">
-      <Form
-      onFinish={handleUpdate}
-      name="normal_login"
-      className="login-form"
-      form={form}
+    <Modal
+      title="個人檔案"
+      visible={isModalVisible}
+      onCancel={handleCancel}
+      footer={null}
     >
-      <Form.Item
-        label="name: "
-        name="name"
-        rules={[
-          { type: "string",message: "The input is not valid name!", },
-          { message: "Please input your name!", },
-        ]}
-        hasFeedback
+      <Form
+        onFinish={handleUpdate}
+        name="normal_login"
+        className="login-form"
+        form={form}
       >
-        <Input defaultValue={displayName} placeholder={displayName} />
-      </Form.Item>
-      <Form.Item
-        label="email: "
-        name="email"
-        rules={[
-          { type: "email",message: "The input is not valid E-mail!", },
-          { message: "Please input your E-mail!", },
-        ]}
-      >
-        <Input defaultValue={email} placeholder={email} />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        label="Password"
-        rules={[
-          { message: "Please input your password!", },
-        ]}
-        hasFeedback
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="rePassword"
-        label="Re-enter Password"
-        dependencies={["password"]}
-        hasFeedback
-        rules={[
-          { message: "Please re-enter your password!", },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
-                return Promise.resolve();
-              }
-
-              return Promise.reject(
-                new Error("The two passwords that you entered do not match!")
-              );
-            },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          className="login-form__button"
+        <Form.Item
+          label="暱稱: "
+          name="name"
+          rules={[
+            { type: "string",message: "The input is not valid name!", },
+            { message: "Please input your name!", },
+          ]}
+          hasFeedback
         >
-          Submit
-        </Button>
-
-        <Button
-          type="danger"
-          style={{ marginTop: "0.8rem" }}
-          className="login-form__button"
-          onClick={handleLogout}
+          <Input defaultValue={displayName} placeholder={displayName} />
+        </Form.Item>
+        <Form.Item
+          label="email: "
+          name="email"
+          rules={[
+            { type: "email",message: "The input is not valid E-mail!", },
+            { message: "Please input your E-mail!", },
+          ]}
         >
-          Log out
-        </Button>
-      </Form.Item>
-    </Form>
-    </div>
+          <Input defaultValue={email} placeholder={email} />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          label="密碼"
+          rules={[
+            { message: "Please input your password!", },
+          ]}
+          hasFeedback
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          name="rePassword"
+          label="再次輸入密碼"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            { message: "Please re-enter your password!", },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form__button"
+          >
+            Submit
+          </Button>
+          <Button
+            type="danger"
+            style={{ marginTop: "0.8rem" }}
+            className="login-form__button"
+            onClick={handleLogout}
+          >
+            Log out
+          </Button>
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 };
 export default ProfileCard;
