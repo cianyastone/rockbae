@@ -110,6 +110,7 @@ export default function CartModal() {
             className="cart-modal-btn"
             type="primary"
             onClick={checkoutHandler}
+            style={{ background: "#A2B9BD", borderColor: "#A2B9BD" }}
         >
             <span>結帳去</span>
         </Button>
