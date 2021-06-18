@@ -29,8 +29,8 @@ export default function PostItem({ post }) {
             <animated.div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} style={{...hover}}>
             <Link to={`/post/${post.activity}/${post.id}`}
                 onClick={() => {
-                    setPostDetail(dispatch, post.id);
                     setPostPage(dispatch, `/post/${post.activity}`);
+                    setPostDetail(dispatch, post.id);
                 }}
             >
                 <p>{post.article}</p>

@@ -12,19 +12,19 @@ function Cart() {
     const { state: { page: { title } } } = useContext(StoreContext);
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header"/>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
-                    <AppHeader title={title} />
-                </Header>
-                <Content className="layout-content content-activity">
-                    <FavoriteModal />
-                </Content>
-                <Footer className="layout-footer">
-                    <AppFooter />
-                </Footer>
-            </Layout>
+        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header favorite">
+            <AppHeader title="Rock Bae"/>
+        </Header>
+        <Layout className="new-container">
+            <Header className="layout-header favorite">
+                <AppHeader title={title} />
+            </Header>
+            <Content className="favorite">
+                <FavoriteModal />
+            </Content>
+            <Footer className="layout-footer favorite">
+                <AppFooter />
+            </Footer>
         </Layout>
         </>
     );

@@ -4,7 +4,7 @@ import { createPost } from "../../actions"
 import { StoreContext } from "../../store"
 
 
-export default function CreatePost({}){
+export default function CreatePost(){
     const { state:{ createPost: { loading }, page: { activities } }, dispatch } = useContext(StoreContext);
     const onFinish = async (postData) => {
         createPost(dispatch, postData);
@@ -15,41 +15,43 @@ export default function CreatePost({}){
     const { TextArea } = Input;
 
     return (
-        <>
-        <Form name="create-article" onFinish={onFinish} >
-        <Form.Item 
-            name={['article']} 
-            label="文章標題" 
-            rules={[{ required: true }]}
-        >
-            <TextArea showCount maxLength={20} autoSize={{ minRows: 1, maxRows: 1 }}/>
-        </Form.Item>
-        <Form.Item
-            name={['activity']} 
-            label="活動分類"
-            rules={[{ required: true }]}
-        >
-            <Select>
-            {[...Array(activities.length).keys()].map((x) => (
-            <Option value={activities[x].name}>
-                <p className="activity-name">
-                    {activities[x].name}
-                </p>
-            </Option>
-            ))}
-            </Select>
-        </Form.Item>
+        <div className="create-post-container">
+        <Form name="create-article" onFinish={onFinish}>
+        <div className="create-post-group">
+            <Form.Item
+                name={['activity']} 
+                rules={[{ required: true }]}
+                style={{ width: '18%' }}
+            >
+                <Select placeholder="請選擇活動分類">
+                {[...Array(activities.length).keys()].map((x) => (
+                <Option value={activities[x].name}>
+                    <p className="activity-name">
+                        {activities[x].name}
+                    </p>
+                </Option>
+                ))}
+                </Select>
+            </Form.Item>
+            <Form.Item 
+                name={['article']} 
+                rules={[{ required: true }]}
+                style={{ width: '81%' }}
+            >
+                <TextArea showCount maxLength={20} autoSize={{ minRows: 1, maxRows: 1 }} placeholder="請輸入文章標題..."/>
+            </Form.Item>
+        </div >
         <Form.Item 
             name={['content']} 
-            label="內容" 
             rules={[{ required: true }]}
         >
-            <TextArea showCount maxLength={1000} autoSize={{ minRows: 5, maxRows: 10 }}/>
+            <TextArea placeholder="請輸入文章內容..." showCount maxLength={1000} autoSize={{ minRows: 15 }}/>
         </Form.Item>
         <Form.Item 
+            label="推薦指數："
             name={['recommend']} 
-            label="推薦指數" 
             rules={[{ required: true }]}
+            className="create-post-group"
         >
             <Rate allowHalf character="推"/>
         </Form.Item>
@@ -72,6 +74,6 @@ export default function CreatePost({}){
             )}
         </Form.Item>
         </Form>
-        </>
+        </div>
     );
 }

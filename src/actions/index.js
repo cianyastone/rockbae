@@ -295,8 +295,10 @@ export const setPostPage = async (dispatch, url) => {
 export const addFavoriteItem = (dispatch, post) => {
   const item = {
     id: post.id,
+    author: post.author,
     article: post.article,
     content: post.content,
+    activity: post.activity,
   };
   dispatch({
     type: FAVORITE_ADD_ITEM,

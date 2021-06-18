@@ -13,7 +13,7 @@ function Post({ match }) {
     useEffect(() => setPostDetail(dispatch, match.params.postId), [])
     return (
       <>
-      <Layout >
+      <Layout className="new-container">
          <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header post-detail">
          <AppHeader title="Rock Bae"/>
          </Header>

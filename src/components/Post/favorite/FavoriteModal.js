@@ -13,20 +13,20 @@ export default function FavoriteModal() {
     }, [favoriteItems])
 
     return (
-        <div>
+        <div className="favorite-container">
             <BreadcrumbItem link={'favoritePost'} name={'收藏ㄉ文章'} />
                 <Row gutter={[32,32]}>
-                {favoriteItems.map(item => (
-                    <Col 
-                        key={item.id} 
-                        sm={{ span: 12 }} 
-                        lg={{ span: 8 }}
-                        xl={{ span: 6 }}
-                        xxl={{ span: 4 }}
-                    >
+                    {favoriteItems.map(item => (
+                        <Col 
+                            key={item.id} 
+                            sm={{ span: 24 }} 
+                            lg={{ span: 24 }}
+                            xl={{ span: 12 }}
+                            xxl={{ span: 12 }}
+                        >
                         <FavoriteItem item={item}/>
-                    </Col>
-                ))}
+                        </Col>
+                    ))}
                 </Row> 
         </div>
     );

@@ -8,18 +8,18 @@ const { Header, Content, Footer } = Layout;
 function CreatePostPage() {
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header">
+        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header create-post">
             <AppHeader title="Rock Bae"/>
         </Header>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
+        <Layout className="new-container">
+            <Layout>
+                <Header className="layout-header create-post">
                     <AppHeader />
                 </Header>
-                <Content className="layout-content content-activity">
+                <Content className="create-post">
                     <CreatePost />
                 </Content>
-                <Footer className="layout-footer">
+                <Footer className="layout-footer create-post">
                     <AppFooter />
                 </Footer>
             </Layout>

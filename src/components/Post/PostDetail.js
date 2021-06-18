@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
-import { Rate, Spin, Row, Col, Breadcrumb, Popover  } from "antd";
+import { Rate, Spin, Row, Col, Breadcrumb, Popover, Image } from "antd";
 import { animated, useSpring } from "react-spring";
 import { LoadingOutlined, LikeOutlined, LikeFilled, PlusOutlined } from '@ant-design/icons';
 import { StoreContext } from "../../store"
@@ -49,7 +49,7 @@ export default function PostDetail(){
               </Breadcrumb.Item>
             </Breadcrumb>
           <Row gutter={[48, 48]}>
-            <Col span={16} >
+            <Col span={18} >
               <Row gutter={[48, 8]}>
                 <Col span={13}>
                   <h1 className="post-detail-article post-detail-article--large">{post.article}</h1>
@@ -69,14 +69,14 @@ export default function PostDetail(){
                   </div>
                 </Col>
                 <Col span={10}>
-                <img className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/> 
+                <Image className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/> 
                 </Col>
               </Row>
               <Row>
                 <p>{post.content}</p>
               </Row>
             </Col>
-            <Col span={8} className="post-detail-right">
+            <Col span={6} className="post-detail-right">
               <h3 className="post-detail-article">看看其他{post.activity}的文章</h3>
               <p>
                 {posts.length==1
@@ -90,7 +90,6 @@ export default function PostDetail(){
                   <LinkToOther post={post}/>
                 ))
                 }
-                
               </p>
             </Col>
           </Row>

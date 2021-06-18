@@ -12,11 +12,8 @@
   max-width: 1200px;
 }
 
-.container {
-  display: flex;
-  align-self: center;
+.new-container {
   min-height: 100vh;
-  margin:auto;
 }
 
 /* general */
@@ -159,15 +156,11 @@ body {
 .activity-content{
   background-color: #827BCC;
 }
+
 .activityDetail-header,
 .activityDetail-footer,
 .activityDetail-content{
   background-color: #DDDBF1;
-}
-.activity {
-  border-radius: 1%;
-  border: solid #808080 1px;
-  width: 100%;
 }
 
 .activityItem-img{
@@ -552,7 +545,6 @@ body {
 .postList-content{
   max-width: 1150px;
   margin:auto;
-  min-height: 47vh;
 }
 
 .postList-Top{
@@ -616,7 +608,6 @@ body {
 }
 
 .post-detail-content{
-  min-height: 47vh;
   width: 1150px;
   margin: auto;
   margin-top: 30px;
@@ -637,6 +628,7 @@ body {
 .post-image{
   width:300px;
   height: 300px;
+  border-radius: 20px;
 }
 
 .post-detail-like{
@@ -674,6 +666,67 @@ body {
 
 .post-detail-link--none:hover{
   color: #c7c7c7;
+}
+
+/*Create-Post*/
+.create-post{
+  background-color: #095256;
+}
+
+.create-post-group{
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-post-container{
+  width: 1150px;
+  margin: auto;
+  margin-top: 30px;
+  line-height: 2.3;
+}
+
+/*Favorite*/
+.favorite{
+  background-color: #07BEB8;
+}
+
+.favorite-container{
+  width: 1150px;
+  margin: auto;
+  margin-top: 30px;
+  line-height: 2.3;
+}
+
+.favorite-card {
+  border-radius:20px;
+  height: 13rem;
+  width: 100%;
+}
+
+.favorite-group-large{
+  height: 13rem;
+  padding:0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.favorite-group{
+  display: flex;
+}
+
+.favorite-group p{
+  line-height:34px;
+  margin-left: 0.5rem;
+}
+
+.favorite-img{
+  width: 30%;
+  border-radius: 2%;
+  object-fit: cover;
+}
+
+.favorite-group--content{
+  margin-left: 2rem;
 }
 
 /* Preference */

@@ -33,3 +33,10 @@
     margin: 0 8px;
     color: rgba(240,240,240, 0.45);
   }
+  .ant-input-textarea-show-count::after {
+    float: right;
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+    content: attr(data-count);
+    pointer-events: none;
+  }

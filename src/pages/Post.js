@@ -17,7 +17,7 @@ function Post() {
 
     return (
         <>
-        <Layout>
+        <Layout className="new-container">
             <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header postList-header">
                 <AppHeader title="Rock Bae"/>
             </Header>
