@@ -6,19 +6,24 @@ const { Header, Content, Footer } = Layout;
 
 function Order({ match }) {
    return (
-    <Layout className="container main-layout">
-      <Layout className="bg-gray main-area">
-      <Header className="layout-header">
-            <AppHeader/>
-        </Header>
-        <Content className="layout-content">
-           <OrderCard orderId={match.params.orderId} />
+    <>
+    <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header Order-header">
+        <AppHeader title="Rock Bae"/>
+    </Header>
+    <div className="Order-content">
+    {/* <Header className="layout-header">
+            <AppHeader />
+    </Header> */}
+    <Content className="container">
+        <Content className="layout-content Order-content">
+          <OrderCard orderId={match.params.orderId} />
         </Content>
-        <Footer className="layout-footer">
-          <AppFooter />
-        </Footer>
-      </Layout>
-    </Layout>
+    </Content>
+    </div>
+    <Footer className="layout-footer Order-footer">
+        <AppFooter />
+    </Footer>
+    </>
   );
 }
 
