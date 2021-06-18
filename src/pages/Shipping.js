@@ -6,19 +6,24 @@ const { Header, Content, Footer } = Layout;
 
 function PlaceOrder() {
   return (
-    <Layout className="container main-layout">
-      <Layout className="bg-gray main-area">
-        <Header className="layout-header">
-            <AppHeader/>
-        </Header>
-        <Content className="layout-content">
-           <Shipping />
-        </Content>
-        <Footer className="layout-footer">
+    <>
+    <Layout className="new-container">
+      <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header shipping-header">
+          <AppHeader title="Rock Bae"/>
+      </Header>
+      <Header className="layout-header shipping-header">
+              <AppHeader />
+      </Header>
+      <div className="shipping-content">
+      <Content className="ship-content">
+        <Shipping />
+      </Content>
+      </div>
+      <Footer className="layout-footer shipping-footer">
           <AppFooter />
-        </Footer>
-      </Layout>
+      </Footer>
     </Layout>
+    </>
   );
 }
 

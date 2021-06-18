@@ -424,6 +424,23 @@ body {
   background-color:#C2D2C4;
 }
 
+/* shipping */
+.shipping-header,
+.shipping-footer,
+.shipping-content{
+  background-color: #E2AFA4;
+}
+
+.ship-content{
+  display: flex;
+  width: 70%;
+  min-height: 100vh;
+  margin:auto;
+  max-width: 1200px;
+  justify-content:center;
+  align-items: center;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -435,10 +452,49 @@ body {
   margin-top: 20px;
 }
 
+.shipping-form-item{
+  display: flex;
+  border-radius: 5px;
+  // justify-content:center;
+  // align-items: center;
+  color: rgba(255,255,255,1);
+}
+
+.shipping-form{
+  width: 60%;
+  background-color: rgba(255,255,255,0.65);
+  padding: 20px;
+  border-radius: 15px;
+  color:#424242;
+  // justify-content:center;
+  // align-items: center;
+  
+}
+
 .shipping-title{
   font-size: 1.5em;
   color:#424242;
+  margin-bottom: 15px;
+  text-align:center;
 }
+
+.shipping-form-name{
+  border-radius: 15px;
+  width: 80%;
+  display: flex;
+  // justify-content:center;
+}
+
+.hr-shipping{
+  border: 0.3px solid rgba(255,255,255,0.5);
+  margin-bottom: 20px;
+}
+
+.shipping-botton{
+  position: absolute;
+left: 63%;
+}
+
 /*User Order*/
 .userOrder-header,
 .userOrder-footer,

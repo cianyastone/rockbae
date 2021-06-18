@@ -14,8 +14,24 @@ export default function ShippingAddressCard() {
     history.push('/placeorder');
   };
 
+  const layout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 6 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 },
+    },
+  };
+
+  const tailLayout = {
+    wrapperCol: { offset: 4, span: 16 },
+  };
+
   return (
     <Form
+    {...layout} 
       onFinish={handleSubmit}
       name="normal_login"
       className="shipping-form"
@@ -23,10 +39,12 @@ export default function ShippingAddressCard() {
       form={form}
     >
     <p className="shipping-title">填寫寄送資料</p>
+    <hr className="hr-shipping"></hr>
       <Form.Item
         label="全名: "
         name="fullName"
         className="shipping-form-item"
+        style={{color:"white"}}
         rules={[
           {
             type: "string",
@@ -38,7 +56,7 @@ export default function ShippingAddressCard() {
         ]}
         hasFeedback
       >
-        <Input placeholder="請輸入全名" />
+        <Input className="shipping-form-name" placeholder="請輸入全名" />
       </Form.Item>
       <Form.Item
         label="地址: "
@@ -54,7 +72,7 @@ export default function ShippingAddressCard() {
         ]}
         hasFeedback
       >
-        <Input placeholder="請輸入地址" />
+        <Input className="shipping-form-name" placeholder="請輸入地址" />
       </Form.Item>
       <Form.Item
         label="城市: "
@@ -67,7 +85,7 @@ export default function ShippingAddressCard() {
         ]}
         hasFeedback
       >
-        <Input placeholder="請輸入城市" />
+        <Input className="shipping-form-name" placeholder="請輸入城市" />
       </Form.Item>
 
       <Form.Item
@@ -81,7 +99,7 @@ export default function ShippingAddressCard() {
         ]}
         hasFeedback
       >
-        <Input placeholder="請輸入郵遞區號" />
+        <Input className="shipping-form-name" placeholder="請輸入郵遞區號" />
       </Form.Item>
 
       <Form.Item
@@ -95,7 +113,7 @@ export default function ShippingAddressCard() {
         ]}
         hasFeedback
       >
-        <Input placeholder="請輸入國家" />
+        <Input className="shipping-form-name" placeholder="請輸入國家" />
       </Form.Item>
       <Form.Item 
           name="paymentMethod" 
@@ -112,13 +130,14 @@ export default function ShippingAddressCard() {
             </Radio.Group>
       </Form.Item>
       <Form.Item>
+        <div className="shipping-botton">
         <Button
           type="primary"
           htmlType="submit"
-          className="login-form__button"
         >
           Continue
         </Button>
+        </div>
       </Form.Item>
 
     </Form>
