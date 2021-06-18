@@ -10,7 +10,7 @@ export default function OrderCard({ orderId }) {
    const { state: { orderDetail: { loading, order } }, dispatch } = useContext(StoreContext);
    const { orderItems } = order;
    const history = useHistory()
-   const antIcon = <LoadingOutlined style={{ fontSize: 80, color: "#8183ff" }} spin />;
+   const antIcon = <LoadingOutlined style={{ fontSize: 80, color: "#fff" }} spin />;
 
    const paymentRequest = {
       apiVersion: 2,
