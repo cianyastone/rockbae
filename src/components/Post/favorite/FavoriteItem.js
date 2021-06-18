@@ -20,7 +20,7 @@ export default function FavoriteItem({ item }) {
         });
     };
     return (
-        <Card hoverable className="favorite-card">
+        <Card className="favorite-card">
             <div className="favorite-group-large">
                 <img className="favorite-img" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/>
                 <div className="favorite-group--content">
@@ -29,12 +29,12 @@ export default function FavoriteItem({ item }) {
                     </Link>
                     <p>{item.activity}</p>
                     <div className="favorite-group">
-                        <Avatar className="avatar">
+                        <Avatar>
                             {item.author}
                         </Avatar>
                         <p>{item.author}</p>
                     </div>
-                    <Button type="primary" className="btn-tocar" onClick={removeFavorite}>
+                    <Button type="primary" style={{ background: "#B27CC5", borderColor: "#B27CC5"}} className="favorite-button" onClick={removeFavorite}>
                         從收藏中移除
                     </Button>
                 </div>

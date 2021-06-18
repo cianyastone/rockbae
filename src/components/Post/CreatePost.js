@@ -48,7 +48,7 @@ export default function CreatePost(){
             <TextArea placeholder="請輸入文章內容..." showCount maxLength={1000} autoSize={{ minRows: 15 }}/>
         </Form.Item>
         <Form.Item 
-            label="推薦指數："
+            label={<label style={{ color: "#fff" }}>推薦指數：</label>}
             name={['recommend']} 
             rules={[{ required: true }]}
             className="create-post-group"
@@ -60,7 +60,9 @@ export default function CreatePost(){
                 <Button
                     type="primary"
                     htmlType="submit"
+                    style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
                     loading
+                    className="favorite-button"
                 >
                     發布文章
                 </Button>
@@ -68,6 +70,8 @@ export default function CreatePost(){
                 <Button
                     type="primary"
                     htmlType="submit"
+                    style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
+                    className="favorite-button"
                 >
                     發布文章
                 </Button>
