@@ -1,38 +1,50 @@
 .ant-breadcrumb {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: rgba(240,240,240, 0.85);
-    font-variant: tabular-nums;
-    line-height: 1.5715;
-    list-style: none;
-    font-feature-settings: 'tnum';
-    color: rgba(240,240,240, 0.45);
-    font-size: 14px;
-  }
-  .ant-breadcrumb .anticon {
-    font-size: 14px;
-  }
-  .ant-breadcrumb a {
-    color: rgba(240,240,240, 0.45);
-    transition: color 0.3s;
-  }
-  .ant-breadcrumb a:hover {
-    color: #B27CC5;
-  }
-  .ant-breadcrumb > span:last-child {
-    color: rgba(240,240,240, 0.85);
-  }
-  .ant-breadcrumb > span:last-child a {
-    color: rgba(240,240,240, 0.85);
-  }
-  .ant-breadcrumb > span:last-child .ant-breadcrumb-separator {
-    display: none;
-  }
-  .ant-breadcrumb-separator {
-    margin: 0 8px;
-    color: rgba(240,240,240, 0.45);
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  line-height: 1.5715;
+  list-style: none;
+  // color: rgb(255, 255, 255);
+  // text-shadow: 0.1em 0.1em 0.2em rgb(51, 51, 51);
+  font-size: 14px;
+}
+.ant-breadcrumb .anticon {
+  font-size: 14px;
+}
+.ant-breadcrumb a {
+  color: rgba(245, 245, 245, 0.85);
+  text-shadow: 0.1em 0.1em 0.2em rgb(105, 105, 105);
+  transition: color 0.3s;
+}
+.ant-breadcrumb a:hover {
+  color: rgb(201, 134, 255);
+  text-shadow: none;
+}
+.ant-breadcrumb > span:last-child {
+  color: rgb(255, 255, 255);
+  text-shadow: 0.1em 0.1em 0.2em rgb(51, 51, 51);
+}
+.ant-breadcrumb > span:last-child a {
+  color: rgb(255, 255, 255);
+  text-shadow: 0.1em 0.1em 0.2em rgb(54, 54, 54);
+}
+.ant-breadcrumb > span:last-child a:hover{
+  color: rgb(201, 134, 255);
+  text-shadow: none;
+}
+.ant-breadcrumb > span:last-child .ant-breadcrumb-separator {
+  display: none;
+}
+.ant-breadcrumb-separator {
+  margin: 0 8px;
+  color: rgb(245, 245, 245);
+  text-shadow: 0.1em 0.1em 0.2em rgb(51, 51, 51);
+}
+.ant-breadcrumb-rtl::before {
+  display: none;
+  content: '';
+}
   .ant-input-textarea-show-count::after {
     float: right;
     color: rgba(255, 255, 255, 0.45);
