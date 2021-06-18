@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Form, Select, Input, Button, Rate } from 'antd';
 import { createPost } from "../../actions"
 import { StoreContext } from "../../store"
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 
 
 export default function CreatePost(){
@@ -16,6 +17,7 @@ export default function CreatePost(){
 
     return (
         <div className="create-post-container">
+        <BreadcrumbItem link={'createpost'} name={'發布文章'} />
         <Form name="create-article" onFinish={onFinish}>
         <div className="create-post-group">
             <Form.Item
