@@ -50,7 +50,7 @@ export default function PostItem({ post }) {
             <p>{post.author}</p>
         </Col>
         <Col span={2}>
-            <p></p>
+            <p>{post.like.length}</p>
         </Col>
         </>
     );

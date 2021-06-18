@@ -154,20 +154,22 @@ const Register = ({ redirect }) => {
             className="login-form__button"
             htmlType="submit"
             loading
+            style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
-            Create your account
+            建立帳號
           </Button>
         ) : (
           <Button
             type="primary"
             className="login-form__button"
             htmlType="submit"
+            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
-            Create your account
+            建立帳號
           </Button>
         )}
-         Already have an account?{" "}
-        <Link to={"/login?redirect=shipping"}>Login</Link>
+        已經有帳號了嗎{" "}
+        <Link to={"/login?redirect=shipping"}>登入</Link>
         {error === "" ? (
           <></>
         ) : (

@@ -4,19 +4,7 @@ import { Form, Input, Button, Checkbox, Modal } from 'antd';
 import { WarningOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import { loginToFirebase, rememberLoginUser, registerToFirebase } from '../../actions'
 import { StoreContext } from "../../store"
-import Login from "./Login";
-import Register from "./Register";
 
-const formItemLayout = {
-  labelCol: {
-    xs: {span: 24,},
-    sm: {span: 8,},
-  },
-  wrapperCol: {
-    xs: {span: 24,},
-    sm: {span: 16,},
-  },
-};
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -58,15 +46,15 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
 
   return (
     <Modal
-      title="登入"
+      title={isLogin?"登入":"註冊"}
       visible={isModalVisible}
       onCancel={handleCancel}
       footer={null}
     >
-      {isLogin 
+    {isLogin 
       ?<Form
       name="normal_login"
-      className="login-form"
+      className="user-modal-form"
       form={form}
       initialValues={{
         remember: true,
@@ -111,14 +99,12 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
           name="remember"
           noStyle
         >
-          <Checkbox onChange={onChange} checked={remember}>Remember me</Checkbox>
+          <Checkbox onChange={onChange} checked={remember}>記住我</Checkbox>
         </Form.Item>
-
         <Link className="login-form__forgot" to={"/"}>
-          Forgot password
+          忘記密碼
         </Link>
       </Form.Item>
-
       <Form.Item>
         {loading ? (
           <Button
@@ -126,19 +112,21 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
             htmlType="submit"
             className="login-form__button"
             loading
+            style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
-            Log in
+            登入
           </Button>
         ) : (
           <Button
             type="primary"
             htmlType="submit"
             className="login-form__button"
+            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
-            Log in
+            登入
           </Button>
         )}
-        Or <Link onClick={handleLogin}>register now!</Link>
+        或 <Link onClick={handleLogin}>點此註冊</Link>
         {error === "" ? (
           <></>
         ) : (
@@ -153,17 +141,14 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
       </Form.Item>
     </Form>
       : <Form
-      {...formItemLayout}
       form={form}
       name="register"
       onFinish={onFinish2}
-      className="register-form"
+      className="user-modal-form"
       scrollToFirstError
     >
       <Form.Item
         name="name"
-        label="Your Name"
-        tooltip="What do you want others to call you?"
         rules={[
           {
             required: true,
@@ -172,11 +157,11 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
           },
         ]}
       >
-        <Input />
+        <Input placeholder="暱稱"/>
       </Form.Item>
       <Form.Item
         name="email"
-        label="E-mail"
+        className="user-modal-form--input"
         rules={[
           {
             type: "email",
@@ -188,49 +173,48 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
           },
         ]}
       >
-        <Input />
+        <Input placeholder="E-mail"/>
       </Form.Item>
-
-      <Form.Item
-        name="password"
-        label="Password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-        hasFeedback
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="rePassword"
-        label="Re-enter Password"
-        dependencies={["password"]}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: "Please re-enter your password!",
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
-                return Promise.resolve();
-              }
-
-              return Promise.reject(
-                new Error("The two passwords that you entered do not match!")
-              );
+      <Form.Item>
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
             },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          ]}
+          hasFeedback
+          style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
+        >
+          <Input.Password placeholder="密碼"/>
+        </Form.Item>
+        <Form.Item
+          name="rePassword"
+          dependencies={["password"]}
+          hasFeedback
+          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
+          rules={[
+            {
+              required: true,
+              message: "Please re-enter your password!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
 
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password placeholder="確認"/>
+        </Form.Item>
+      </Form.Item>
       <Form.Item
         name="agreement"
         valuePropName="checked"
@@ -245,7 +229,7 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
         {...tailFormItemLayout}
       >
         <Checkbox>
-          I have read the <Link to={"/"}>agreement</Link>
+          我已閱讀 <Link to={"/"}>條款</Link>
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
@@ -255,20 +239,22 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
             className="login-form__button"
             htmlType="submit"
             loading
+            style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
-            Create your account
+            註冊
           </Button>
         ) : (
           <Button
             type="primary"
             className="login-form__button"
             htmlType="submit"
+            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
-            Create your account
+            註冊
           </Button>
         )}
-         Already have an account?{" "}
-        <Link onClick={handleLogin}>Login</Link>
+         已經有帳號了嗎？{" "}
+        <Link onClick={handleLogin}>點此登入</Link>
         {error === "" ? (
           <></>
         ) : (
@@ -282,7 +268,7 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
         )}
       </Form.Item>
     </Form>
-      }
+    }
     </Modal>
   );
 };
