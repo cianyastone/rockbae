@@ -14,21 +14,19 @@ function RegisterPage(props) {
     const { redirect } = QueryString.parse(props.location.search);
     return (
         <>
-        <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header">
-            <AppHeader title="Rock Bae"/>
-        </Header>
-        <Layout className="container main-layout">
-            <Layout className="bg-gray">
-                <Header className="layout-header">
-                    <AppHeader title={title} />
-                </Header>
-                <Content className="layout-content content-activity">
-                    <Register redirect={redirect} />
-                </Content>
-                <Footer className="layout-footer">
-                    <AppFooter />
-                </Footer>
-            </Layout>
+        <Layout className="new-container">
+            <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header register-color">
+                <AppHeader title="Rock Bae"/>
+            </Header>
+            <Header className="layout-header register-color">
+                <AppHeader title="Rock Bae"/>
+            </Header>
+            <Content className="register-color">
+                <Register redirect={redirect}/>
+            </Content>
+            <Footer className="layout-footer register-color">
+                <AppFooter />
+            </Footer>
         </Layout>
         </>
     );
