@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Row, Col, Button, Spin } from "antd";
 import { LoadingOutlined } from '@ant-design/icons';
-import { createOrder, resetOrder, requestOrderDetail } from "../../actions"
+import { createOrder, resetOrder } from "../../actions"
 import { StoreContext } from "../../store";
 
 export default function PlaceOrderCard() {
