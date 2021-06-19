@@ -15,7 +15,7 @@ function Order({ match }) {
             <AppHeader />
     </Header> */}
     <Content className="container">
-        <Content className="layout-content Order-content">
+        <Content className="layout-content">
           <OrderCard orderId={match.params.orderId} />
         </Content>
     </Content>

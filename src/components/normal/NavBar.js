@@ -1,23 +1,26 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { Menu, Dropdown, Drawer, Badge } from 'antd';
 import { DownOutlined, MenuOutlined } from '@ant-design/icons';
 import { useState, useContext } from "react";
 import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
 import UserInfo from "../user/UserInfo";
-import UserInfoForMobile from "../user/UserInfoForMobile";
+import UserModal from "../user/UserModal";
 import { StoreContext } from "../../store"
-import { setActivityDetail, setPostPage } from "../../actions";
+import { setActivityDetail, setPostPage, logoutFromFirebase } from "../../actions";
 
 const { SubMenu } = Menu;
-const rootSubmenuKeys = ['sub1'];
+const rootSubmenuKeys = ['sub1','sub2'];
 
 export default function NavBar() {
-  const { state: { page: { activities } } } = useContext(StoreContext);
+  const { state: { page: { activities }, userSignin : { userInfo } } } = useContext(StoreContext);
   const { dispatch } = useContext(StoreContext);
   const [isOnTouch, setIsOnTouch] = useState(false);
   const handleCloseDrawer = () => setIsOnTouch(false);
   const [openKeys, setOpenKeys] = useState(['sub1']);
+  const history = useHistory();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const toggleModal = () => setIsModalVisible(!isModalVisible);
 
   const menu = (
     <Menu>
@@ -42,6 +45,17 @@ export default function NavBar() {
     </Menu>
   );
 
+  const goToProfile = () => {
+    history.push("/login?redirect=profile");
+  };
+  const Logout = () => {
+     logoutFromFirebase(dispatch);
+     history.push("/");
+   };
+  const LogIn = () =>{
+    <UserModal onClick={toggleModal}/>
+  }
+  
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
@@ -84,9 +98,49 @@ export default function NavBar() {
         <Link to="/Home">
           <img className="nav-slogan" width="50%" src="https://i.pinimg.com/564x/09/79/8f/09798f85e707c8e84d3e8460318d4998.jpg" alt="description"/>
         </Link>
-        <UserInfoForMobile />
         <Menu mode="inline" >
-          <SubMenu key="sub1" title="煞氣ㄉ音樂祭" openKeys={openKeys} onOpenChange={onOpenChange}>
+          <SubMenu key="sub1" 
+          title={userInfo
+            ? `${userInfo.displayName}'s ㄉ個人頁面`
+            : `請登入`
+         } 
+          openKeys={openKeys} 
+          onOpenChange={onOpenChange}>
+            
+            {userInfo
+              ? 
+            <>
+            <Menu.Item key="1">
+            <nav onClick={goToProfile}>
+               個人檔案
+            </nav>
+            </Menu.Item>
+            <Menu.Item key="2">
+                <NavLink to="/createpost" className="activity-name">
+                  發布文章
+                </NavLink>
+            </Menu.Item>
+            <Menu.Item key="3">
+                <NavLink to="/userorder" className="activity-name">
+                  我的訂單
+                </NavLink>
+            </Menu.Item>
+            <Menu.Item key="4">
+                <NavLink to="/favoritePost" className="activity-name">
+                  收藏ㄉ文章
+                </NavLink>
+            </Menu.Item>
+            <Menu.Item onClick={Logout} key="5">
+                登出
+            </Menu.Item>
+            </>
+            :
+            <Menu.Item onClick={LogIn} key="1">
+              登入
+            </Menu.Item>
+            }
+          </SubMenu>
+          <SubMenu key="sub2" title="煞氣ㄉ音樂祭" openKeys={openKeys} onOpenChange={onOpenChange}>
             {[...Array(activities.length).keys()].map((x) => (
             <Menu.Item value={x}>
                 <Link to={`/activity/${activities[x].id}`}>

@@ -38,7 +38,8 @@ function ActivityDetail({activity}) {
         scale: 1,
         status: STATUS.STILL,
         boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.62)",
-        config: { mass: 2, tension: 170, friction: 12 }
+        config: { mass: 2, tension: 170, friction: 12 },
+        zIndex:-10,
       }));
       const onMouseLeave = () =>
       set({
@@ -47,7 +48,7 @@ function ActivityDetail({activity}) {
             scale: 1,
             boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.62)",
             status: STATUS.GOING_DOWN,
-            
+            zIndex:-10,
           },
           { status: STATUS.STILL }
         ]
@@ -60,6 +61,7 @@ function ActivityDetail({activity}) {
             scale: 1.1,
             boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.42)",
             transform: 'translate3d(0px,0,1)',
+            zIndex:10000,
          }
          ]
       });
@@ -73,26 +75,29 @@ function ActivityDetail({activity}) {
       <>
       <BreadcrumbItem link={`activity/${activity.id}`} name={activity.name} />
       <Row gutter={[4, 32]}>
-         <Col lg={{ span: 8 }}>
+         <Col 
+         sm={{ span: 12 }}
+         lg={{ span: 8 }}>
+            
          <animated.img
             alt={activity.name}
             className="activity-image"
             src={activity.image}
             style={
             {scale: leftIconProps.scale,
-            boxShadow: leftIconProps.boxShadow,
-            zIndex: leftIconProps.status.to(trans)}}
+            boxShadow: leftIconProps.boxShadow,}}
             onMouseEnter={onLeftIconEnter}
             onMouseLeave={onLeftIconLeave}
          />            
          </Col>
-         <Col lg={{ span: 8 }} >
+         <Col 
+         sm={{ span: 12 }}
+         lg={{ span: 8 }} >
          <animated.div 
          className="activity-info--detail"
          style={
             {scale: midIconProps.scale,
-            boxShadow: midIconProps.boxShadow,
-            zIndex: midIconProps.status.to(trans)}}
+            boxShadow: midIconProps.boxShadow,}}
             onMouseEnter={onMidIconEnter}
             onMouseLeave={onMidIconLeave}
          >
@@ -159,7 +164,7 @@ function ActivityDetail({activity}) {
                style={
                   {scale: rightIconProps.scale,
                   boxShadow: rightIconProps.boxShadow,
-                  zIndex: rightIconProps.status.to(trans)}}
+                  }}
                   onMouseEnter={onRightIconEnter}
                   onMouseLeave={onRightIconLeave}
                className="activity-info--detail"

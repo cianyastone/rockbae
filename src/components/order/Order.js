@@ -51,7 +51,7 @@ export default function OrderCard({ orderId }) {
       <>
          {loading
             ? (
-               <div className="spinner-wrap">
+               <div className=" order-container spinner-wrap">
                   <Spin indicator={antIcon} className="spinner" />
                </div>
             ) : (
@@ -62,7 +62,8 @@ export default function OrderCard({ orderId }) {
                <Row gutter={[48, 48]}>
                   <Col
                      xs={{ span: 20, offset: 2 }}
-                     lg={{ span: 13, offset: 2 }}
+                     md={{ span: 12, offset: 0 }}
+                     lg={{ span: 12, offset: 1 }}
                   >
                      <div className="Order-card">
                      <span className="dot dot-rd"></span>
@@ -70,7 +71,7 @@ export default function OrderCard({ orderId }) {
                      <span className="dot dot-g"></span>
                      <hr className="hr"></hr>
                         <h2 className="order-title">泥ㄉ運送資訊</h2>
-                        <p className="order-content">
+                        <p className="order-text">
                            <strong>姓名：</strong> {order.shippingAddress.fullName} <br />
                            <strong>地址：</strong> {order.shippingAddress.address},
                   {order.shippingAddress.city}, {order.shippingAddress.postalCode}
@@ -83,7 +84,7 @@ export default function OrderCard({ orderId }) {
                      <span className="dot dot-g"></span>
                      <hr className="hr"></hr>
                         <h2 className="order-title">泥ㄉ付款資訊</h2>
-                        <p className="order-content">
+                        <p className="order-text">
                            <strong>付款方式：</strong> {order.shippingAddress.paymentMethod}
                         </p>
                      </div>
@@ -126,7 +127,8 @@ export default function OrderCard({ orderId }) {
                   </Col>
                   <Col
                      xs={{ span: 20, offset: 2 }}
-                     lg={{ span: 7, offset: 0 }}
+                     md={{ span: 12, offset: 0 }}
+                     lg={{ span: 10, offset: 0 }}
                   >
                      <div className="Order-card">
                      <span className="dot dot-rd"></span>
@@ -150,15 +152,6 @@ export default function OrderCard({ orderId }) {
                               <strong>${order.totalPrice}</strong>
                            </div>
                         </div>
-                        {/* <GooglePayButton
-                           environment="TEST"
-                           buttonColor="black"
-                           paymentRequest={paymentRequest}
-                           onLoadPaymentData={paymentRequest => {
-                              console.log('load payment data', paymentRequest);
-                              history.push('/');
-                           }}
-                        /> */}
                      </div>
 
                   </Col>

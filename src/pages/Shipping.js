@@ -11,7 +11,7 @@ function PlaceOrder() {
       <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header shipping-header">
           <AppHeader title="Rock Bae"/>
       </Header>
-      <Header className="layout-header shipping-header">
+      <Header className="layout-header shipping-header ship-header">
               <AppHeader />
       </Header>
       <div className="shipping-content">

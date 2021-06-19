@@ -16,11 +16,11 @@ export default function ShippingAddressCard() {
 
   const layout = {
     labelCol: {
-      xs: { span: 24 },
-      sm: { span: 6 },
+      xs: { span: 8 },
+      sm: { span: 7 },
     },
     wrapperCol: {
-      xs: { span: 24 },
+      xs: { span: 10 },
       sm: { span: 16 },
     },
   };

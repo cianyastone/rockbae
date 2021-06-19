@@ -23,7 +23,8 @@ export default function PreferModal() {
                   <Col 
                      key={item.id} 
                      sm={{ span: 12 }} 
-                     lg={{ span: 12 }}
+                     md={{ span: 8 }}
+                     lg={{ span: 6 }}
                      xl={{ span: 6 }}
                      xxl={{ span: 6 }}
                   >

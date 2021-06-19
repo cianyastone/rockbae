@@ -23,8 +23,9 @@ export default function OrderList() {
           <>
             {orderList.map( order => (
               <Col
-                xs={{ span: 20, offset: 2 }}
-                lg={{ span: 12 , offset: 0 }}
+              xs={{ span: 20, offset: 2 }}
+              md={{ span: 12, offset: 0 }}
+              lg={{ span: 12 , offset: 0 }}
               >
               <div className="userOrder-card">
                 <span className="dot dot-rd"></span>
