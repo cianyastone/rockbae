@@ -68,7 +68,7 @@ export default function NavBar() {
         <PreferSummary />
       </NavLink>
       <NavLink to="/post" className="nav-item" onClick={() => {setPostPage(dispatch, `/post`);}} activeClassName="nav-item--active">
-        文章
+        真摯ㄉ文章
       </NavLink>
       <CartModal className="nav-item"/>
       <UserInfo className="nav-item" style={{marginRight: '20px'}} />

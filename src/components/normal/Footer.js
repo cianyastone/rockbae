@@ -14,9 +14,9 @@ export default function Footer() {
                     <Link to="/" className="footer-item">
                         煞氣ㄉ音樂祭
                     </Link>
-                    <Link to="/Prefer" className="footer-item">
-                        想去ㄉ活動
-                    </Link>    
+                    <Link to="/post" className="footer-item">
+                        真摯ㄉ文章
+                    </Link>
                 </Col>
                 <Col className="footer-area" 
                     xs={{ span: 24 }} 
@@ -25,8 +25,14 @@ export default function Footer() {
                     xl={{ span: 8 }}
                     xxl={{ span: 8 }}>
                     <p className="footer-title">顧客服務</p>
-                    <Link to="/" className="footer-item">
-                        條款與細則
+                    <Link to="/Prefer" className="footer-item">
+                        想去ㄉ活動
+                    </Link>
+                    <Link to="/Cart" className="footer-item">
+                        婐ㄉ購物車
+                    </Link>
+                    <Link to="/favoritePost" className="footer-item">
+                        收藏ㄉ文章
                     </Link>
                 </Col>
                 <Col className="footer-area"
