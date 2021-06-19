@@ -15,12 +15,14 @@ function Cart() {
         <Header style={{ position: 'fixed', zIndex: 99, width:'100%'}} className="layout-header cart-haeder">
             <AppHeader title="Rock Bae"/>
         </Header>
-        <Header className="layout-header">
+        {/* <Header className="layout-header">
             <AppHeader title={title} />
-        </Header>
+        </Header> */}
         <div className="main-layout">
+        <Content className="container">
         <Content className="layout-content cart-content">
             <CartModalformobile />
+        </Content>
         </Content>
         </div>
         </>
