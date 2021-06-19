@@ -16,7 +16,7 @@ export default function PerferItem({ item }) {
                     style={{ width: '100%' }}
                     src={item.image}
                     alt={item.name}
-                    className="activityItem-img" />
+                    className="prefer-img" />
             </Link>
             <div className="activity-info">
                 <h6 className="activity-category">
