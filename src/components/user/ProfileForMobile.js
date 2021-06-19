@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Modal, Form, Input, Button } from "antd";
+import { Form, Input, Button } from "antd";
 import { logoutFromFirebase, updateUserInfo } from "../../actions";
 import { StoreContext } from "../../store";
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 
-const ProfileCard = ({ isModalVisible, toggleModal }) => {
-  const { state: { userSignin: { userInfo } },dispatch } = useContext(StoreContext);
+const ProfileForMobile = () => {
+  const {
+    state: {
+      userSignin: { userInfo },
+    },
+    dispatch,
+  } = useContext(StoreContext);
   const { displayName, email } = userInfo;
   const history = useHistory();
   const [form] = Form.useForm();
-  const handleCancel = () => toggleModal(!isModalVisible);
 
   const handleUpdate = (values) => {
     console.log(values)
@@ -20,20 +25,28 @@ const ProfileCard = ({ isModalVisible, toggleModal }) => {
     logoutFromFirebase(dispatch);
     history.push("/");
   };
+
+  const layout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 6 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 },
+    },
+  };
   return (
-    <Modal
-      visible={isModalVisible}
-      onCancel={handleCancel}
-      footer={null}
-    >
+    <div className="post-container">
+      <BreadcrumbItem link={'profile'} name={'個人檔案'} />
       <Form
+        {...layout} 
         onFinish={handleUpdate}
-        name="normal_login"
-        className="user-modal-form"
         form={form}
+        className="user-form"
       >
-        <p className="shipping-title">修改個人檔案</p>
-        <hr className="hr-user"></hr>
+        <p className="shipping-title">修改個人資料</p>
+        <hr className="hr-shipping"></hr>
         <Form.Item
           label="暱稱: "
           name="name"
@@ -63,7 +76,7 @@ const ProfileCard = ({ isModalVisible, toggleModal }) => {
           ]}
           hasFeedback
         >
-          <Input.Password className="user-form-imput" />
+          <Input.Password className="user-form-imput"/>
         </Form.Item>
         <Form.Item
           name="rePassword"
@@ -105,7 +118,7 @@ const ProfileCard = ({ isModalVisible, toggleModal }) => {
           </Button>
         </Form.Item>
       </Form>
-    </Modal>
+    </div>
   );
 };
-export default ProfileCard;
+export default ProfileForMobile;

@@ -68,6 +68,7 @@ import {
   createOrderApi,
   getOrderById,
   getOrderByUser,
+  checkLoginApi,
 } from "../api";
 
 
@@ -422,4 +423,13 @@ export const getUserOrder = async (dispatch) => {
     type: GET_ORDER_LIST,
     payload: orderList,
   });
+}
+
+export const checkLogin = (dispatch) => {
+  const isLogin = checkLoginApi();
+  if(!isLogin) {
+    localStorage.removeItem('orderInfo')
+    dispatch({ type: LOGOUT_REQUEST });    
+  }
+  return isLogin;
 }

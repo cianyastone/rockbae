@@ -250,3 +250,8 @@ export const getOrderByUser = async () => {
 export const signOut = () => {
   auth.signOut();
 }
+
+export const checkLoginApi = () => {
+  const user = auth.currentUser;
+  return user.uid?  true : false;
+}

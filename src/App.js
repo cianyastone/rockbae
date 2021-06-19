@@ -6,6 +6,8 @@ import Prefer from './pages/Prefer'
 import Cart from './pages/Cart'
 import Feed from './pages/Feed'
 import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import Profile from './pages/Profile'
 import PostDetail from './pages/PostDetail'
 import CreatePost from './pages/CreatePost'
 import Favorite from './pages/Favorite'
@@ -30,6 +32,8 @@ function App() {
           <Route path="/Cart" component={Cart} />
           <Route exact path="/feeder" component={Feed} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/profile" component={Profile} />
           <Route path="/createPost" component={CreatePost} />
           <Route path="/userorder" component={UserOrder} />
           <Route exact path="/post" component={Post} />

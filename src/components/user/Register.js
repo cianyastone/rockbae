@@ -1,9 +1,10 @@
 import { Link, useHistory } from "react-router-dom";
 import React, { useContext, useEffect } from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
-import { WarningOutlined } from '@ant-design/icons';
+import { WarningOutlined, MailOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import { registerToFirebase } from '../../actions'
 import { StoreContext } from "../../store"
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 
 const formItemLayout = {
   labelCol: {
@@ -51,18 +52,17 @@ const Register = ({ redirect }) => {
   }, [userInfo]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Form
-      {...formItemLayout}
+    <div className="post-container">
+      <BreadcrumbItem link={'register'} name={'註冊'} />
+      <Form
       form={form}
       name="register"
       onFinish={onFinish}
-      className="register-form"
+      className="user-form"
       scrollToFirstError
     >
       <Form.Item
         name="name"
-        label="Your Name"
-        tooltip="What do you want others to call you?"
         rules={[
           {
             required: true,
@@ -71,11 +71,10 @@ const Register = ({ redirect }) => {
           },
         ]}
       >
-        <Input />
+        <Input prefix={<UserOutlined />} className="user-form-imput" placeholder="暱稱"/>
       </Form.Item>
       <Form.Item
         name="email"
-        label="E-mail"
         rules={[
           {
             type: "email",
@@ -87,49 +86,48 @@ const Register = ({ redirect }) => {
           },
         ]}
       >
-        <Input />
+        <Input prefix={<MailOutlined />} className="user-form-imput" placeholder="E-mail"/>
       </Form.Item>
-
-      <Form.Item
-        name="password"
-        label="Password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-        hasFeedback
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="rePassword"
-        label="Re-enter Password"
-        dependencies={["password"]}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: "Please re-enter your password!",
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
-                return Promise.resolve();
-              }
-
-              return Promise.reject(
-                new Error("The two passwords that you entered do not match!")
-              );
+      <Form.Item>
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
             },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          ]}
+          hasFeedback
+          style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
+        >
+          <Input.Password prefix={<LockOutlined />} className="user-form-imput" placeholder="密碼"/>
+        </Form.Item>
+        <Form.Item
+          name="rePassword"
+          dependencies={["password"]}
+          hasFeedback
+          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
+          rules={[
+            {
+              required: true,
+              message: "Please re-enter your password!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
 
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password prefix={<LockOutlined />} className="user-form-imput" placeholder="確認"/>
+        </Form.Item>
+      </Form.Item>
       <Form.Item
         name="agreement"
         valuePropName="checked"
@@ -144,7 +142,7 @@ const Register = ({ redirect }) => {
         {...tailFormItemLayout}
       >
         <Checkbox>
-          I have read the <Link to={"/"}>agreement</Link>
+          我已閱讀 <Link to={"/"}>條款</Link>
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
@@ -156,7 +154,7 @@ const Register = ({ redirect }) => {
             loading
             style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
-            建立帳號
+            註冊
           </Button>
         ) : (
           <Button
@@ -165,11 +163,11 @@ const Register = ({ redirect }) => {
             htmlType="submit"
             style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
-            建立帳號
+            註冊
           </Button>
         )}
-        已經有帳號了嗎{" "}
-        <Link to={"/login?redirect=shipping"}>登入</Link>
+         已經有帳號了嗎？{" "}
+         <Link to={"/login?redirect=shipping"}>點此登入</Link>
         {error === "" ? (
           <></>
         ) : (
@@ -183,6 +181,7 @@ const Register = ({ redirect }) => {
         )}
       </Form.Item>
     </Form>
+    </div>
   );
 };
 export default Register;

@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Modal } from 'antd';
+import { Form, Input, Button, Checkbox } from 'antd';
 import { WarningOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
-import { loginToFirebase, rememberLoginUser } from '../../actions'
+import { checkLogin, loginToFirebase, rememberLoginUser } from '../../actions'
 import { StoreContext } from "../../store"
-import Register from "./Register";
+import BreadcrumbItem from "../normal/BreadcrumbItem";
 
-const Login = ({ redirect, isModalVisible, toggleModal }) => {
+const LoginCard = ({ redirect }) => {
   const { state:{ userSignin: { userInfo, loading, error, remember } }, dispatch } = useContext(StoreContext);
   const [form] = Form.useForm();
   const history = useHistory();
-  const handleCancel = () => toggleModal(!isModalVisible);
-  const [isRegisterVisible, setIsRegisterVisible] = useState(false);
-  const toggleRegisterModal = () => setIsRegisterVisible(!isRegisterVisible);
  
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
@@ -23,110 +20,104 @@ const Login = ({ redirect, isModalVisible, toggleModal }) => {
     rememberLoginUser(dispatch, e.target.checked);
   }
 
-  useEffect(() => {
-    if(userInfo) history.push(redirect);
+  useEffect(() => {    
+    if( userInfo && checkLogin(dispatch) ) history.push(redirect);
   }, [ userInfo ]);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Modal
-      title="登入"
-      visible={isModalVisible}
-      onCancel={handleCancel}
-      footer={null}
+    <div className="post-container">
+      <BreadcrumbItem link={'login'} name={'登入'} />
+      <Form
+      name="normal_login"
+      form={form}
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      className="user-form"
     >
-        <Form
-        name="normal_login"
-        className="login-form"
-        form={form}
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
+      <Form.Item
+        name="email"
+        rules={[
+          {
+            type: "email",
+            message: "The input is not valid E-mail!",
+          },
+          {
+            required: true,
+            message: "Please input your E-mail!",
+          },
+        ]}
       >
+        <Input
+          prefix={<MailOutlined />}
+          placeholder="E-Mail"
+          className="user-form-imput"
+        />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: "Please input your Password!",
+          },
+        ]}
+      >
+        <Input.Password
+          prefix={<LockOutlined />}
+          type="password"
+          placeholder="Password"
+          className="user-form-imput"
+        />
+      </Form.Item>
+      <Form.Item>
         <Form.Item
-          name="email"
-          rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
-          ]}
-          hasFeedback
+          name="remember"
+          noStyle
         >
-          <Input
-            prefix={<MailOutlined className="site-form-item-icon" />}
-            placeholder="E-Mail"
-          />
+          <Checkbox onChange={onChange} checked={remember}>記住我</Checkbox>
         </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Password!",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Form.Item
-            name="remember"
-            noStyle
+        <Link className="login-form__forgot" to={"/"}>
+          忘記密碼
+        </Link>
+      </Form.Item>
+      <Form.Item>
+        {loading ? (
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form__button"
+            loading
+            style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
-            <Checkbox onChange={onChange} checked={remember}>Remember me</Checkbox>
-          </Form.Item>
-
-          <Link className="login-form__forgot" to={"/"}>
-            Forgot password
-          </Link>
-        </Form.Item>
-
-        <Form.Item>
-          {loading ? (
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form__button"
-              style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
-              loading
-            >
-              Log in
-            </Button>
-          ) : (
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form__button"
-              style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
-            >
-              Log in
-            </Button>
-          )}
-          Or <Link onClick={toggleRegisterModal}>register now!<Register isModalVisible={isRegisterVisible} toggleModal={toggleRegisterModal}/></Link>
-          {error === "" ? (
-            <></>
-          ) : (
-            <div className="login-form__error-wrap">
-              <h3 className="login-form__error-title">
-                <WarningOutlined className="site-form-item-icon" />
-                {"  "}There was a problem
-              </h3>
-              <p className="login-form__error-message">{error}</p>
-            </div>
-          )}
-        </Form.Item>
-      </Form>
-    </Modal>
+            登入
+          </Button>
+        ) : (
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form__button"
+            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
+          >
+            登入
+          </Button>
+        )}
+        或 <Link to={"/register?redirect=shipping"}>點此註冊</Link>
+        {error === "" ? (
+          <></>
+        ) : (
+          <div className="login-form__error-wrap">
+            <h3 className="login-form__error-title">
+              <WarningOutlined className="site-form-item-icon" />
+              {"  "}There was a problem
+            </h3>
+            <p className="login-form__error-message">{error}</p>
+          </div>
+        )}
+      </Form.Item>
+    </Form>
+    </div>
   );
 };
-export default Login;
+export default LoginCard;

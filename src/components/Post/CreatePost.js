@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Form, Select, Input, Button, Rate } from 'antd';
+import { Form, Select, Input, Button, Rate, Row, Col, } from 'antd';
 import { createPost } from "../../actions"
 import { StoreContext } from "../../store"
 import BreadcrumbItem from "../normal/BreadcrumbItem";
@@ -16,33 +16,44 @@ export default function CreatePost(){
     const { TextArea } = Input;
 
     return (
-        <div className="create-post-container">
+        <div className="post-container">
         <BreadcrumbItem link={'createpost'} name={'發布文章'} />
         <Form name="create-article" onFinish={onFinish}>
-        <div className="create-post-group">
-            <Form.Item
-                name={['activity']} 
-                rules={[{ required: true }]}
-                style={{ width: '18%' }}
-            >
-                <Select placeholder="請選擇活動分類">
-                {[...Array(activities.length).keys()].map((x) => (
-                <Option value={activities[x].name}>
-                    <p className="activity-name">
-                        {activities[x].name}
-                    </p>
-                </Option>
-                ))}
-                </Select>
-            </Form.Item>
-            <Form.Item 
-                name={['article']} 
-                rules={[{ required: true }]}
-                style={{ width: '81%' }}
-            >
-                <TextArea showCount maxLength={20} autoSize={{ minRows: 1, maxRows: 1 }} placeholder="請輸入文章標題..."/>
-            </Form.Item>
-        </div >
+            <Row gutter={[24, 8]}>
+                <Col xs={{ span: 24 }} 
+                sm={{ span: 8 }} 
+                lg={{ span: 6 }}
+                xl={{ span: 6 }}
+                xxl={{ span: 6 }}>
+                    <Form.Item
+                        name={['activity']} 
+                        rules={[{ required: true }]}
+                        style={{width:"100%"}}
+                    >
+                        <Select placeholder="請選擇活動分類">
+                        {[...Array(activities.length).keys()].map((x) => (
+                        <Option value={activities[x].name}>
+                            <p className="activity-name">
+                                {activities[x].name}
+                            </p>
+                        </Option>
+                        ))}
+                        </Select>
+                    </Form.Item>
+                </Col>
+                <Col xs={{ span: 24 }} 
+                sm={{ span: 16 }} 
+                lg={{ span: 18 }}
+                xl={{ span: 18 }}
+                xxl={{ span: 18 }}>
+                    <Form.Item 
+                        name={['article']} 
+                        rules={[{ required: true }]}
+                    >
+                        <TextArea showCount maxLength={20} autoSize={{ minRows: 1, maxRows: 1 }} placeholder="請輸入文章標題..."/>
+                    </Form.Item>
+                </Col>
+            </Row>
         <Form.Item 
             name={['content']} 
             rules={[{ required: true }]}

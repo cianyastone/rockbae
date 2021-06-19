@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Drawer, Badge } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { DownOutlined, MenuOutlined } from '@ant-design/icons';
 import { useState, useContext } from "react";
 import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
@@ -73,9 +73,7 @@ export default function NavBar() {
       <CartModal className="nav-item"/>
       <UserInfo className="nav-item" style={{marginRight: '20px'}} />
     </div>
-    <Link onClick={() => setIsOnTouch(!isOnTouch)} isOnTouch={isOnTouch} className="show-mobile nav-position">
-      <img src="https://i.pinimg.com/originals/35/73/f4/3573f498e9a1aabd2408b997fd2dc368.png" width="30px"></img>
-    </Link>
+    <MenuOutlined onClick={() => setIsOnTouch(!isOnTouch)} isOnTouch={isOnTouch} className="show-mobile nav-position"/>
     <Drawer
       closable={false}
       onClose={handleCloseDrawer}

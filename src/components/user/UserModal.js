@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Input, Button, Checkbox, Modal } from 'antd';
-import { WarningOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+import { WarningOutlined, MailOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import { loginToFirebase, rememberLoginUser, registerToFirebase } from '../../actions'
 import { StoreContext } from "../../store"
 
@@ -46,7 +46,6 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
 
   return (
     <Modal
-      title={isLogin?"登入":"註冊"}
       visible={isModalVisible}
       onCancel={handleCancel}
       footer={null}
@@ -61,6 +60,8 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
       }}
       onFinish={onFinish}
     >
+      <p className="shipping-title">登入</p>
+      <hr className="hr-user"></hr>
       <Form.Item
         name="email"
         rules={[
@@ -77,6 +78,7 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
         <Input
           prefix={<MailOutlined className="site-form-item-icon" />}
           placeholder="E-Mail"
+          className="user-form-imput"
         />
       </Form.Item>
       <Form.Item
@@ -92,6 +94,7 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
+          className="user-form-imput"
         />
       </Form.Item>
       <Form.Item>
@@ -147,6 +150,8 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
       className="user-modal-form"
       scrollToFirstError
     >
+      <p className="shipping-title">註冊</p>
+      <hr className="hr-user"></hr>
       <Form.Item
         name="name"
         rules={[
@@ -157,11 +162,10 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
           },
         ]}
       >
-        <Input placeholder="暱稱"/>
+        <Input prefix={<UserOutlined />} className="user-form-imput" placeholder="暱稱"/>
       </Form.Item>
       <Form.Item
         name="email"
-        className="user-modal-form--input"
         rules={[
           {
             type: "email",
@@ -173,7 +177,7 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
           },
         ]}
       >
-        <Input placeholder="E-mail"/>
+        <Input prefix={<MailOutlined />} className="user-form-imput" placeholder="E-mail"/>
       </Form.Item>
       <Form.Item>
         <Form.Item
@@ -187,7 +191,7 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
           hasFeedback
           style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
         >
-          <Input.Password placeholder="密碼"/>
+          <Input.Password prefix={<LockOutlined />} className="user-form-imput" placeholder="密碼"/>
         </Form.Item>
         <Form.Item
           name="rePassword"
@@ -212,7 +216,7 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
             }),
           ]}
         >
-          <Input.Password placeholder="確認"/>
+          <Input.Password prefix={<LockOutlined />} className="user-form-imput" placeholder="確認"/>
         </Form.Item>
       </Form.Item>
       <Form.Item

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { StoreContext } from "../../../store"
 import { Link } from 'react-router-dom';
-import { Card, notification, Avatar, Button } from "antd"
+import { Card, notification, Avatar, Button, Row, Col } from "antd"
 import { StarOutlined } from '@ant-design/icons';
 import { removeFromFavorite, setPostPage } from "../../../actions"
 
@@ -21,24 +21,42 @@ export default function FavoriteItem({ item }) {
     };
     return (
         <Card className="favorite-card">
-            <div className="favorite-group-large">
-                <img className="favorite-img" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/>
-                <div className="favorite-group--content">
-                    <Link to={`/post/${item.activity}/${item.id}`}>
-                        <h1>{item.article}</h1>
-                    </Link>
-                    <p>{item.activity}</p>
-                    <div className="favorite-group">
-                        <Avatar>
-                            {item.author}
-                        </Avatar>
-                        <p>{item.author}</p>
-                    </div>
-                    <Button type="primary" style={{ background: "#B27CC5", borderColor: "#B27CC5"}} className="favorite-button" onClick={removeFavorite}>
-                        從收藏中移除
-                    </Button>
-                </div>
-            </div>
+            <Row className="favorite-group-large">
+                <Col span={8}>
+                    <img className="favorite-img" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/>
+                </Col>
+                <Col span={16}>
+                    <Row className="favorite-group--content">
+                        <Link to={`/post/${item.activity}/${item.id}`}>
+                            <h1>{item.article}</h1>
+                        </Link>
+                    </Row>
+                    <Row className="favorite-group--content">
+                        <p>{item.activity}</p>
+                    </Row>
+                    <Row className="favorite-group--content">
+                        <Col
+                        xs={{ span: 0 }} 
+                        sm={{ span: 0 }} 
+                        lg={{ span: 12 }}
+                        xl={{ span: 12 }}
+                        xxl={{ span: 12 }}><Row>
+                            <Avatar>{item.author}</Avatar>
+                            <p>{item.author}</p>
+                        </Row></Col>
+                        <Col
+                        xs={{ span: 24 }} 
+                        sm={{ span: 24 }} 
+                        lg={{ span: 12 }}
+                        xl={{ span: 12 }}
+                        xxl={{ span: 12 }}>
+                            <Button type="primary" style={{ background: "#B27CC5", borderColor: "#B27CC5"}} className="favorite-button" onClick={removeFavorite}>
+                                從收藏中移除
+                            </Button>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
         </Card>
     );
 }
