@@ -14,6 +14,7 @@ const LoginCard = ({ redirect }) => {
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
     await loginToFirebase(dispatch, values);
+    history.push("/");
   };
 
   const onChange = e => {
