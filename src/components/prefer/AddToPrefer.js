@@ -53,8 +53,8 @@ export default function AddToPrefer({activity}){
     return (
         <>
         {InPrefer
-            ? <HeartFilled className="btn-toprefer" onClick={removePrefer}/>
-            : <HeartOutlined className="btn-toprefer" onClick={addToPrefer}/>
+            ? <HeartFilled className="btn-toprefer btn-heart" onClick={removePrefer}/>
+            : <HeartOutlined className="btn-toprefer btn-heart" onClick={addToPrefer}/>
         }
         </>
     );

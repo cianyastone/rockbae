@@ -78,7 +78,7 @@ function ActivityDetail({activity}) {
          <Col 
          sm={{ span: 12 }}
          lg={{ span: 8 }}>
-            
+
          <animated.img
             alt={activity.name}
             className="activity-image"
@@ -171,7 +171,7 @@ function ActivityDetail({activity}) {
                >
                <Tabs defaultActiveKey="1">
                   <TabPane tab="簡介" key="1">
-                  <p>
+                  <p className="activity-description">
                      {activity.description_long}
                      <br/><br/>
                      活動名稱：{activity.name}<br/>
@@ -180,7 +180,7 @@ function ActivityDetail({activity}) {
                   </p>
                   </TabPane>
                   <TabPane tab="演出陣容" key="2">
-                  {activity.artist}
+                  Content of Tab Pane 2
                   </TabPane>
                   <TabPane tab="主辦單位" key="3">
                   <p>

@@ -27,7 +27,7 @@ export default function PerferItem({ item }) {
                 </h2>
             </div>
             <div className="prefer-item-end">
-                <div className="prefer-item-delete btn-toprefer" onClick={()=>removeFromPrefer(dispatch, item.id)}>
+                <div className="prefer-item-delete btn-toprefer btn-nottoprefer" onClick={()=>removeFromPrefer(dispatch, item.id)}>
                     <HeartTwoTone twoToneColor="#eb2f96" />
                 </div>
             </div>

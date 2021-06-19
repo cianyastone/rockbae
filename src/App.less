@@ -223,7 +223,7 @@ body {
 }
 
 .activity-info--detail {
-  font-family: 'Noto Serif TC', serif;
+  font-family: 'Noto Sans TC', sans-serif;
   font-weight: Bold;
   padding:  1.2rem;
   will-change: transform;
@@ -232,6 +232,10 @@ body {
   border-radius: 5px;
   box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
   background-color: white;
+}
+
+.activity-description{
+  font-family: 'Noto Serif TC', serif;
 }
 
 .activity-category {
@@ -889,12 +893,20 @@ left: 63%;
   color: white;
   height: auto;
   font-size: 1.6rem;
-  display:flex;
-  justify-content:flex-end;
-  margin-right: 35px;
   margin-bottom: 30px;
   // justify-content:center;
   /* padding: 0.5rem 2rem; */
+}
+
+.btn-nottoprefer{
+  display:flex;
+  justify-content:flex-end;
+  margin-right: 35px;
+}
+
+.btn-toprefer:hover{
+  font-size: 1.8rem;
+  color: white;
 }
 
 .btn-toprefer:hover{
@@ -1113,7 +1125,13 @@ left: 63%;
     font-size:1.5rem;
   }
   .btn-toprefer {
-    font-size: 1.4rem;
+    font-size: 2rem;
+    display:flex;
+  }
+  .btn-heart{
+    justify-content:center;
+  }
+  .btn-nottoprefer{
     display:flex;
     justify-content:flex-end;
     margin-right: 35px;

@@ -159,6 +159,11 @@ export default function NavBar() {
             </NavLink>
           </Menu.Item>
           <Menu.Item key="link">
+            <NavLink to="/post" activeClassName="nav-item--active">
+              真摯ㄉ文章
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key="link">
             <NavLink to="/Cart" activeClassName="nav-item--active">
             <Badge count={count} size={"small"} style={{ color: 'white', backgroundColor: '#6366F2' }}>
               婐ㄉ購物車
