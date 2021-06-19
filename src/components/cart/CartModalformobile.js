@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Button, Select } from "antd";
+import { useState, useEffect } from 'react';
+import { Drawer,Button, Select } from "antd";
 import { useContext } from "react";
 import { StoreContext } from "../../store"
 import BreadcrumbItem from "../normal/BreadcrumbItem";
@@ -11,13 +11,18 @@ import {removeFromCart, addCartItemforModal} from "../../actions"
 const { Option } = Select;
 
 export default function CartModalformobile() {
-    const { state: { cartItems }, dispatch } = useContext(StoreContext);
+    const [visible, setVisible] = useState(false);
+    const { state: { cart: { cartItems }, userSignin: { userInfo } }, dispatch } = useContext(StoreContext);
+
+    const showDrawer = () => {setVisible(true);};
+    const onClose = () => {setVisible(false);};
 
     const history = useHistory();
 
     const checkoutHandler = () => {
-        history.push("/login?redirect=shipping");
+        history.push("/shipping");
     }
+
 
     useEffect(()=>{
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -37,7 +42,7 @@ export default function CartModalformobile() {
          ) : (
             cartItems.map(item => (
                 <div className="cart-item">
-                    <Link to={`/activity/${item.id}` }className="link">
+                    <Link to={`/activity/${item.id}` }>
                     <div className="cart-image">
                         <img src={item.image} alt={item.name} />
                     </div>

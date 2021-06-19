@@ -49,6 +49,7 @@ import {
 export const StoreContext = createContext();
 let preferItems = Cookie.getJSON("preferItems");
 if(!preferItems) preferItems = []; 
+
 let cartItems;
 try{
   cartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -76,6 +77,7 @@ try {
 const initialState = {
   allActivites: [],
   preferItems,
+  cartItems,
   page: {
     title: "Rock Bae",
     activities:[],
