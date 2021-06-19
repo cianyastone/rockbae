@@ -58,9 +58,6 @@ export default function NavBar() {
 
   return (
     <>
-    <Link onClick={() => setIsOnTouch(!isOnTouch)} isOnTouch={isOnTouch} className="show-mobile nav-position">
-      <img src="https://i.pinimg.com/originals/35/73/f4/3573f498e9a1aabd2408b997fd2dc368.png" width="30px"></img>
-    </Link>
     <div className="nav-bar collapse-mobile">
       <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
         <NavLink to="/" className="ant-dropdown-link nav-item" activeClassName="nav-item--active" onClick={e => e.preventDefault()}>
@@ -76,6 +73,9 @@ export default function NavBar() {
       <CartModal className="nav-item"/>
       <UserInfo className="nav-item" style={{marginRight: '20px'}} />
     </div>
+    <Link onClick={() => setIsOnTouch(!isOnTouch)} isOnTouch={isOnTouch} className="show-mobile nav-position">
+      <img src="https://i.pinimg.com/originals/35/73/f4/3573f498e9a1aabd2408b997fd2dc368.png" width="30px"></img>
+    </Link>
     <Drawer
       closable={false}
       onClose={handleCloseDrawer}

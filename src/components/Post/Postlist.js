@@ -94,16 +94,32 @@ export default function Post() {
                 }
             </div>
             <Row className="postList-topic">
-                <Col span={13}>
+                <Col xs={{ span: 24 }} 
+         sm={{ span: 12 }} 
+         lg={{ span: 13 }}
+         xl={{ span: 13 }}
+         xxl={{ span: 13 }}>
                     <p>標題</p>
                 </Col>
-                <Col span={6}>
+                <Col xs={{ span: 0 }} 
+         sm={{ span: 12 }} 
+         lg={{ span: 6 }}
+         xl={{ span: 6 }}
+         xxl={{ span: 6 }}>
                     <p>活動分類</p>
                 </Col>
-                <Col span={3}>
+                <Col xs={{ span: 0 }} 
+         sm={{ span: 0 }} 
+         lg={{ span: 3 }}
+         xl={{ span: 3 }}
+         xxl={{ span: 3 }}>
                     <p>作者</p>
                 </Col>
-                <Col span={2}>
+                <Col xs={{ span: 0 }} 
+         sm={{ span: 0 }} 
+         lg={{ span: 2 }}
+         xl={{ span: 2 }}
+         xxl={{ span: 2 }}>
                     <p>人氣</p>
                 </Col>
             </Row>
