@@ -18,14 +18,14 @@ export default function PreferModal() {
          {preferItems.length === 0 ? (
             <div className="nopreference">泥還沒有喜歡ㄉ活動，泥484不喜歡我˚‧º·(˚ ˃̣̣̥⌓˂̣̣̥ )‧º·˚</div>
          ) : (
-            <Row gutter={[32,32]}>
+            <Row gutter={[24, 16]}>
                {preferItems.map(item => (
                   <Col 
                      key={item.id} 
                      sm={{ span: 12 }} 
-                     lg={{ span: 8 }}
+                     lg={{ span: 12 }}
                      xl={{ span: 6 }}
-                     xxl={{ span: 4 }}
+                     xxl={{ span: 6 }}
                   >
                   <PreferItem item={item}/>
                   </Col>

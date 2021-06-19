@@ -154,7 +154,7 @@ function ActivityDetail({activity}) {
             <AddToCart activity={activity} qty={qty} ticket={ticket}/>
          </animated.div>           
          </Col>
-         <Col span={8}>
+         <Col lg={{ span : 8 }}>
                <animated.div
                style={
                   {scale: rightIconProps.scale,

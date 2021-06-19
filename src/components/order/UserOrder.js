@@ -23,8 +23,7 @@ export default function OrderList() {
           <>
             {orderList.map( order => (
               <Col
-                xs={{ span: 24 , offset: 6 }}
-                sm={{ span: 18 , offset: 2 }}
+                xs={{ span: 20, offset: 2 }}
                 lg={{ span: 12 , offset: 0 }}
               >
               <div className="userOrder-card">
@@ -38,7 +37,7 @@ export default function OrderList() {
                     <div className="orderCard-image cart-image">
                       <img src={item.image} alt={item.name} />
                     </div>
-                    <div className="orderCard-content cart-item-content">
+                    <div className="cart-item-content">
                       <div className="cart-name">{item.name}</div>
                       <div className="orderCard-text">{item.ticketClass}</div>
                       <div className="orderCard-qty">
