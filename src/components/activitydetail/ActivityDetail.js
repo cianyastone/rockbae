@@ -175,7 +175,7 @@ function ActivityDetail({activity}) {
                   </p>
                   </TabPane>
                   <TabPane tab="演出陣容" key="2">
-                  Content of Tab Pane 2
+                  {activity.artist}
                   </TabPane>
                   <TabPane tab="主辦單位" key="3">
                   <p>
