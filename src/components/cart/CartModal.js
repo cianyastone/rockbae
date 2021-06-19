@@ -51,7 +51,8 @@ export default function CartModal() {
           className="drawer_style"
           width="350"
         >
-          {cartItems.length === 0 ? (
+            <div className="cart-drawer">
+            {cartItems.length === 0 ? (
             <div>婐ㄉ心空空如也。･ﾟ･(つд`ﾟ)･ﾟ･</div>
          ) : (
             cartItems.map(item => (
@@ -122,6 +123,7 @@ export default function CartModal() {
             <UserModal isModalVisible={isModalVisible} toggleModal={toggleModal}/>
         </Button>
         }
+            </div>
     </Drawer>
     </>
 );}

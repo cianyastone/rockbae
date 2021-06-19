@@ -16,7 +16,6 @@ export default function LinkToOther({post}){
       }));
     return(
     <>
-    
     <Link to={`/post/${post.activity}/${post.id}`}
         onClick={() => {
             setPostDetail(dispatch, post.id);
