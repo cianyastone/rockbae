@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import PreferSummary from "../prefer/PreferSummary";
 import CartModal from "../cart/CartModal";
 import UserInfo from "../user/UserInfo";
+import UserInfoForMobile from "../user/UserInfoForMobile";
 import UserModal from "../user/UserModal";
 import { StoreContext } from "../../store"
 import { setActivityDetail, setPostPage, logoutFromFirebase } from "../../actions";
@@ -52,9 +53,6 @@ export default function NavBar() {
      logoutFromFirebase(dispatch);
      history.push("/");
    };
-  const LogIn = () =>{
-    <UserModal onClick={toggleModal}/>
-  }
   
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
@@ -99,6 +97,8 @@ export default function NavBar() {
           <img className="nav-slogan" width="50%" src="https://i.pinimg.com/564x/09/79/8f/09798f85e707c8e84d3e8460318d4998.jpg" alt="description"/>
         </Link>
         <Menu mode="inline" >
+        {userInfo
+              ? 
           <SubMenu key="sub1" 
           title={userInfo
             ? `${userInfo.displayName}'s ㄉ個人頁面`
@@ -107,13 +107,12 @@ export default function NavBar() {
           openKeys={openKeys} 
           onOpenChange={onOpenChange}>
             
-            {userInfo
-              ? 
+            
             <>
             <Menu.Item key="1">
-            <nav onClick={goToProfile}>
-               個人檔案
-            </nav>
+              <Link to="/profile">
+              <p>個人檔案</p>
+              </Link>
             </Menu.Item>
             <Menu.Item key="2">
                 <NavLink to="/createpost" className="activity-name">
@@ -134,12 +133,15 @@ export default function NavBar() {
                 登出
             </Menu.Item>
             </>
-            :
-            <Menu.Item onClick={LogIn} key="1">
-              登入
-            </Menu.Item>
-            }
+            
           </SubMenu>
+          :
+          <Menu.Item key="1">
+            <Link to="/login">
+            <p>登入</p>
+            </Link>
+          </Menu.Item>
+          }
           <SubMenu key="sub2" title="煞氣ㄉ音樂祭" openKeys={openKeys} onOpenChange={onOpenChange}>
             {[...Array(activities.length).keys()].map((x) => (
             <Menu.Item value={x}>
