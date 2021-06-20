@@ -8,13 +8,13 @@ import UserInfo from "../user/UserInfo";
 import UserInfoForMobile from "../user/UserInfoForMobile";
 import UserModal from "../user/UserModal";
 import { StoreContext } from "../../store"
-import { setActivityDetail, setPostPage, logoutFromFirebase } from "../../actions";
+import { setActivityDetail, setPostPage, logoutFromFirebase, setPostDetail } from "../../actions";
 
 const { SubMenu } = Menu;
 const rootSubmenuKeys = ['sub1','sub2'];
 
 export default function NavBar() {
-  const { state: { page: { activities }, userSignin : { userInfo } } } = useContext(StoreContext);
+  const { state: { page: { activities, posts }, userSignin : { userInfo } } } = useContext(StoreContext);
   const { dispatch } = useContext(StoreContext);
   const [isOnTouch, setIsOnTouch] = useState(false);
   const handleCloseDrawer = () => setIsOnTouch(false);
@@ -53,7 +53,10 @@ export default function NavBar() {
      logoutFromFirebase(dispatch);
      history.push("/");
    };
-  
+  const setPost = () => {
+    setPostPage(dispatch, `/post`);
+    setPostDetail(dispatch,posts[0].id);
+  }
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
@@ -79,7 +82,7 @@ export default function NavBar() {
       <NavLink to="/Prefer" className="nav-item" activeClassName="nav-item--active">
         <PreferSummary />
       </NavLink>
-      <NavLink to="/post" className="nav-item" onClick={() => {setPostPage(dispatch, `/post`);}} activeClassName="nav-item--active">
+      <NavLink to="/post" className="nav-item" onClick={setPost} activeClassName="nav-item--active">
         真摯ㄉ文章
       </NavLink>
       <CartModal className="nav-item"/>
