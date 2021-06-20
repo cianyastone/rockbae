@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import { NavLink, useHistory } from 'react-router-dom';
 import { Menu, Avatar, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { logoutFromFirebase } from "../../actions";
+import { getUserImage, logoutFromFirebase } from "../../actions";
 import Profile from "./Profile";
 import UserModal from "./UserModal";
 
@@ -21,6 +21,7 @@ export default function UserInfo() {
    const toggleModal = () => setIsModalVisible(!isModalVisible);
    const [isModalVisible2, setIsModalVisible2] = useState(false);
    const toggleModal2 = () => setIsModalVisible2(!isModalVisible2);
+   console.log(getUserImage(userInfo.email));
 
    const menu = (
       <Menu>

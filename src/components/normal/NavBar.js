@@ -55,7 +55,6 @@ export default function NavBar() {
    };
   const setPost = () => {
     setPostPage(dispatch, `/post`);
-    setPostDetail(dispatch,posts[0].id);
   }
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);

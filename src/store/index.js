@@ -130,8 +130,8 @@ const initialState = {
   },
   postDetail: {
     post: {},
-    like: {},
-    comment: {},
+    like: [],
+    comment: [],
     checkIfLiked: {},
     loading: true,
     error: null,

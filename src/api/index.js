@@ -3,6 +3,7 @@ import "firebase/firestore";
 import "firebase/auth";
 import jsonInfo from "../json/jsonInfo.json";
 import activities from "../json/activity.json";
+import 'firebase/storage';
 
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 const firebaseConfig = {
@@ -41,6 +42,7 @@ const post = firebase.firestore().collection("Post");
 const postDocRef = post.doc("postJson");
 const allPostCollectionRef = postDocRef.collection("allPost");
 const allOrdersCollectionRef = firebase.firestore().collection("allOrders");
+const userCollectionRef = firebase.firestore().collection("allUser");
 
 export const getActivityById = async (activityId) => {
   const doc = await allActivitiesCollectionRef.doc(activityId).get();
@@ -72,6 +74,7 @@ export const feedActivities = () => {
 
 export const createPostApi = async (post) => {
   const author = auth.currentUser.displayName;
+  const authorEmail = auth.currentUser.email;
   const postRef = await allPostCollectionRef.doc();
   let date = new Date().getTime();
   const time= new Intl.DateTimeFormat( { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
@@ -82,6 +85,7 @@ export const createPostApi = async (post) => {
     ...post,
     id,
     author,
+    authorEmail,
     date,
     time,
     like,
@@ -97,6 +101,7 @@ export const getPostById = async (postId) => {
 export const createCommentApi = async (postId, comment) => {
   const doc = await allPostCollectionRef.doc(postId);
   const user = auth.currentUser.displayName;
+  const userEmail = auth.currentUser.email;
   let date = new Date().getTime();
   const time= new Intl.DateTimeFormat({ year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(date);
   const commentDoc = doc.collection("allComment").doc();
@@ -105,6 +110,7 @@ export const createCommentApi = async (postId, comment) => {
     ...comment,
     date,
     time,
+    userEmail
   });
   return { ...commentDoc };
 }
@@ -222,17 +228,10 @@ export const signInWithEmailPassword = async (email, password) => {
   return await auth.signInWithEmailAndPassword(email, password);
 }
 
-export const registerWithEmailPassword = async (email, password, displayName) => {
-  await auth.createUserWithEmailAndPassword(email, password);
-  const user = auth.currentUser;
-  await user.updateProfile({ displayName })
-  return user;
-}
-
 export const updateUserInfoApi = async (email, password, displayName) => {
   console.log(email);
   console.log(password);
-  console.log(displayName)
+  console.log(displayName);
   const user = auth.currentUser;
   if(displayName)
     await user.updateProfile({ displayName });
@@ -242,6 +241,26 @@ export const updateUserInfoApi = async (email, password, displayName) => {
     await user.updatePassword(password);
   return user;
 }
+
+export const uploadImage = async (image) => {
+  const user = auth.currentUser.email;
+  firebase.storage().ref(`/userImage/${user}`).put(image);
+}
+
+export const getImage = async (email) =>{
+  const Url = firebase.storage().ref().child(`userImage/${email}`).getDownloadURL().
+  then((url) => {
+    console.log(url);
+  });
+}
+
+export const registerWithEmailPassword = async (email, password, displayName) => {
+  await auth.createUserWithEmailAndPassword(email, password);
+  const user = auth.currentUser;
+  await user.updateProfile({ displayName });
+  return user;
+}
+
 
 export const createOrderApi = async (order) => {
   const user = auth.currentUser.uid;

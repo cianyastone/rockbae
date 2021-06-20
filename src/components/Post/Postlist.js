@@ -7,7 +7,7 @@ import { Row, Col, Spin } from "antd";
 import PostItem from "./PostItem";
 import Top3 from "./Top3";
 import { StoreContext } from "../../store";
-import { setPostPage, setPostDetail } from "../../actions"
+import { setPostPage } from "../../actions"
 
 
 export default function Post() {
