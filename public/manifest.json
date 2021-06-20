@@ -3,18 +3,18 @@
   "name": "Rock Bae",
   "icons": [
     {
-      "src": "搖滾寶寶.png",
+      "src": "rockbae.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "搖滾寶寶/png"
+      "type": "image/x-icon"
     },
     {
-      "src": "搖滾寶寶.png",
-      "type": "搖滾寶寶/png",
+      "src": "搖滾寶寶192.png",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
       "src": "搖滾寶寶.png",
-      "type": "搖滾寶寶/png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
