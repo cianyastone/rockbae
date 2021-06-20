@@ -67,8 +67,6 @@ import {
   getOrderById,
   getOrderByUser,
   checkLoginApi,
-  uploadImage,
-  getImage,
 } from "../api";
 
 
@@ -217,7 +215,7 @@ export const updateUserInfo = async (dispatch, userInfo) => {
     const user = await updateUserInfoApi(
       userInfo.email,
       userInfo.password,
-      userInfo.name,
+      userInfo.name
     );
     dispatch({
       type: SUCCESS_UPDATE_USERINFO,
@@ -228,22 +226,6 @@ export const updateUserInfo = async (dispatch, userInfo) => {
       type: FAIL_UPDATE_USERINFO,
       payload: e.message,
     });
-    console.log(e);
-  }
-};
-
-export const updateUserImage = async (image) => {
-  try {
-    const userImage = await uploadImage(image);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getUserImage = async (email) => {
-  try {
-    const userImage = await getImage(email);
-  } catch (e) {
     console.log(e);
   }
 };

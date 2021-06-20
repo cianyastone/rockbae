@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Upload } from "antd";
-import { logoutFromFirebase, updateUserImage, updateUserInfo } from "../../actions";
+import { Form, Input, Button } from "antd";
+import { logoutFromFirebase, updateUserInfo } from "../../actions";
 import { StoreContext } from "../../store";
 import BreadcrumbItem from "../normal/BreadcrumbItem";
 
@@ -17,7 +17,7 @@ const ProfileForMobile = () => {
   const [form] = Form.useForm();
 
   const handleUpdate = (values) => {
-    console.log(values);
+    console.log(values)
     updateUserInfo(dispatch, values);
   };
 
@@ -36,11 +36,6 @@ const ProfileForMobile = () => {
       sm: { span: 16 },
     },
   };
-  const [image , setImage] = useState('');
-  const set=(e)=>{
-    setImage(e.target.files[0]);
-    console.log(image);
-  }
   return (
     <div className="post-container">
       <BreadcrumbItem link={'profile'} name={'個人檔案'} />
@@ -52,8 +47,6 @@ const ProfileForMobile = () => {
       >
         <p className="shipping-title">修改個人資料</p>
         <hr className="hr-shipping"></hr>
-        <input type="file" onChange={set}/>
-        <button onClick={updateUserImage(image)}>Upload</button>
         <Form.Item
           label="暱稱: "
           name="name"
