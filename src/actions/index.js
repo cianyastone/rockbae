@@ -27,9 +27,7 @@ import {
   BEGIN_COMMENT,
   SUCCESS_COMMENT,
   SET_POST_DETAIL,
-  BEGIN_THUMBS_UP,
-  SUCCESS_THUMBS_UP,
-  FAIL_THUMBS_UP,
+  GET_COMMENT,
   BEGIN_THUMBS_DOWN,
   SUCCESS_THUMBS_DOWN,
   FAIL_THUMBS_DOWN,
@@ -63,7 +61,7 @@ import {
   thumbsUpApi,
   thumbsDownApi,
   getLikesByPost,
-  getCommentsByPost,
+  getCommentApi,
   checkLike,
   createOrderApi,
   getOrderById,
@@ -262,7 +260,7 @@ export const createPost = async (dispatch, postData) => {
 export const setPostDetail = async (dispatch, postId) => {
   const post = await getPostById(postId);
   const like = await getLikesByPost(postId);
-  const comment = await getCommentsByPost(postId);
+  const comment = await getCommentApi(postId);
   const checkIfLiked = await checkLike(postId);
   dispatch({
     type: SET_POST_DETAIL,

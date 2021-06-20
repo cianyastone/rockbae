@@ -79,7 +79,7 @@ export default function Post() {
             </div>
             <div className="postList-content">
             <Row className="postList-Top-item ">
-                <h1 className="post-detail-article--large">人氣貼文</h1>
+                <h1 className="post-detail-article--large">最新貼文</h1>
             </Row>
             <div className="postList-Top">
                 {posts.length > 3
@@ -120,7 +120,7 @@ export default function Post() {
          lg={{ span: 2 }}
          xl={{ span: 2 }}
          xxl={{ span: 2 }}>
-                    <p>人氣</p>
+                    <p>發布日期</p>
                 </Col>
             </Row>
             <Row className="postList-item">
@@ -132,44 +132,6 @@ export default function Post() {
             </div>
         )
       }
-        </>      
-        /*<Row className="middle">
-                <h1>人氣貼文</h1>
-            </Row>
-            <Row>
-                <Col span="8">
-                    <Link to={`/post/${posts[0].activity}/${posts[0].id}`}
-                        onClick={() => {
-                            setPostDetail(dispatch, posts[0].id);
-                        }}
-                    >
-                        <h2 className="activity-name">
-                            {posts[0].article}
-                        </h2>
-                    </Link>
-                </Col>
-                <Col span="8">
-                    <Link to={`/post/${posts[1].activity}/${posts[1].id}`}
-                        onClick={() => {
-                            setPostDetail(dispatch, posts[1].id);
-                        }}
-                    >
-                        <h2 className="activity-name">
-                            {posts[1].article}
-                        </h2>
-                    </Link>
-                </Col>
-                <Col span="8">
-                    <Link to={`/post/${posts[2].activity}/${posts[2].id}`}
-                        onClick={() => {
-                            setPostDetail(dispatch, posts[2].id);
-                        }}
-                    >
-                        <h2 className="activity-name">
-                            {posts[0].article}
-                        </h2>
-                    </Link>
-                </Col>
-            </Row>*/
+      </>
     );
 }

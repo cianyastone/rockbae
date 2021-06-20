@@ -73,7 +73,8 @@ export const feedActivities = () => {
 export const createPostApi = async (post) => {
   const author = auth.currentUser.displayName;
   const postRef = await allPostCollectionRef.doc();
-  let date = new Date();
+  let date = new Date().getTime();
+  const time= new Intl.DateTimeFormat( { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
   const id = postRef.id;
   var like =[];
   // Store Data for Aggregation Queries
@@ -82,9 +83,10 @@ export const createPostApi = async (post) => {
     id,
     author,
     date,
+    time,
     like,
   });
-  return { ...post, id };
+  return { ...post };
 }
 
 export const getPostById = async (postId) => {
@@ -95,15 +97,19 @@ export const getPostById = async (postId) => {
 export const createCommentApi = async (postId, comment) => {
   const doc = await allPostCollectionRef.doc(postId);
   const user = auth.currentUser.displayName;
-  let date = new Date();
+  let date = new Date().getTime();
+  const time= new Intl.DateTimeFormat({ year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(date);
   const commentDoc = doc.collection("allComment").doc();
   await commentDoc.set({
     user,
-    comment,
+    ...comment,
     date,
+    time,
   });
-  return { ...post };
+  return { ...commentDoc };
 }
+
+
 
 export const thumbsUpApi = async (postId) => {
   const doc = await allPostCollectionRef.doc(postId);
@@ -158,7 +164,7 @@ export const getLikesByPost = async (postId) => {
   return jsonLikes;
 }
 
-export const getCommentsByPost = async (postId) => {
+export const getCommentApi = async (postId) => {
   const post = await allPostCollectionRef.doc(postId);
   const commentCollection = await post.collection("allComment");
   let jsonComment = [];
@@ -184,6 +190,16 @@ export const getPosts = async (url) => {
   querySnapshot.forEach((doc) => {
     jsonPosts.push(doc.data());
   });
+  const length = jsonPosts.length;
+  for (let i = 0; i < length-1; i++) {
+      for (let j = 0; j < length-1; j++) {
+          if(jsonPosts[j].date < jsonPosts[j+1].date) {
+              let temp = jsonPosts[j]
+              jsonPosts[j] = jsonPosts[j+1];
+              jsonPosts[j+1] = temp;
+          }
+      }
+  }
   return jsonPosts;
 }
 

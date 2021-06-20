@@ -1,25 +1,29 @@
 import { Comment, Avatar } from 'antd';
-import { Button } from "antd";
+import {useEffect, useContext} from "react";
+import {  } from '../../../actions';
+import {StoreContext} from "../../../store"
 
-export default function AllComment({comment}){
+export default function AllComment(){
+  const {state:{postDetail: { comment }}, dispatch}= useContext(StoreContext);
   return(
     <>
+    {comment.map(content =>(
     <Comment
-      author={<a>Han Solo</a>}
+      author={<a>{content.user}</a>}
       avatar={
         <Avatar
           src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
           alt="Han Solo"
         />
       }
+      datetime={content.time}
       content={
         <p>
-          We supply a series of design principles, practical patterns and high quality design
-          resources (Sketch and Axure), to help people create their product prototypes beautifully
-          and efficiently.
+          {content.comment}
         </p>
       }
     />
+    ))}
     </>
   );
 }

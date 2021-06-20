@@ -68,7 +68,7 @@ export default function PostItem({ post }) {
          lg={{ span: 2 }}
          xl={{ span: 2 }}
          xxl={{ span: 2 }}>
-            <p>{post.like.length}</p>
+            <p>{post.time}</p>
         </Col>
         </>
     );

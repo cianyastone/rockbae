@@ -4,19 +4,17 @@ import { createComment, setPostDetail } from "../../../actions"
 import { StoreContext } from "../../../store"
 
 
-export default function CreateComment({}){
+export default function CreateComment(){
     const { state:{ createComment: { loading }, postDetail: { post } }, dispatch } = useContext(StoreContext);
     const onFinish = async (commentData) => {
         createComment(dispatch, post.id, commentData);
         setPostDetail(dispatch, post.id);
     };
-
-    const { Option } = Select;
     const { TextArea } = Input;
 
     return (
         <>
-        <Form name="create-article" onFinish={onFinish} >
+        <Form onFinish={onFinish} >
         <Form.Item 
             name={['comment']} 
             rules={[{ required: true }]}

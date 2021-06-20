@@ -11,7 +11,7 @@ import LinkToOther from "./postdetail/LinkToOther";
 import { thumbsUp, thumbsDown, setPostDetail } from "../../actions"
 
 export default function PostDetail(){
-    const { state: { postDetail: { post, like, comment, checkIfLiked }, requestPost:{loading}, page:{posts}}, dispatch } = useContext(StoreContext);
+    const { state: { postDetail: { post, like, checkIfLiked }, requestPost:{loading}, page:{posts}}, dispatch } = useContext(StoreContext);
     const antIcon = <LoadingOutlined style={{ fontSize: 80, color: "#FFF" }} spin />;
     const ThumbsUp = () => {
       thumbsUp(dispatch, post.id);
@@ -50,18 +50,18 @@ export default function PostDetail(){
             </Breadcrumb>
           <Row gutter={[48, 48]}>
             <Col xs={{ span: 24 }} 
-         sm={{ span: 24 }} 
-         lg={{ span: 18 }}
-         xl={{ span: 18 }}
-         xxl={{ span: 18 }}>
+                sm={{ span: 24 }} 
+                lg={{ span: 18 }}
+                xl={{ span: 18 }}
+                xxl={{ span: 18 }}>
               <Row gutter={[48, 8]}>
                 <Col xs={{ span: 24 }} 
-         sm={{ span: 12 }} 
-         lg={{ span: 13 }}
-         xl={{ span: 13 }}
-         xxl={{ span: 13 }}>
+                    sm={{ span: 12 }} 
+                    lg={{ span: 13 }}
+                    xl={{ span: 13 }}
+                    xxl={{ span: 13 }}>
                   <h1 className="post-detail-article post-detail-article--large">{post.article}</h1>
-                  <p>By {post.author}</p>
+                  <p>{post.time} By {post.author}</p>
                   <p>推薦指數：<Rate disabled allowHalf defaultValue={post.recommend}/></p>
                   <div className="post-detail-like">
                     <p>有{like.length}個朋朋說這則文章很讚</p>
@@ -77,23 +77,27 @@ export default function PostDetail(){
                   </div>
                 </Col>
                 <Col xs={{ span: 24 }} 
-         sm={{ span: 12 }} 
-         lg={{ span: 10 }}
-         xl={{ span: 10 }}
-         xxl={{ span: 10 }}>
+                    sm={{ span: 12 }} 
+                    lg={{ span: 10 }}
+                    xl={{ span: 10 }}
+                    xxl={{ span: 10 }}>
                 <Image className="post-image" src="/images/b61a1db0-e44e-460f-a928-c15578c32ad7.jpg"/> 
                 </Col>
               </Row>
               <Row>
                 <p>{post.content}</p>
               </Row>
+              <Row>
+                <AllComment postId={post.id}/>
+                <CreateComment/> 
+              </Row>
             </Col>
             <Col xs={{ span: 24 }} 
-         sm={{ span: 24 }} 
-         lg={{ span: 6 }}
-         xl={{ span: 6 }}
-         xxl={{ span: 6 }}
-            className="post-detail-right">
+              sm={{ span: 24 }} 
+              lg={{ span: 6 }}
+              xl={{ span: 6 }}
+              xxl={{ span: 6 }}
+              className="post-detail-right">
               <h3 className="post-detail-article">看看其他{post.activity}的文章</h3>
               <p>
                 {posts.length==1
