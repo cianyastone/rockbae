@@ -115,7 +115,6 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
             htmlType="submit"
             className="login-form__button"
             loading
-            style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
             登入
           </Button>
@@ -124,7 +123,6 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
             type="primary"
             htmlType="submit"
             className="login-form__button"
-            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
             登入
           </Button>
@@ -243,7 +241,6 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
             className="login-form__button"
             htmlType="submit"
             loading
-            style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
             註冊
           </Button>
@@ -252,7 +249,6 @@ const UserModal = ({ redirect, isModalVisible, toggleModal }) => {
             type="primary"
             className="login-form__button"
             htmlType="submit"
-            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
             註冊
           </Button>

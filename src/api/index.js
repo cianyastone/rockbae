@@ -174,6 +174,16 @@ export const getCommentApi = async (postId) => {
   querySnapshot.forEach((doc) => {
     jsonComment.push(doc.data());
   });
+  const length = jsonComment.length;
+  for (let i = 0; i < length-1; i++) {
+      for (let j = 0; j < length-1; j++) {
+          if(jsonComment[j].date < jsonComment[j+1].date) {
+              let temp = jsonComment[j]
+              jsonComment[j] = jsonComment[j+1];
+              jsonComment[j+1] = temp;
+          }
+      }
+  }
   return jsonComment;
 }
 

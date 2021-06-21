@@ -6,24 +6,18 @@ import {StoreContext} from "../../../store"
 export default function AllComment(){
   const {state:{postDetail: { comment }}, dispatch}= useContext(StoreContext);
   return(
-    <>
+    <div className="comment-content">
     {comment.map(content =>(
-    <Comment
-      author={<a>{content.user}</a>}
-      avatar={
-        <Avatar
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          alt="Han Solo"
-        />
-      }
-      datetime={content.time}
-      content={
-        <p>
-          {content.comment}
-        </p>
-      }
-    />
+      <div className="comment-list">
+        <Avatar className="comment-avatar">
+            {content.user}
+        </Avatar>
+        <div className="comment-text">
+          <p className="comment-time">{content.user} {content.time}</p>
+          <p>{content.comment}</p>
+        </div>
+      </div>
     ))}
-    </>
+    </div>
   );
 }

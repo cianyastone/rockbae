@@ -104,7 +104,6 @@ const ProfileForMobile = () => {
             type="primary"
             htmlType="submit"
             className="login-form__button"
-            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
             提交
           </Button>

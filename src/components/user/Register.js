@@ -152,7 +152,6 @@ const Register = ({ redirect }) => {
             className="login-form__button"
             htmlType="submit"
             loading
-            style={{ background: "#C59CD3", borderColor: "#C59CD3"}}
           >
             註冊
           </Button>
@@ -161,7 +160,6 @@ const Register = ({ redirect }) => {
             type="primary"
             className="login-form__button"
             htmlType="submit"
-            style={{ background: "#B27CC5", borderColor: "#B27CC5"}}
           >
             註冊
           </Button>

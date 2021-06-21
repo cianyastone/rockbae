@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { StarOutlined, StarFilled } from '@ant-design/icons';
+import { useHistory } from "react-router-dom";
 import { notification, Popover } from "antd";
 import { StoreContext } from "../../../store"
 import Cookie from "js-cookie";
@@ -8,6 +9,7 @@ import { addFavoriteItem, removeFromFavorite } from "../../../actions"
 
 export default function AddToFavorite({post}){
     const { state: { favoriteItems }, dispatch } = useContext(StoreContext);
+    const history = useHistory();
     var InFavorite = favoriteItems.map(function(item) {
       return item.article;
     }).includes(post.article);
@@ -18,7 +20,7 @@ export default function AddToFavorite({post}){
           ` ${post.article}  已加入收藏的文章`,
           icon: <StarOutlined />,
       onClick: () => {
-          console.log('Notification Clicked!');
+        history.push('/favoritePost');
       },
       placement: 'bottomRight'
       });

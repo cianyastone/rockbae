@@ -87,9 +87,9 @@ export default function PostDetail(){
               <Row>
                 <p>{post.content}</p>
               </Row>
-              <Row>
-                <AllComment postId={post.id}/>
+              <Row className="post-detail-comment--area">
                 <CreateComment/> 
+                <AllComment postId={post.id}/>
               </Row>
             </Col>
             <Col xs={{ span: 24 }} 
