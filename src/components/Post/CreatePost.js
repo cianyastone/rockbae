@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Form, Select, Input, Button, Rate, Row, Col, } from 'antd';
+import { useHistory } from 'react-router-dom';
 import { createPost } from "../../actions"
 import { StoreContext } from "../../store"
 import BreadcrumbItem from "../normal/BreadcrumbItem";
@@ -7,9 +8,11 @@ import BreadcrumbItem from "../normal/BreadcrumbItem";
 
 export default function CreatePost(){
     const { state:{ createPost: { loading }, page: { activities } }, dispatch } = useContext(StoreContext);
+    const history = useHistory();
     const onFinish = async (postData) => {
         createPost(dispatch, postData);
         console.log('Received values of form: ', postData);
+        history.push("/post");
     };
 
     const { Option } = Select;
