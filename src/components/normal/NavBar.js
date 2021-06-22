@@ -131,7 +131,7 @@ export default function NavBar() {
                   收藏ㄉ文章
                 </NavLink>
             </Menu.Item>
-            <Menu.Item onClick={Logout} key="5">
+            <Menu.Item onClick={Logout} style={{ color: "#EC695F" }} key="5">
                 登出
             </Menu.Item>
             </>

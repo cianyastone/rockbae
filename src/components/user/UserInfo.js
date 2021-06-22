@@ -45,7 +45,7 @@ export default function UserInfo() {
                收藏ㄉ文章
             </NavLink>
          </Menu.Item>
-         <Menu.Item onClick={Logout}>
+         <Menu.Item  style={{ color: "#EC695F" }} onClick={Logout}>
             登出
          </Menu.Item>
       </Menu> 
